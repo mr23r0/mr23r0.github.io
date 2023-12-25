@@ -77,11 +77,11 @@ Simple isn’t it?
 ### Discovery
 There is a list of files that you may find in the backup:
 
-wp-config.bak (wordpress config backup)
-All users Info
-full database backup (containing Users with password hashes & articles)
-all articles (including unlisted & drafts)
-all wordpress files (for static analysis)
+wp-config.bak (wordpress config backup)<br/>
+All users Info<br/>
+full database backup (containing Users with password hashes & articles)<br/>
+all articles (including unlisted & drafts)<br/>
+all wordpress files (for static analysis)<br/>
 You may have to dig between folders and unique files, but I can promise you one thing at the end of the I’ll be worth it.<br/>
 
 Thanks!

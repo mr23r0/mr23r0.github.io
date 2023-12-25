@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-25T21:23:11+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Linux by Vikku Podcast</title><link href="http://localhost:4000/linux-by-vikku-podcast.html" rel="alternate" type="text/html" title="Linux by Vikku Podcast" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/linux-by-vikku-podcast</id><content type="html" xml:base="http://localhost:4000/linux-by-vikku-podcast.html">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2.html" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.&lt;/p&gt;
+
+&lt;p&gt;For those familiar with &lt;em&gt;web applications&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, the concept is quite clear: applications require users to create accounts to establish user identities and workspaces. Within these workspaces, users can perform tasks and store their relevant information.&lt;/p&gt;
+
+&lt;p&gt;The development and maintenance of user registrations and session management can be quite challenging in terms of security. Therefore, it’s not surprising that SaaS services offer user management features that can be easily integrated with just a few clicks. Startups often opt for these solutions as their primary choice. This allows them to allocate their resources and funds toward developing their core solutions, rather than diverting them to the complexities of user management.&lt;/p&gt;
+
+&lt;p&gt;I noticed a similar situation during a &lt;em&gt;penetration test&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; conducted on “company.com.” It’s worth noting that “company.com” serves as an alias for the actual application that will be the focus of discussion throughout this article.&lt;/p&gt;
+
+&lt;p&gt;While examining the login page, I recognized that it was associated with a SaaS service providing user management features. To gain deeper insights, I routed every request through Burp Suite, with the assumption that I might discover something valuable about the service.&lt;/p&gt;
+
+&lt;p&gt;Following several registration processes and login-logout interactions, I decided to inspect the requests within Burp Proxy and the Target tab. To my surprise, I noticed that certain domains and subdomains were making calls to the SaaS application. Given that such calls are typically intended to be executed on the server side, this observation raised suspicions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*fDKgDM19nqs1NYWrNlbyDg.jpeg&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Among the various calls, two in particular from api.saasapp.com caught my attention. Upon closer examination, I discovered that the response from the POST request included an &lt;em&gt;OAuth token&lt;/em&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, with the request containing both a client ID and a secret.&lt;/p&gt;
+
+&lt;p&gt;For those who may not be familiar, it’s essential to understand that virtually every SaaS application offering technical and non-technical services provides APIs for programmatic usage. As I delved into the SaaS application’s documentation, I learned that the key and secret serve the purpose of connecting the customer application (company.com) with the SaaS application (saasapp.com), facilitating the sharing of user identities and session tokens.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*d0iAUVZ-8GFNEO7HZcKlrg.jpeg&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Upon further exploration of the keys, I found that they possess administrative privileges. Using the generated token associated with these keys, I gained the ability to retrieve user data, make modifications to their information, and even add members with administrative control over the SaaS application account for the application (company.com).&lt;/p&gt;
+
+&lt;p&gt;It granted me Administrator access to the &lt;em&gt;User Management System&lt;/em&gt;&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;, highlighting yet another instance of how expanding the attack surface and meticulously scrutinizing details can uncover creative yet crucial vulnerabilities. I often refer to this approach as “Unlocking the Power of Observation.” This marks the second article in this series.&lt;/p&gt;
+
+&lt;p&gt;Before concluding, I would like you to consider this scenario: What if I were unaware of these SaaS applications or the current trends in the development landscape? I might have dismissed it as a “rabbit hole.” Therefore, I encourage you not to limit your learning. Embrace the opportunity to learn about a wide range of topics because knowledge is an asset that never goes to waste — except perhaps for those intricate mathematical calculations we encountered in school ;)&lt;/p&gt;
+
+&lt;p&gt;This concludes my discussion on this topic. I hope you’ve gained new insights from this.&lt;br /&gt;
+Thank you!&lt;/p&gt;
+
+&lt;hr data-content=&quot;footnotes&quot; /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://aws.amazon.com/what-is/web-application/#:~:text=A%20web%20application%20is%20software,with%20customers%20conveniently%20and%20securely.&quot; target=&quot;_blank&quot;&gt;Web Applications&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.synopsys.com/glossary/what-is-penetration-testing.html&quot; target=&quot;_blank&quot;&gt;Penetration Testing/Tests&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc6749&quot; target=&quot;_blank&quot;&gt;OAuth Tokens&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.egnyte.com/guides/governance/user-management#:~:text=User%20management%20is%20a%20system,Providing%20users%20with%20authenticated%20access&quot; target=&quot;_blank&quot;&gt;User Management System&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="http://localhost:4000/uncovering-the-secrets-part-1.html" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>http://localhost:4000/uncovering-the-secrets-part-1</id><content type="html" xml:base="http://localhost:4000/uncovering-the-secrets-part-1.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-infamous-wayback-machine&quot;&gt;The Infamous WayBack Machine&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;“According to ChatGPT, The Wayback Machine is a digital archive of the World Wide Web, maintained by the Internet Archive. It is a valuable tool that allows users to access and browse archived versions of websites as they appeared at different points in time. The Wayback Machine captures and stores snapshots of web pages, creating a historical record of the internet.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The WayBack Machine was initially designed with the intention of serving a noble purpose by preserving valuable knowledge and information from web pages that have been removed or deleted. However, as it fulfills this objective, the WayBack Machine also records and retains the URLs and any sensitive information mentioned within those URLs.&lt;/p&gt;
+
+&lt;h3 id=&quot;unraveling-vulnerabilities-wide-open&quot;&gt;Unraveling Vulnerabilities Wide Open&lt;/h3&gt;
+&lt;p&gt;Although the WayBack Machine logs various aspects for its intended purpose, it also inadvertently captures vulnerabilities present in applications and sensitive information that was never intended to be made public. These may include confidential details like discount coupons, various types of tokens, hidden &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; or query parameters, and similar information.&lt;/p&gt;
+
+&lt;p&gt;If utilized correctly, these seemingly minor details can potentially lead bug bounty hunters to discover critical and groundbreaking vulnerabilities.&lt;/p&gt;
+
+&lt;p&gt;To gain a better understanding, let’s examine a few examples I have come across within the past six months:&lt;/p&gt;
+
+&lt;h3 id=&quot;password-leakage&quot;&gt;Password leakage&lt;/h3&gt;
+&lt;p&gt;As we are aware, in approximately one out of every three SaaS applications or service provider applications, APIs are implemented to facilitate programmatic access to their data, In order to grant access to the appropriate resources, these applications typically require an &lt;em&gt;authentication and authorization flow&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. While many applications offer login options with Google or OAuth, some still rely on their own password authentication or API tokens/keys. Typically, these credentials are passed as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; parameters. However, in the case of secret.app, they were transmitted as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; or query parameters. Furthermore, this particular application demanded both a username and password for authentication alongside OAuth.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/oauth/v2/token?client_id=&amp;lt;ID&amp;gt;&amp;amp;client_secret=&amp;lt;secret&amp;gt;&amp;amp;grant_type=password&amp;amp;scope=user&amp;amp;username=community@victim.com&amp;amp;password=&amp;lt;password&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Evidences from API Documentation&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl --location &apos;https://api.secret.app/oauth/v2/token&apos; \
+--form &apos;client_id=&quot;&quot;&apos; \
+--form &apos;client_secret=&quot;&quot;&apos; \
+--form &apos;grant_type=&quot;password&quot;&apos; \
+--form &apos;scope=&quot;user&quot;&apos; \
+--form &apos;username=&quot;&quot;&apos; \
+--form &apos;password=&quot;&quot;&apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;During the OAuth or authentication process, the username and password were provided through query parameters, and these details were captured and recorded by the WayBack Machine.&lt;/p&gt;
+
+&lt;h3 id=&quot;authentication-bypass-detection&quot;&gt;Authentication Bypass Detection&lt;/h3&gt;
+&lt;p&gt;In this particular scenario, the vulnerable application is commonly susceptible to &lt;em&gt;CVE-2023–0328&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; or a similar vulnerability. In simpler terms, this vulnerability enables an attacker to gain access to unauthorized resources by exploiting a lack of capability checks and handling of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; header.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://api.secret.app/account/xxxx/members?members[fields][]=firstName&amp;amp;member_data[fields][]=lastName&amp;amp;membet_data[fields][]=organizationName&amp;amp;sid=xxxxxx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;By visiting the links that have been logged on archive.org (WayBack / WebArchive), it is possible to identify and detect this vulnerability.&lt;/p&gt;
+
+&lt;h3 id=&quot;user-personal-information-leakage&quot;&gt;User Personal Information Leakage&lt;/h3&gt;
+&lt;p&gt;This particular issue is commonly observed in applications that utilize &lt;em&gt;Shopify&lt;/em&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; to create an online store for selling products. In such cases, the checkout and orders URL paths are often not adequately secured or configured to require authentication. As a consequence, when an actor visits the links stored in archive.org, they gain unauthorized access to the user’s personal information, including the billing details. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://shop.secret.app/xxxxx/orders/&amp;lt;SSID&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;unauthorized-access-to-user-preferences&quot;&gt;Unauthorized Access to User Preferences&lt;/h3&gt;
+&lt;p&gt;This issue arises when an application fails to enforce authentication through request headers or cookies, thereby granting access to any actor who possesses the preference link containing the user ID or token. In my case, the application did not require cookie or header authentication, enabling the actor to modify user preferences solely by accessing a specially crafted URL, which was logged in archive.org. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://pref.secret.app/unsubscribe?unsubscribe=1&amp;amp;uid=&amp;lt;UUID&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;key-points&quot;&gt;Key Points&lt;/h3&gt;
+&lt;p&gt;As demonstrated by the examples provided above, the targeted application can be susceptible to various vulnerabilities. It is crucial to comprehend the underlying logic behind any functionality that an application allows. The vulnerabilities illustrated are not exhaustive, and with the help of the WayBack Machine, bug bounty hunters can uncover numerous intriguing vulnerabilities such as Cross-Site Scripting (XSS), Insecure Direct Object Reference (IDOR), and Remote Code Execution (RCE).&lt;/p&gt;
+
+&lt;h3 id=&quot;easy-hunt&quot;&gt;Easy Hunt&lt;/h3&gt;
+&lt;p&gt;While a significant number of individuals depend on the command line interface to retrieve information and access logged URLs from the WayBack Machine, here is an alternative method available for obtaining the same data through a web browser interface.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://web.archive.org/cdx/search/cdx?url=*.secret.app/*&amp;amp;output=text&amp;amp;fl=original&amp;amp;collapse=urlkey
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;solution&quot;&gt;Solution&lt;/h3&gt;
+&lt;p&gt;While the recommended approach is to identify and address each vulnerability individually, organizations can opt for a simple fix by utilizing a specific entry in their robots.txt file to prevent or block the WayBack Machine from crawling their applications.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;User-agent: la_archiver
+Disallow: /
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To gain further insight into the solution, I recommend reading an excellent article on the topic available at &lt;em&gt;reputationx.com&lt;/em&gt;&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;I hope you have found this post informative and learnt something new from it.&lt;br /&gt;
+Thanks!&lt;/p&gt;
+
+&lt;hr data-content=&quot;footnotes&quot; /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc6749&quot; target=&quot;_blank&quot;&gt;Authentication and Authorization flow&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2023-0328&quot; target=&quot;_blank&quot;&gt;CVE-2023–0328&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.shopify.com/&quot; target=&quot;_blank&quot;&gt;Shopify&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://blog.reputationx.com/block-wayback-machine&quot; target=&quot;_blank&quot;&gt;reputationx.com&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-1.html" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-1.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hackers need to embrace their superpower in order to become more efficient and meaningful, while doing bug bounty they have to search for weaknesses and also make sure that with their actions the application doesn’t crash.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*7TL7yeUfzC8zLRgDtJcyXA.jpeg&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the interest of time, let’s talk about one feature I saw in the middle of last year.&lt;/p&gt;
+
+&lt;h3 id=&quot;functionality&quot;&gt;Functionality&lt;/h3&gt;
+&lt;p&gt;This functionality gives users the ability to claim a subdomain on the application (website) to create a workspace and work directly on that subdomain. (In simple words, the application allows users to create instances)&lt;/p&gt;
+
+&lt;h3 id=&quot;attack-i--account-takeover&quot;&gt;Attack (i) : Account Takeover&lt;/h3&gt;
+&lt;p&gt;I’ve already touched on this, so I suggest you read my previous &lt;em&gt;article&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I assume you read this article, so let’s continue.&lt;/p&gt;
+
+&lt;h3 id=&quot;attack-ii--account-takeover&quot;&gt;Attack (ii) : Account Takeover&lt;/h3&gt;
+&lt;p&gt;Application Flow : When a user tries to sign-up, the application doesn’t requires user to verify the email first and after completing the sign-up process successfully the user gets a “login token” and with the help of this “login token” user can login into his/her account without the password.&lt;br /&gt;
+&lt;em&gt;Note: This token is “One Time Token”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the same application as &lt;em&gt;the Attack (i)&lt;/em&gt; so again, I created a new subdomain and on the claim subdomain request I replaced my email with the victim’s email and as I don’t know the password of the victim’s email I added “anything” in the password field.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;methodName&quot;: &quot;onboard&quot;,
+  &quot;params&quot;: {
+    &quot;some_params&quot;: {
+      &quot;some_name&quot;: &quot;anything&quot;,
+      &quot;some_modules&quot;: [
+        1
+      ]
+    },
+    &quot;user_params&quot;: {
+      &quot;name&quot;: &quot;CanBeAnything&quot;,
+      &quot;email&quot;: &quot;hunterzerocipher@gmail.com&quot;,
+      &quot;password&quot;: &quot;Anything&quot;
+    },
+    &quot;community_params&quot;: {
+      &quot;name&quot;: &quot;anything&quot;,
+      &quot;slug&quot;: &quot;anything&quot;,
+      &quot;c_id&quot;: 715,
+      &quot;client_time_zone&quot;: &quot;Asia/Calcutta&quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On the response I got the “login token” and made a browser GET request on the victim’s subdomain with the “login token” and I was logged-in in the victim’s account.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://victim.application.com/admin/login?login_token=xxxxxxxxxxx&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In this example what happened is the application doesn’t actually generate the login token with multiple details of the user, it only used the email to generate the login token and as the login token only contains a pass to login as the user without checking the subdomain or the organization, allowing attacker to create login pass with the victim email.&lt;/p&gt;
+
+&lt;h3 id=&quot;attack-iii--system-conflict&quot;&gt;Attack (iii) : System Conflict&lt;/h3&gt;
+&lt;p&gt;I have to say this example is a bit funny ;)&lt;/p&gt;
+
+&lt;p&gt;As the previous example I was trying to create a subdomain in the application and the url was &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://portal.application.com/register&lt;/code&gt; and while login I noticed that the url is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://login.application.com/admin/login&lt;/code&gt;
+So I again tried to create a subdomain “xzcvb” and Intercepted the request in &lt;em&gt;Burp Suite&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; changed the subdomain name to “login” and sent the request and as a surprise I got “200 OK”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:640/format:webp/1*XzlnW_sVtRflEd_je697Iw.png&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;What’s the Impact? Due to some reason &lt;em&gt;(Well I think it happened because the application’s module which was responsible to create subdomains had over privileges)&lt;/em&gt; when a user tries to visit login.application.com or tries to recreate his/her session the application gets confused “where to take the user” making the subdomain not reachable ultimately making the application not reachable.&lt;/p&gt;
+
+&lt;p data-content=&quot;footnotes&quot;&gt;I hope it gave you a clear idea how efficient bug bounty and penetration testing becomes when you use your superpowers rather than relaying on the automation and third party tools.
+I hope you’ve learnt something new with this.&lt;br /&gt;
+Thank You!
+—&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;/code-flaws-part-1.html&quot; target=&quot;_blank&quot;&gt;Previous Article&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://portswigger.net/burp&quot; target=&quot;_blank&quot;&gt;Burp Suite&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Code flaws leads to Organization Account Takeover</title><link href="http://localhost:4000/code-flaws-part-1.html" rel="alternate" type="text/html" title="Code flaws leads to Organization Account Takeover" /><published>2022-10-13T00:00:00+05:30</published><updated>2022-10-13T00:00:00+05:30</updated><id>http://localhost:4000/code-flaws-part-1</id><content type="html" xml:base="http://localhost:4000/code-flaws-part-1.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-application-design&quot;&gt;the Application Design&lt;/h3&gt;
+&lt;p&gt;The Application was only allowing one Admin/Manager per one organization, but other viewers has to login in order to view the content.&lt;br /&gt;
+&lt;em&gt;Note: After creating an account user cannot change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;organization_name&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;design-flaw-insecure-design&quot;&gt;Design Flaw/ Insecure Design&lt;/h3&gt;
+&lt;p&gt;While creating an account I saw a very weird parameter in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; request&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST /some_ajax/create_event_flow HTTP/1.1
+Host: portal.example.com
+Connection: close
+Content-Length: 663
+sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;105&quot;, &quot;Not)A;Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;105&quot;
+Accept: application/json, text/javascript, */*; q=0.01
+Content-Type: application/json; charset=UTF-8
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+sec-ch-ua-platform: &quot;Linux&quot;
+Origin: https://portal.example.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Se;c-Fetch-Dest: empty
+Referer: https://portal.example.com/create_event_flow
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Cookie:
+{&quot;methodName&quot;:&quot;onboard&quot;,&quot;params&quot;:{&quot;some_params&quot;:{&quot;some_name&quot;:&quot;Account takeover&quot;,&quot;some_modules&quot;:[1]},&quot;user_params&quot;:{&quot;name&quot;:&quot;User_name&quot;,&quot;email&quot;:&quot;admin@mr23r0.rocks&quot;,&quot;password&quot;:&quot;Password_Secret&quot;},&quot;community_params&quot;:{&quot;name&quot;:&quot;Organization_name&quot;,&quot;slug&quot;:&quot;testthing-for-ato&quot;,&quot;c_id&quot;:683,&quot;client_time_zone&quot;:&quot;Asia/Calcutta&quot;}}}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; noticed it? I hope so, let’s see what is happening in the backend, While trying to register, the application creates a entry with the email address and creates a row in the organization table (if it’s SQL) then our current request goes into the users table and makes a user with a predefined organization.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;INSERT INTO users (username, password, organization) VALUES (&quot;Jack&quot;,&quot;123&quot;, &quot;organization_name&quot;) WHERE c_id=&apos;683&apos;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So I changed the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; with the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; and as expected it took me to the victim’s organization. So we got our first bug ;) Design flaw but we can also call it &lt;em&gt;Horizontal Privilege Escalation&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;br /&gt;
+&lt;em&gt;Note : The Application doesn’t supports multiple Admin/Manager in one organization.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;When I do testing, primarily what I want to achieve is an Account takeover and testing is like a video game for me completing every level one by one… so I started looking for more vulnerabilities, after 15 minutes of search I got it, found a &lt;em&gt;Stored Cross Site Scripting&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt; now the problem is how can I change the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I tried to replicate the create an account request and BOOM!! we can send a POST request to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/some_ajax/create_event_flow&lt;/code&gt; no authentication required and also if we put cross site scripting payload in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt; and change our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; with the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt;, the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt; gets changed ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:562/format:webp/1*Pkd4zlVh7_ynWK7o1TOR8g.png&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We got the victim’s active cookies — but no-one will accept account takeover with active cookies, So I simply checked for &lt;em&gt;Session Fixation or No Logout&lt;/em&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; and I got lucky the application was vulnerable.&lt;/p&gt;
+
+&lt;p&gt;Last two vulnerability, the application was taking current password in order to change password but after intercepting the request I found that they’re not sending or checking the current password and there wasn’t any authentication on change email operation.&lt;/p&gt;
+
+&lt;h3 id=&quot;quick-wrap-up&quot;&gt;Quick wrap up&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Create an account --&amp;gt; change the &quot;c_id&quot; and add the blind xss payload in the &quot;organization_name&quot;
+copy the victim&apos;s cookies 
+Login as the victim by using the cookies
+change the password by using:
+           i. Change Password
+           ii. Change Email --&amp;gt; Recover password
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I hope you’ve learned something new from this.&lt;br /&gt;
+Thanks!&lt;/p&gt;
+
+&lt;hr data-content=&quot;footnotes&quot; /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://heimdalsecurity.com/blog/privilege-escalation/&quot; target=&quot;_blank&quot;&gt;Horizontal Privilege Escalation&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://portswigger.net/web-security/cross-site-scripting/stored&quot; target=&quot;_blank&quot;&gt;Stored Cross Site Scripting&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://owasp.org/www-community/attacks/Session_fixation&quot; target=&quot;_blank&quot;&gt;Session Fixation or No Logout&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Post Example With Headings And Toc</title><link href="http://localhost:4000/post-example-with-headings-and-toc.html" rel="alternate" type="text/html" title="Post Example With Headings And Toc" /><published>2020-07-09T00:00:00+05:30</published><updated>2020-07-09T00:00:00+05:30</updated><id>http://localhost:4000/post-example-with-headings-and-toc</id><content type="html" xml:base="http://localhost:4000/post-example-with-headings-and-toc.html">&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Nunc a egestas tortor, sed feugiat leo.&lt;/p&gt;
+
+&lt;h2 id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;Table of contents&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-start&quot;&gt;The start&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-middle&quot;&gt;The middle&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-end&quot;&gt;The end&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Nunc a egestas tortor, sed feugiat leo. Vestibulum porta tincidunt tellus, vitae ornare tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed nunc neque, tempor in iaculis non, faucibus et metus. Etiam id nisl ut lorem gravida euismod.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-start&quot;&gt;&lt;a href=&quot;#the-start&quot;&gt;The start&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Fusce non velit cursus ligula mattis convallis vel at metus. Sed pharetra tellus massa, non elementum eros vulputate non. Suspendisse potenti. Quisque arcu felis, laoreet vel accumsan sit amet, fermentum at nunc. Sed massa quam, auctor in eros quis, porttitor tincidunt orci. Nulla convallis id sapien ornare viverra. Cras nec est lacinia ligula porta tincidunt. Nam a est eget ligula pellentesque posuere. Maecenas quis enim ac risus accumsan scelerisque. Aliquam vitae libero sapien. Etiam convallis, metus nec suscipit condimentum, quam massa congue velit, sit amet sollicitudin nisi tortor a lectus. Cras a arcu enim. Suspendisse hendrerit euismod est ac gravida. Donec vitae elit tristique, suscipit eros at, aliquam augue. In ac faucibus dui. Sed tempor lacus tristique elit sagittis, vitae tempor massa convallis.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-middle&quot;&gt;&lt;a href=&quot;#the-middle&quot;&gt;The middle&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Proin quis velit et eros auctor laoreet. Aenean eget nibh odio. Suspendisse mollis enim pretium, fermentum urna vitae, egestas purus. Donec convallis tincidunt purus, scelerisque fermentum eros sagittis vel. Aliquam ac aliquet risus, tempus iaculis est. Fusce molestie mauris non interdum hendrerit. Curabitur ullamcorper, eros vitae interdum volutpat, lacus magna lacinia turpis, at accumsan dui tortor vel lectus. Aenean risus massa, semper non lectus rutrum, facilisis imperdiet mi. Praesent sed quam quis purus auctor ornare et sed augue. Vestibulum non quam quis ligula luctus placerat sed sit amet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce auctor, sem eu volutpat dignissim, turpis nibh malesuada arcu, in consequat elit mauris quis sem. Nam tristique sit amet enim vel accumsan. Sed id nibh commodo, dictum sem id, semper quam.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-end&quot;&gt;The end&lt;/h2&gt;
+
+&lt;p&gt;Donec ex lectus, tempus non lacinia quis, pretium non ipsum. Praesent est nunc, rutrum vel tellus eu, tristique laoreet purus. In rutrum orci sit amet ex ornare, sit amet finibus lacus laoreet. Etiam ac facilisis purus, eget porttitor odio. Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus. Vivamus at purus sed urna sollicitudin mattis. Mauris lacinia libero in lobortis pulvinar. Nullam sit amet condimentum justo. Donec orci justo, pharetra ut dolor non, interdum finibus orci. Proin vitae ante a dui sodales commodo ac id elit. Nunc vel accumsan nunc, sit amet congue nunc. Aliquam in lacinia velit. Integer lobortis luctus eros, in fermentum metus aliquet a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="resources" /><summary type="html">Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Nunc a egestas tortor, sed feugiat leo.</summary></entry><entry><title type="html">Overview Post</title><link href="http://localhost:4000/overview-post.html" rel="alternate" type="text/html" title="Overview Post" /><published>2020-07-07T00:00:00+05:30</published><updated>2020-07-07T00:00:00+05:30</updated><id>http://localhost:4000/overview-post</id><content type="html" xml:base="http://localhost:4000/overview-post.html">&lt;p&gt;Lorem ipsum&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; dolor sit amet, consectetur adipiscing elit. Pellentesque vel lacinia neque. Praesent nulla quam, ullamcorper in sollicitudin ac, molestie sed justo. Cras aliquam, sapien id consectetur accumsan, augue magna faucibus ex, ut ultricies turpis tortor vel ante. In at rutrum tellus.&lt;/p&gt;
+
+&lt;h1 id=&quot;sample-heading-1&quot;&gt;Sample heading 1&lt;/h1&gt;
+&lt;h2 id=&quot;sample-heading-2&quot;&gt;Sample heading 2&lt;/h2&gt;
+&lt;h3 id=&quot;sample-heading-3&quot;&gt;Sample heading 3&lt;/h3&gt;
+&lt;h4 id=&quot;sample-heading-4&quot;&gt;Sample heading 4&lt;/h4&gt;
+&lt;h5 id=&quot;sample-heading-5&quot;&gt;Sample heading 5&lt;/h5&gt;
+&lt;h6 id=&quot;sample-heading-6&quot;&gt;Sample heading 6&lt;/h6&gt;
+
+&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod.&lt;/p&gt;
+
+&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
+
+&lt;p&gt;Unordered:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Fusce non velit cursus ligula mattis convallis vel at metus&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
+  &lt;li&gt;Sed pharetra tellus massa, non elementum eros vulputate non.&lt;/li&gt;
+  &lt;li&gt;Suspendisse potenti.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ordered:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Quisque arcu felis, laoreet vel accumsan sit amet, fermentum at nunc.&lt;/li&gt;
+  &lt;li&gt;Sed massa quam, auctor in eros quis, porttitor tincidunt orci.&lt;/li&gt;
+  &lt;li&gt;Nulla convallis id sapien ornare viverra.&lt;/li&gt;
+  &lt;li&gt;Nam a est eget ligula pellentesque posuere.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;blockquote&quot;&gt;Blockquote&lt;/h2&gt;
+
+&lt;p&gt;The following is a blockquote:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;thematic-breaks-hr&quot;&gt;Thematic breaks (&amp;lt;hr&amp;gt;)&lt;/h2&gt;
+
+&lt;p&gt;Mauris viverra dictum ultricies&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. &lt;strong&gt;You can put some text inside the horizontal rule like so.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr data-content=&quot;hr with text&quot; /&gt;
+
+&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. &lt;strong&gt;Or you can just have an clean horizontal rule.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. Or you can just have an clean horizontal rule.&lt;/p&gt;
+
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;Now some code:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const ultimateTruth = &apos;this theme is the best!&apos;;
+console.log(ultimateTruth);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And here is some &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inline code&lt;/code&gt;!&lt;/p&gt;
+
+&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
+
+&lt;p&gt;Now a table:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tables&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Are&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Cool&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;col 3 is&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;right-aligned&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$1600&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;col 2 is&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;centered&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;zebra stripes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;are neat&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;$1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;images&quot;&gt;Images&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/riggraz/no-style-please/master/logo.png&quot; alt=&quot;theme logo&quot; class=&quot;ioda&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Logo of &lt;em&gt;no style, please!&lt;/em&gt; theme&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;hr data-content=&quot;footnotes&quot; /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;this is a footnote. It should highlight if you click on the corresponding superscript number. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;hey there, i’m using no style please! &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;this is another footnote. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;this is a very very long footnote to test if a very very long footnote brings some problems or not. I strongly hope that there are no problems but you know sometimes problems arise from nowhere. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="post" /><summary type="html">Lorem ipsum1 dolor sit amet, consectetur adipiscing elit. Pellentesque vel lacinia neque. Praesent nulla quam, ullamcorper in sollicitudin ac, molestie sed justo. Cras aliquam, sapien id consectetur accumsan, augue magna faucibus ex, ut ultricies turpis tortor vel ante. In at rutrum tellus. this is a footnote. It should highlight if you click on the corresponding superscript number. &amp;#8617;</summary></entry></feed>

@@ -1,0 +1,50 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+
+  - title: all posts
+    post_list:
+      limit: 5
+      category: posts
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive
+
+  - title: resources
+    post_list:
+      limit : 3
+      category: resources
+      show_more: true
+      show_more_text: See more resources...
+      show_more_url: resources-archive
+
+  - title: featured
+    post_list:
+      limit: 3
+      category: featured
+      show_more: true
+      show_more_text: See more featured posts...
+      show_more_url: featured-archive
+
+  - title: guides
+    post_list:
+      limit: 3
+      category: guides
+      show_more: true
+      show_more_text: See more guides...
+      show_more_url: guides-archive
+
+  - title: books
+    post_list:
+      limit: 3
+      category: books
+      show_more: true
+      show_more_text: See more books...
+      show_more_url: books-archive
+  
+  - title: Me?
+    entries:
+          - title: about
+            url: about
+

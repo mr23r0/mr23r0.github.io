@@ -1,0 +1,6 @@
+- category : "posts"
+  url : "archive"
+- category : resources
+  url : "resources-archive"
+- category : guides
+  url : guides-archive

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Code flaws leads to Organization Account Takeover</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Code flaws leads to Organization Account Takeover" />
+<meta name="author" content="Saransh Saraf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="One place to share everything necessery" />
+<meta property="og:description" content="One place to share everything necessery" />
+<link rel="canonical" href="http://localhost:4000/code-flaws-part-1.html" />
+<meta property="og:url" content="http://localhost:4000/code-flaws-part-1.html" />
+<meta property="og:site_name" content="[mr23r0] Saransh Saraf" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-13T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Code flaws leads to Organization Account Takeover" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/code-flaws-part-1.html"},"author":{"@type":"Person","name":"Saransh Saraf"},"url":"http://localhost:4000/code-flaws-part-1.html","@type":"BlogPosting","description":"One place to share everything necessery","headline":"Code flaws leads to Organization Account Takeover","dateModified":"2022-10-13T00:00:00+05:30","datePublished":"2022-10-13T00:00:00+05:30","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="[mr23r0] Saransh Saraf" /><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/logo.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head><body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header>
+    <h1>[mr23r0] Saransh Saraf</h1><dir style="text-align: left; display: flex; justify-content: center;">
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize; background-color: #07b10f;"><a href="archive">posts</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="resources-archive">resources</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="guides-archive">guides</a></p>
+      
+    </dir>
+  </header>
+<a href="/">../</a><article>
+  <p class="post-meta">
+    <time datetime="2022-10-13 00:00:00 +0530">2022-10-13</time>
+  </p>
+  
+  <h1>Code flaws leads to Organization Account Takeover</h1>
+
+  <p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png" alt="banner" class="iod" /></p>
+
+<h3 id="the-application-design">the Application Design</h3>
+<p>The Application was only allowing one Admin/Manager per one organization, but other viewers has to login in order to view the content.<br />
+<em>Note: After creating an account user cannot change the <code class="language-plaintext highlighter-rouge">organization_name</code>.</em></p>
+
+<h3 id="design-flaw-insecure-design">Design Flaw/ Insecure Design</h3>
+<p>While creating an account I saw a very weird parameter in the <code class="language-plaintext highlighter-rouge">POST</code> request</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /some_ajax/create_event_flow HTTP/1.1
+Host: portal.example.com
+Connection: close
+Content-Length: 663
+sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+Accept: application/json, text/javascript, */*; q=0.01
+Content-Type: application/json; charset=UTF-8
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Linux"
+Origin: https://portal.example.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Se;c-Fetch-Dest: empty
+Referer: https://portal.example.com/create_event_flow
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Cookie:
+{"methodName":"onboard","params":{"some_params":{"some_name":"Account takeover","some_modules":[1]},"user_params":{"name":"User_name","email":"admin@mr23r0.rocks","password":"Password_Secret"},"community_params":{"name":"Organization_name","slug":"testthing-for-ato","c_id":683,"client_time_zone":"Asia/Calcutta"}}}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">c_id</code> noticed it? I hope so, let’s see what is happening in the backend, While trying to register, the application creates a entry with the email address and creates a row in the organization table (if it’s SQL) then our current request goes into the users table and makes a user with a predefined organization.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO users (username, password, organization) VALUES ("Jack","123", "organization_name") WHERE c_id='683';
+</code></pre></div></div>
+
+<p>So I changed the <code class="language-plaintext highlighter-rouge">c_id</code> with the victim’s <code class="language-plaintext highlighter-rouge">c_id</code> and as expected it took me to the victim’s organization. So we got our first bug ;) Design flaw but we can also call it <em>Horizontal Privilege Escalation</em><sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.<br />
+<em>Note : The Application doesn’t supports multiple Admin/Manager in one organization.</em></p>
+
+<p>When I do testing, primarily what I want to achieve is an Account takeover and testing is like a video game for me completing every level one by one… so I started looking for more vulnerabilities, after 15 minutes of search I got it, found a <em>Stored Cross Site Scripting</em><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> on the <code class="language-plaintext highlighter-rouge">Organization_name</code> now the problem is how can I change the victim’s <code class="language-plaintext highlighter-rouge">Organization_name</code>.</p>
+
+<p>I tried to replicate the create an account request and BOOM!! we can send a POST request to <code class="language-plaintext highlighter-rouge">/some_ajax/create_event_flow</code> no authentication required and also if we put cross site scripting payload in <code class="language-plaintext highlighter-rouge">Organization_name</code> and change our <code class="language-plaintext highlighter-rouge">c_id</code> with the victim’s <code class="language-plaintext highlighter-rouge">c_id</code>, the victim’s <code class="language-plaintext highlighter-rouge">Organization_name</code> gets changed ;)</p>
+
+<p><img src="https://miro.medium.com/v2/resize:fit:562/format:webp/1*Pkd4zlVh7_ynWK7o1TOR8g.png" alt="image" class="iod" /></p>
+
+<p>We got the victim’s active cookies — but no-one will accept account takeover with active cookies, So I simply checked for <em>Session Fixation or No Logout</em><sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> and I got lucky the application was vulnerable.</p>
+
+<p>Last two vulnerability, the application was taking current password in order to change password but after intercepting the request I found that they’re not sending or checking the current password and there wasn’t any authentication on change email operation.</p>
+
+<h3 id="quick-wrap-up">Quick wrap up</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Create an account --&gt; change the "c_id" and add the blind xss payload in the "organization_name"
+copy the victim's cookies 
+Login as the victim by using the cookies
+change the password by using:
+           i. Change Password
+           ii. Change Email --&gt; Recover password
+</code></pre></div></div>
+
+<p>I hope you’ve learned something new from this.<br />
+Thanks!</p>
+
+<hr data-content="footnotes" />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://heimdalsecurity.com/blog/privilege-escalation/" target="_blank">Horizontal Privilege Escalation</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://portswigger.net/web-security/cross-site-scripting/stored" target="_blank">Stored Cross Site Scripting</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://owasp.org/www-community/attacks/Session_fixation" target="_blank">Session Fixation or No Logout</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+      </div>
+    </main>
+  </body><footer style="text-align:center">
+    <a href="https://www.linkedin.com/in/saransh-saraf-2b514b20b/" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg></a>
+    <a href="https://twitter.com/MR23R0" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></a>
+    <a href="https://mr23r0.medium.com/" target="_blank" rel="noopener noreferrer"><svg width="24" height="24"
+            xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+            <path
+                d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z" />
+        </svg></a>
+    <a href="https://www.instagram.com/sarans0x00h/" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+        <p style="text-align: center;">Theme by Jekyll + Customizations</p>
+</footer></html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-25T21:23:11+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Linux by Vikku Podcast</title><link href="http://localhost:4000/linux-by-vikku-podcast.html" rel="alternate" type="text/html" title="Linux by Vikku Podcast" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/linux-by-vikku-podcast</id><content type="html" xml:base="http://localhost:4000/linux-by-vikku-podcast.html">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2.html" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-25T22:44:10+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Linux by Vikku Podcast</title><link href="http://localhost:4000/linux-by-vikku-podcast.html" rel="alternate" type="text/html" title="Linux by Vikku Podcast" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/linux-by-vikku-podcast</id><content type="html" xml:base="http://localhost:4000/linux-by-vikku-podcast.html">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2.html" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.&lt;/p&gt;
 
@@ -280,140 +280,81 @@ Thanks!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://owasp.org/www-community/attacks/Session_fixation&quot; target=&quot;_blank&quot;&gt;Session Fixation or No Logout&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Post Example With Headings And Toc</title><link href="http://localhost:4000/post-example-with-headings-and-toc.html" rel="alternate" type="text/html" title="Post Example With Headings And Toc" /><published>2020-07-09T00:00:00+05:30</published><updated>2020-07-09T00:00:00+05:30</updated><id>http://localhost:4000/post-example-with-headings-and-toc</id><content type="html" xml:base="http://localhost:4000/post-example-with-headings-and-toc.html">&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Nunc a egestas tortor, sed feugiat leo.&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">The Database Handover | A Dumb Mistake | Critical BUG</title><link href="http://localhost:4000/the-database-handover.html" rel="alternate" type="text/html" title="The Database Handover | A Dumb Mistake | Critical BUG" /><published>2022-09-02T00:00:00+05:30</published><updated>2022-09-02T00:00:00+05:30</updated><id>http://localhost:4000/the-database-handover</id><content type="html" xml:base="http://localhost:4000/the-database-handover.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*xCrUUPjQj7flq5ReQUfcXA.png&quot; alt=&quot;banner&quot; class=&quot;ioda&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#table-of-contents&quot;&gt;Table of contents&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#the-start&quot;&gt;The start&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#the-middle&quot;&gt;The middle&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#the-end&quot;&gt;The end&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;the-wakeup-call&quot;&gt;The Wakeup Call&lt;/h3&gt;
+&lt;p&gt;Have you ever used these type of tools ?
+-ShareIt&lt;br /&gt;
+-Xender&lt;br /&gt;
+-Inshare&lt;br /&gt;
+-ShareMe&lt;br /&gt;
+If yes, then you’re gonna enjoy it, if you never used it than I don’t believe that you ever lived your 13 age, Go and try using one now before reading it further.&lt;/p&gt;
 
-&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Nunc a egestas tortor, sed feugiat leo. Vestibulum porta tincidunt tellus, vitae ornare tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed nunc neque, tempor in iaculis non, faucibus et metus. Etiam id nisl ut lorem gravida euismod.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;These tools are used to share Data from one device to another, and sometimes also helps to switch devices (move data from one to another)&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;the-start&quot;&gt;&lt;a href=&quot;#the-start&quot;&gt;The start&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;the-beginning-of-the-story&quot;&gt;The Beginning of the Story&lt;/h3&gt;
+&lt;p&gt;I had a Pentesting Contract from a big German Company, and I earned 1000 Euros from it….. :) For :&lt;/p&gt;
 
-&lt;p&gt;Fusce non velit cursus ligula mattis convallis vel at metus. Sed pharetra tellus massa, non elementum eros vulputate non. Suspendisse potenti. Quisque arcu felis, laoreet vel accumsan sit amet, fermentum at nunc. Sed massa quam, auctor in eros quis, porttitor tincidunt orci. Nulla convallis id sapien ornare viverra. Cras nec est lacinia ligula porta tincidunt. Nam a est eget ligula pellentesque posuere. Maecenas quis enim ac risus accumsan scelerisque. Aliquam vitae libero sapien. Etiam convallis, metus nec suscipit condimentum, quam massa congue velit, sit amet sollicitudin nisi tortor a lectus. Cras a arcu enim. Suspendisse hendrerit euismod est ac gravida. Donec vitae elit tristique, suscipit eros at, aliquam augue. In ac faucibus dui. Sed tempor lacus tristique elit sagittis, vitae tempor massa convallis.&lt;/p&gt;
+&lt;p&gt;-Email Verification Bypass (2 Methods)&lt;br /&gt;
+-Stored Cross Site Scripting&lt;br /&gt;
+-Insecure Direct Object reference (IDOR) leaking Employee Data&lt;br /&gt;
+-Broken Link Hijacking&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;the-middle&quot;&gt;&lt;a href=&quot;#the-middle&quot;&gt;The middle&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*n3DAfWFDWbRSHKtRE86ZVQ.png&quot; alt=&quot;image&quot; class=&quot;ioda&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Proin quis velit et eros auctor laoreet. Aenean eget nibh odio. Suspendisse mollis enim pretium, fermentum urna vitae, egestas purus. Donec convallis tincidunt purus, scelerisque fermentum eros sagittis vel. Aliquam ac aliquet risus, tempus iaculis est. Fusce molestie mauris non interdum hendrerit. Curabitur ullamcorper, eros vitae interdum volutpat, lacus magna lacinia turpis, at accumsan dui tortor vel lectus. Aenean risus massa, semper non lectus rutrum, facilisis imperdiet mi. Praesent sed quam quis purus auctor ornare et sed augue. Vestibulum non quam quis ligula luctus placerat sed sit amet erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce auctor, sem eu volutpat dignissim, turpis nibh malesuada arcu, in consequat elit mauris quis sem. Nam tristique sit amet enim vel accumsan. Sed id nibh commodo, dictum sem id, semper quam.&lt;/p&gt;
+&lt;p&gt;So I again Started to look for more bugs and called it #2 Round. I had mapped the whole infrastructure in the #1st Round.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-end&quot;&gt;The end&lt;/h2&gt;
+&lt;p&gt;So this time I had small and well-mapped scope for testing, So I started to revisit my old issues (to try bypassing these) but this “Broken link hijacking” returned as a weird result,…. For fixing it The Company changed the whole child company name &amp;amp; also the domain.&lt;/p&gt;
 
-&lt;p&gt;Donec ex lectus, tempus non lacinia quis, pretium non ipsum. Praesent est nunc, rutrum vel tellus eu, tristique laoreet purus. In rutrum orci sit amet ex ornare, sit amet finibus lacus laoreet. Etiam ac facilisis purus, eget porttitor odio. Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus. Vivamus at purus sed urna sollicitudin mattis. Mauris lacinia libero in lobortis pulvinar. Nullam sit amet condimentum justo. Donec orci justo, pharetra ut dolor non, interdum finibus orci. Proin vitae ante a dui sodales commodo ac id elit. Nunc vel accumsan nunc, sit amet congue nunc. Aliquam in lacinia velit. Integer lobortis luctus eros, in fermentum metus aliquet a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="resources" /><summary type="html">Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Nunc a egestas tortor, sed feugiat leo.</summary></entry><entry><title type="html">Overview Post</title><link href="http://localhost:4000/overview-post.html" rel="alternate" type="text/html" title="Overview Post" /><published>2020-07-07T00:00:00+05:30</published><updated>2020-07-07T00:00:00+05:30</updated><id>http://localhost:4000/overview-post</id><content type="html" xml:base="http://localhost:4000/overview-post.html">&lt;p&gt;Lorem ipsum&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; dolor sit amet, consectetur adipiscing elit. Pellentesque vel lacinia neque. Praesent nulla quam, ullamcorper in sollicitudin ac, molestie sed justo. Cras aliquam, sapien id consectetur accumsan, augue magna faucibus ex, ut ultricies turpis tortor vel ante. In at rutrum tellus.&lt;/p&gt;
+&lt;h3 id=&quot;the-ritual-of-comparing&quot;&gt;The Ritual of Comparing&lt;/h3&gt;
+&lt;p&gt;After visiting the new domain “IAMNEW.COM” I saw something really terrible form of “moving on”. All subdomains were totally Identical…. and I started to get demotivated that I’m not gonna find anything new here, but by mistake I viewed my wappalyzer and saw “Wordpress 4.8” banner.&lt;/p&gt;
 
-&lt;h1 id=&quot;sample-heading-1&quot;&gt;Sample heading 1&lt;/h1&gt;
-&lt;h2 id=&quot;sample-heading-2&quot;&gt;Sample heading 2&lt;/h2&gt;
-&lt;h3 id=&quot;sample-heading-3&quot;&gt;Sample heading 3&lt;/h3&gt;
-&lt;h4 id=&quot;sample-heading-4&quot;&gt;Sample heading 4&lt;/h4&gt;
-&lt;h5 id=&quot;sample-heading-5&quot;&gt;Sample heading 5&lt;/h5&gt;
-&lt;h6 id=&quot;sample-heading-6&quot;&gt;Sample heading 6&lt;/h6&gt;
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:440/format:webp/1*jQ_rudboUxgB-QixF0mEZQ.gif&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod.&lt;/p&gt;
+&lt;h3 id=&quot;the-ritual-of-background-enumeration&quot;&gt;The Ritual of Background Enumeration&lt;/h3&gt;
+&lt;p&gt;I quickly started my WPSCAN but I didn’t get any amazing results, Obviously I was sad &amp;amp; frustrated… so I gave myself 30 minutes and started thinking what can I do now, but after a couple of thoughts I got a spark I recalled A Line of my Mentor/ Inspiration “If you wanna do something to make sure you do your best”&lt;/p&gt;
 
-&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
+&lt;p&gt;Without waiting a minute I made a WordPress API token and ran it in the background, meanwhile I started my manual recon and testing but No luck :(
+So I came to look at the WpScan results, And saw &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debug.log&lt;/code&gt; is publicly accessible.&lt;/p&gt;
 
-&lt;p&gt;Unordered:&lt;/p&gt;
+&lt;h3 id=&quot;the-ritual-of-dumb-mistakes&quot;&gt;The Ritual of Dumb Mistakes&lt;/h3&gt;
+&lt;p&gt;I started looking at the log, and I found list of Users and some Auth keys and reported it as an “Information disclosure”&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Fusce non velit cursus ligula mattis convallis vel at metus&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
-  &lt;li&gt;Sed pharetra tellus massa, non elementum eros vulputate non.&lt;/li&gt;
-  &lt;li&gt;Suspendisse potenti.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*L1zj18S9eLUl28FR8RZ1aQ.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Ordered:&lt;/p&gt;
+&lt;p&gt;But I was still feeling dumb, my Gut feeling was telling me that I’m missing something, So I again started to look at the log and I found the Database Name so I again added it in my previous “Information disclosure”&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Quisque arcu felis, laoreet vel accumsan sit amet, fermentum at nunc.&lt;/li&gt;
-  &lt;li&gt;Sed massa quam, auctor in eros quis, porttitor tincidunt orci.&lt;/li&gt;
-  &lt;li&gt;Nulla convallis id sapien ornare viverra.&lt;/li&gt;
-  &lt;li&gt;Nam a est eget ligula pellentesque posuere.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;But still, something was missing, “my mind was keeping telling me to look deeper you dumb idiot” so took a cup of tea and viewed the log on my TV (for better preview) after reading 580 lines of logs I found the treasure:&lt;/p&gt;
 
-&lt;h2 id=&quot;blockquote&quot;&gt;Blockquote&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*qxBl4V0C131ob-EswiVMfQ.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The following is a blockquote:&lt;/p&gt;
+&lt;p&gt;But I again did the dumb mistake, I saw that the backup size is &amp;gt;500MB so reported it as Possible Denial of Service (DOS) because I was unable to extract it, I never encountered a file like this backup before. :(&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Suspendisse tempus dolor nec risus sodales posuere. Proin dui dui, mollis a consectetur molestie, lobortis vitae tellus.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h3 id=&quot;the-miracle&quot;&gt;The Miracle&lt;/h3&gt;
+&lt;p&gt;The Next Day I was still thinking about this file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.Daf&lt;/code&gt; questing myself why? Why are you so dumb?&lt;/p&gt;
 
-&lt;h2 id=&quot;thematic-breaks-hr&quot;&gt;Thematic breaks (&amp;lt;hr&amp;gt;)&lt;/h2&gt;
+&lt;p&gt;So I started again looking for the answers, after reading some threads on stackoverflow.com I moved myself to YouTube and after trying multiple search queries I finally found a video and really great tutorial :&lt;/p&gt;
 
-&lt;p&gt;Mauris viverra dictum ultricies&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. &lt;strong&gt;You can put some text inside the horizontal rule like so.&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/d7JrZYoiRuE&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;
 
-&lt;hr data-content=&quot;hr with text&quot; /&gt;
+&lt;p&gt;After navigating nested folders, I’ve found the Database backup SQL file under: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dup-installer/database.sql&lt;/code&gt;
+It was containing All users, password hashes and much more juicy stuff :)&lt;/p&gt;
 
-&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. &lt;strong&gt;Or you can just have an clean horizontal rule.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;the-bug&quot;&gt;The BUG&lt;/h3&gt;
+&lt;p&gt;As we have used the file transfer applications, similar thing is available in Wordpress which is called &lt;a href=&quot;https://wordpress.org/plugins/duplicator/&quot; target=&quot;_blank&quot;&gt;Duplicator&lt;/a&gt; which allows the admin to make a copy of the existing Wordpress Application and it’s too easy to use.&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;p&gt;But sometimes developer forgets to remove the Backup files to remove from the new server (domain)&lt;/p&gt;
 
-&lt;p&gt;Mauris viverra dictum ultricies. Vestibulum quis ipsum euismod, facilisis metus sed, varius ipsum. Donec scelerisque lacus libero, eu dignissim sem venenatis at. Etiam id nisl ut lorem gravida euismod. Or you can just have an clean horizontal rule.&lt;/p&gt;
+&lt;p&gt;Simple isn’t it?&lt;/p&gt;
 
-&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+&lt;h3 id=&quot;discovery&quot;&gt;Discovery&lt;/h3&gt;
+&lt;p&gt;There is a list of files that you may find in the backup:&lt;/p&gt;
 
-&lt;p&gt;Now some code:&lt;/p&gt;
+&lt;p&gt;wp-config.bak (wordpress config backup)
+All users Info
+full database backup (containing Users with password hashes &amp;amp; articles)
+all articles (including unlisted &amp;amp; drafts)
+all wordpress files (for static analysis)
+You may have to dig between folders and unique files, but I can promise you one thing at the end of the I’ll be worth it.&lt;br /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const ultimateTruth = &apos;this theme is the best!&apos;;
-console.log(ultimateTruth);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And here is some &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inline code&lt;/code&gt;!&lt;/p&gt;
-
-&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
-
-&lt;p&gt;Now a table:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Tables&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Are&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Cool&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;col 3 is&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;right-aligned&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;$1600&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;col 2 is&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;centered&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;$12&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;zebra stripes&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;are neat&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;$1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;images&quot;&gt;Images&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/riggraz/no-style-please/master/logo.png&quot; alt=&quot;theme logo&quot; class=&quot;ioda&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Logo of &lt;em&gt;no style, please!&lt;/em&gt; theme&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;hr data-content=&quot;footnotes&quot; /&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;this is a footnote. It should highlight if you click on the corresponding superscript number. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;hey there, i’m using no style please! &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;this is another footnote. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;this is a very very long footnote to test if a very very long footnote brings some problems or not. I strongly hope that there are no problems but you know sometimes problems arise from nowhere. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="post" /><summary type="html">Lorem ipsum1 dolor sit amet, consectetur adipiscing elit. Pellentesque vel lacinia neque. Praesent nulla quam, ullamcorper in sollicitudin ac, molestie sed justo. Cras aliquam, sapien id consectetur accumsan, augue magna faucibus ex, ut ultricies turpis tortor vel ante. In at rutrum tellus. this is a footnote. It should highlight if you click on the corresponding superscript number. &amp;#8617;</summary></entry></feed>
+&lt;p&gt;Thanks!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry></feed>

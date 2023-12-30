@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>01 HTML Injection</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="01 HTML Injection" />
+<meta name="author" content="Saransh Saraf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Mastering Web Penetration Testing, Part 01 - HTML Injection" />
+<meta property="og:description" content="Mastering Web Penetration Testing, Part 01 - HTML Injection" />
+<link rel="canonical" href="http://localhost:4000/html-injection-guide.html" />
+<meta property="og:url" content="http://localhost:4000/html-injection-guide.html" />
+<meta property="og:site_name" content="[mr23r0] Saransh Saraf" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-30T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="01 HTML Injection" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/html-injection-guide.html"},"author":{"@type":"Person","name":"Saransh Saraf"},"url":"http://localhost:4000/html-injection-guide.html","@type":"BlogPosting","description":"Mastering Web Penetration Testing, Part 01 - HTML Injection","headline":"01 HTML Injection","dateModified":"2023-12-30T00:00:00+05:30","datePublished":"2023-12-30T00:00:00+05:30","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="[mr23r0] Saransh Saraf" /><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/logo.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head><body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header>
+    <h1>[mr23r0] Saransh Saraf</h1><dir style="text-align: left; display: flex; justify-content: center;">
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="archive">posts</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="resources-archive">resources</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize; background-color: #07b10f;"><a href="guides-archive">guides</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="books-archive">books</a></p>
+      
+    </dir>
+  </header>
+<a href="/">../</a><article>
+  <p class="post-meta">
+    <time datetime="2023-12-30 00:00:00 +0530">2023-12-30</time>
+  </p>
+  
+  <h1>01 HTML Injection</h1>
+
+  <h3 id="index">Index</h3>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#html">HTML</a></li>
+  <li><a href="#weaponize">Weaponize</a></li>
+  <li><a href="#detection">Detection</a></li>
+  <li><a href="#bypass">Bypass</a></li>
+  <li><a href="#rw-examples">RW Examples</a></li>
+</ul>
+
+<h3 id="introduction"><a href="#introduction">Introduction</a></h3>
+<p>In the realm of web security, understanding vulnerabilities is crucial. HTML Injection stands as a pivotal point in this landscape, representing a vulnerability that can compromise the integrity of web applications.
+This technique, while seeming innocuous at first glance, poses a significant threat by allowing attackers to manipulate a webpage’s content, structure, or functionality. For web testers and security professionals, comprehending HTML Injection is paramount. It serves as a means to evaluate and fortify web applications, ensuring they are robust enough to withstand such attacks.</p>
+
+<h3 id="html"><a href="#html">HTML</a></h3>
+<p>HTML, or Hypertext Markup Language, is the standard language used to create web pages. HTML is composed of various elements and tags that define the structure of a web page.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Welcome to My Page!&lt;/h1&gt;
+    
+    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+    
+    &lt;img src="https://images.theconversation.com/files/450362/original/file-20220307-121610-zfik1f.jpeg" alt="A beautiful image"&gt;
+    
+    &lt;a href="https://en.wikipedia.org/wiki/Dead_Poets_Society"&gt;Visit Dead Poets Socity&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre></div></div>
+<p>This basic HTML structure creates a webpage:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;!DOCTYPE html&gt;</code> declares the document type and version of HTML being used (in this case, HTML5).</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> encapsulates the entire content of the web page.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> contains meta-information about the document, such as the page title, character set, etc.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> sets the title of the webpage, which appears in the browser’s title bar or tab.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> contains the visible content of the webpage.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code> is a heading tag used to create the main header.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> creates a paragraph of text.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> inserts an image with the specified source (<code class="language-plaintext highlighter-rouge">src</code>) and alternative text (<code class="language-plaintext highlighter-rouge">alt</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;a&gt;</code> creates a hyperlink to another webpage specified in the <code class="language-plaintext highlighter-rouge">href</code> attribute.<br /></li>
+</ul>
+
+<p>This HTML code, when rendered in a web browser, would display a simple webpage with a heading, a paragraph of text, an image, and a hyperlink.</p>
+
+<h3 id="weaponize"><a href="#weaponize">Weaponize</a></h3>
+<p>Imagine HTML tags as building blocks that structure a webpage. Now, when one tag is placed inside another, it’s like nesting these building blocks. This nesting can lead to unintended consequences if not handled properly.</p>
+
+<p>For instance, if a website allows users to input text that gets displayed on the page, and this input isn’t properly sanitized (meaning, it’s not checked for harmful code), a user might enter HTML tags within their input.</p>
+
+<p>Let’s say a user innocently types something like <code class="language-plaintext highlighter-rouge">&lt;b&gt;Hello&lt;/b&gt;</code> in a comment section where bold text is not allowed through rich text editor. If the website doesn’t filter or neutralize these tags, the entire content following <code class="language-plaintext highlighter-rouge">&lt;b&gt;</code> will become bold until it reaches <code class="language-plaintext highlighter-rouge">&lt;/b&gt;</code>. This is harmless in most cases and is called HTML injection, but it becomes a problem when malicious users deliberately input code that can harm the website or its visitors.</p>
+
+<p>For instance, an attacker might input JavaScript code within HTML tags. When other users view this comment, their browsers might execute this JavaScript, potentially performing actions like redirecting to malicious sites, stealing session cookies, or displaying unwanted content—things the website’s creators never intended.</p>
+
+<p>So, the crux here is that allowing unfiltered HTML tags within other HTML tags on a website’s client side (what users see and interact with) can open the door to unexpected and harmful actions if not properly managed or sanitized. It’s like allowing someone to rearrange the building blocks in a tower—while most rearrangements might be harmless, some configurations could make the tower unstable or even collapse.</p>
+
+<h3 id="detection"><a href="#detection">Detection</a></h3>
+<p>Imagine you’re a web tester examining a site with input fields—like a search bar or a comment section. Your goal isn’t to break things but to find weaknesses that could allow someone with ill intentions to harm the website or its users.</p>
+
+<ul>
+  <li>Testing Input Fields:
+ You start by typing harmless text into these fields to ensure they work properly. Then, you get crafty. Instead of regular words, you enter something sneaky: HTML tags or code snippets. For example, you might try typing <code class="language-plaintext highlighter-rouge">&lt;script&gt;alert("Test!")&lt;/script&gt;</code> instead of plain text.</li>
+  <li>Playing with Scripts:
+ When you hit enter, if a pop-up saying “Test!” appears, you’ve found a vulnerability. This is like discovering a secret passage in a castle by trying different keys in various doors.</li>
+  <li>Sneaky Cross-Site Scripting:
+ Now, imagine you can make the website run a script that steals information or alters its content. By entering special code into an innocent-looking comment, you might make it so that when others view it, their browsers unknowingly run harmful scripts.</li>
+  <li>
+    <p>Manipulating HTML:
+ Sometimes, you try changing things like an image’s address or link tags to point somewhere unexpected. It’s like pretending to be a magician and making things on the webpage disappear or go to the wrong places.</p>
+  </li>
+  <li>Crafty URL Tweaking: 
+ Changing the website’s address slightly in the browser’s address bar might reveal hidden weaknesses. It’s akin to altering a treasure map to find hidden paths.</li>
+</ul>
+
+<p>In essence, by playing around with HTML tags and injecting code in various parts of the website, you’re like a detective searching for clues. Your goal is to uncover these weaknesses before anyone with harmful intentions does, helping the website’s creators strengthen their defenses against potential attacks.</p>
+
+<h3 id="bypass"><a href="#bypass">Bypass</a></h3>
+<p>Developers implement validators and escape mechanisms to protect websites from malicious input. However, attackers often craft specialized payloads to slip through these defenses. These crafted payloads are designed to bypass validators and encoding systems, enabling the injection of harmful HTML code.</p>
+
+<p>These bypass techniques involve manipulating input fields by inserting deceptive HTML tags or using encoded representations of tags. For instance,</p>
+
+<ul>
+  <li>
+    <p>Understanding Input Validation:
+ Websites often have forms or input fields where users can submit information. Input validation is the process of checking this information to ensure it’s safe before displaying or processing it. If the validation process is weak or nonexistent, attackers can exploit this vulnerability.</p>
+  </li>
+  <li>
+    <p>Bypassing Filters:
+ Attackers attempt to bypass input filters or validation mechanisms by entering specially crafted strings that evade detection. They might use variations or combinations of HTML tags, special characters, or encoded representations of tags to confuse the validation process.</p>
+  </li>
+  <li>
+    <p>Encoding Techniques:
+ Attackers might use encoding techniques like URL encoding (<code class="language-plaintext highlighter-rouge">%3Cscript%3E</code>) or character encoding (<code class="language-plaintext highlighter-rouge">&amp;lt;script&amp;gt;</code>) to disguise HTML tags and bypass filters that are looking for specific patterns of code.</p>
+  </li>
+  <li>
+    <p>Context-Specific Attacks:
+ Injection attacks can be context-specific. For instance, if a website allows certain HTML tags in comments but not in usernames, an attacker might try injecting malicious code in the allowed comment section to later affect other parts of the website where HTML injections are not expected.</p>
+  </li>
+  <li>
+    <p>Polyglot Injection:
+ This technique involves crafting a string that is both valid in HTML and JavaScript. It aims to bypass filters that are focused on HTML while still executing JavaScript code.</p>
+  </li>
+  <li>
+    <p>Whitespace Manipulation:
+ Injecting code with spaces or newline characters can sometimes confuse filters, allowing malicious code to slip through undetected.</p>
+  </li>
+</ul>
+
+<h3 id="rw-examples"><a href="#rw-examples">RW Examples</a></h3>
+
+<ul>
+  <li><a href="https://hackerone.com/reports/181810" target="_blank">Hackerone</a></li>
+  <li><a href="https://hackerone.com/reports/1581499" target="_blank">Hackerone</a></li>
+  <li><a href="https://hackerone.com/reports/1537149" target="_blank">Hackerone</a></li>
+  <li><a href="https://hackerone.com/reports/381553" target="_blank">Hackerone - Personal Favourite</a></li>
+  <li><a href="https://hackerone.com/reports/150179" target="_blank">Hackerone - Personal Favourite</a></li>
+</ul>
+
+</article>
+
+      </div>
+    </main>
+  </body><footer style="text-align:center">
+    <a href="https://www.linkedin.com/in/saransh-saraf-2b514b20b/" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg></a>
+    <a href="https://twitter.com/MR23R0" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></a>
+    <a href="https://mr23r0.medium.com/" target="_blank" rel="noopener noreferrer"><svg width="24" height="24"
+            xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+            <path
+                d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z" />
+        </svg></a>
+    <a href="https://www.instagram.com/sarans0x00h/" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+        <p style="text-align: center;">Theme by Jekyll + Customizations</p>
+</footer></html>

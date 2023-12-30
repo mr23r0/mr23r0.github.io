@@ -1,4 +1,126 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-25T22:44:10+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Linux by Vikku Podcast</title><link href="http://localhost:4000/linux-by-vikku-podcast.html" rel="alternate" type="text/html" title="Linux by Vikku Podcast" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/linux-by-vikku-podcast</id><content type="html" xml:base="http://localhost:4000/linux-by-vikku-podcast.html">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2.html" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-30T20:03:44+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">01 HTML Injection</title><link href="http://localhost:4000/html-injection-guide.html" rel="alternate" type="text/html" title="01 HTML Injection" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>http://localhost:4000/html-injection-guide</id><content type="html" xml:base="http://localhost:4000/html-injection-guide.html">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#html&quot;&gt;HTML&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#weaponize&quot;&gt;Weaponize&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#detection&quot;&gt;Detection&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#bypass&quot;&gt;Bypass&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#rw-examples&quot;&gt;RW Examples&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In the realm of web security, understanding vulnerabilities is crucial. HTML Injection stands as a pivotal point in this landscape, representing a vulnerability that can compromise the integrity of web applications.
+This technique, while seeming innocuous at first glance, poses a significant threat by allowing attackers to manipulate a webpage’s content, structure, or functionality. For web testers and security professionals, comprehending HTML Injection is paramount. It serves as a means to evaluate and fortify web applications, ensuring they are robust enough to withstand such attacks.&lt;/p&gt;
+
+&lt;h3 id=&quot;html&quot;&gt;&lt;a href=&quot;#html&quot;&gt;HTML&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;HTML, or Hypertext Markup Language, is the standard language used to create web pages. HTML is composed of various elements and tags that define the structure of a web page.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;title&amp;gt;My Web Page&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+
+    &amp;lt;h1&amp;gt;Welcome to My Page!&amp;lt;/h1&amp;gt;
+    
+    &amp;lt;p&amp;gt;This is a paragraph of text.&amp;lt;/p&amp;gt;
+    
+    &amp;lt;img src=&quot;https://images.theconversation.com/files/450362/original/file-20220307-121610-zfik1f.jpeg&quot; alt=&quot;A beautiful image&quot;&amp;gt;
+    
+    &amp;lt;a href=&quot;https://en.wikipedia.org/wiki/Dead_Poets_Society&quot;&amp;gt;Visit Dead Poets Socity&amp;lt;/a&amp;gt;
+
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This basic HTML structure creates a webpage:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/code&gt; declares the document type and version of HTML being used (in this case, HTML5).&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;html&amp;gt;&lt;/code&gt; encapsulates the entire content of the web page.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt; contains meta-information about the document, such as the page title, character set, etc.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;title&amp;gt;&lt;/code&gt; sets the title of the webpage, which appears in the browser’s title bar or tab.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt; contains the visible content of the webpage.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is a heading tag used to create the main header.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;p&amp;gt;&lt;/code&gt; creates a paragraph of text.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;img&amp;gt;&lt;/code&gt; inserts an image with the specified source (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src&lt;/code&gt;) and alternative text (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alt&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;a&amp;gt;&lt;/code&gt; creates a hyperlink to another webpage specified in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;href&lt;/code&gt; attribute.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This HTML code, when rendered in a web browser, would display a simple webpage with a heading, a paragraph of text, an image, and a hyperlink.&lt;/p&gt;
+
+&lt;h3 id=&quot;weaponize&quot;&gt;&lt;a href=&quot;#weaponize&quot;&gt;Weaponize&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagine HTML tags as building blocks that structure a webpage. Now, when one tag is placed inside another, it’s like nesting these building blocks. This nesting can lead to unintended consequences if not handled properly.&lt;/p&gt;
+
+&lt;p&gt;For instance, if a website allows users to input text that gets displayed on the page, and this input isn’t properly sanitized (meaning, it’s not checked for harmful code), a user might enter HTML tags within their input.&lt;/p&gt;
+
+&lt;p&gt;Let’s say a user innocently types something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;b&amp;gt;Hello&amp;lt;/b&amp;gt;&lt;/code&gt; in a comment section where bold text is not allowed through rich text editor. If the website doesn’t filter or neutralize these tags, the entire content following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;b&amp;gt;&lt;/code&gt; will become bold until it reaches &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;/b&amp;gt;&lt;/code&gt;. This is harmless in most cases and is called HTML injection, but it becomes a problem when malicious users deliberately input code that can harm the website or its visitors.&lt;/p&gt;
+
+&lt;p&gt;For instance, an attacker might input JavaScript code within HTML tags. When other users view this comment, their browsers might execute this JavaScript, potentially performing actions like redirecting to malicious sites, stealing session cookies, or displaying unwanted content—things the website’s creators never intended.&lt;/p&gt;
+
+&lt;p&gt;So, the crux here is that allowing unfiltered HTML tags within other HTML tags on a website’s client side (what users see and interact with) can open the door to unexpected and harmful actions if not properly managed or sanitized. It’s like allowing someone to rearrange the building blocks in a tower—while most rearrangements might be harmless, some configurations could make the tower unstable or even collapse.&lt;/p&gt;
+
+&lt;h3 id=&quot;detection&quot;&gt;&lt;a href=&quot;#detection&quot;&gt;Detection&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Imagine you’re a web tester examining a site with input fields—like a search bar or a comment section. Your goal isn’t to break things but to find weaknesses that could allow someone with ill intentions to harm the website or its users.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Testing Input Fields:
+ You start by typing harmless text into these fields to ensure they work properly. Then, you get crafty. Instead of regular words, you enter something sneaky: HTML tags or code snippets. For example, you might try typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;alert(&quot;Test!&quot;)&amp;lt;/script&amp;gt;&lt;/code&gt; instead of plain text.&lt;/li&gt;
+  &lt;li&gt;Playing with Scripts:
+ When you hit enter, if a pop-up saying “Test!” appears, you’ve found a vulnerability. This is like discovering a secret passage in a castle by trying different keys in various doors.&lt;/li&gt;
+  &lt;li&gt;Sneaky Cross-Site Scripting:
+ Now, imagine you can make the website run a script that steals information or alters its content. By entering special code into an innocent-looking comment, you might make it so that when others view it, their browsers unknowingly run harmful scripts.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Manipulating HTML:
+ Sometimes, you try changing things like an image’s address or link tags to point somewhere unexpected. It’s like pretending to be a magician and making things on the webpage disappear or go to the wrong places.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Crafty URL Tweaking: 
+ Changing the website’s address slightly in the browser’s address bar might reveal hidden weaknesses. It’s akin to altering a treasure map to find hidden paths.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In essence, by playing around with HTML tags and injecting code in various parts of the website, you’re like a detective searching for clues. Your goal is to uncover these weaknesses before anyone with harmful intentions does, helping the website’s creators strengthen their defenses against potential attacks.&lt;/p&gt;
+
+&lt;h3 id=&quot;bypass&quot;&gt;&lt;a href=&quot;#bypass&quot;&gt;Bypass&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Developers implement validators and escape mechanisms to protect websites from malicious input. However, attackers often craft specialized payloads to slip through these defenses. These crafted payloads are designed to bypass validators and encoding systems, enabling the injection of harmful HTML code.&lt;/p&gt;
+
+&lt;p&gt;These bypass techniques involve manipulating input fields by inserting deceptive HTML tags or using encoded representations of tags. For instance,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Understanding Input Validation:
+ Websites often have forms or input fields where users can submit information. Input validation is the process of checking this information to ensure it’s safe before displaying or processing it. If the validation process is weak or nonexistent, attackers can exploit this vulnerability.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bypassing Filters:
+ Attackers attempt to bypass input filters or validation mechanisms by entering specially crafted strings that evade detection. They might use variations or combinations of HTML tags, special characters, or encoded representations of tags to confuse the validation process.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Encoding Techniques:
+ Attackers might use encoding techniques like URL encoding (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%3Cscript%3E&lt;/code&gt;) or character encoding (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;lt;script&amp;amp;gt;&lt;/code&gt;) to disguise HTML tags and bypass filters that are looking for specific patterns of code.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Context-Specific Attacks:
+ Injection attacks can be context-specific. For instance, if a website allows certain HTML tags in comments but not in usernames, an attacker might try injecting malicious code in the allowed comment section to later affect other parts of the website where HTML injections are not expected.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Polyglot Injection:
+ This technique involves crafting a string that is both valid in HTML and JavaScript. It aims to bypass filters that are focused on HTML while still executing JavaScript code.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Whitespace Manipulation:
+ Injecting code with spaces or newline characters can sometimes confuse filters, allowing malicious code to slip through undetected.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;rw-examples&quot;&gt;&lt;a href=&quot;#rw-examples&quot;&gt;RW Examples&lt;/a&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/181810&quot; target=&quot;_blank&quot;&gt;Hackerone&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/1581499&quot; target=&quot;_blank&quot;&gt;Hackerone&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/1537149&quot; target=&quot;_blank&quot;&gt;Hackerone&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/381553&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/150179&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Linux by Vikku Podcast</title><link href="http://localhost:4000/linux-by-vikku-podcast.html" rel="alternate" type="text/html" title="Linux by Vikku Podcast" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/linux-by-vikku-podcast</id><content type="html" xml:base="http://localhost:4000/linux-by-vikku-podcast.html">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2.html" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2.html">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.&lt;/p&gt;
 
@@ -350,11 +472,11 @@ It was containing All users, password hashes and much more juicy stuff :)&lt;/p&
 &lt;h3 id=&quot;discovery&quot;&gt;Discovery&lt;/h3&gt;
 &lt;p&gt;There is a list of files that you may find in the backup:&lt;/p&gt;
 
-&lt;p&gt;wp-config.bak (wordpress config backup)
-All users Info
-full database backup (containing Users with password hashes &amp;amp; articles)
-all articles (including unlisted &amp;amp; drafts)
-all wordpress files (for static analysis)
+&lt;p&gt;wp-config.bak (wordpress config backup)&lt;br /&gt;
+All users Info&lt;br /&gt;
+full database backup (containing Users with password hashes &amp;amp; articles)&lt;br /&gt;
+all articles (including unlisted &amp;amp; drafts)&lt;br /&gt;
+all wordpress files (for static analysis)&lt;br /&gt;
 You may have to dig between folders and unique files, but I can promise you one thing at the end of the I’ll be worth it.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Thanks!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry></feed>

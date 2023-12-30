@@ -1,7 +1,7 @@
 ---
 layout: post
 category: guides
-title: "01 HTML Injection"
+title: "01 HTML Injection | Web 101"
 description: "Mastering Web Penetration Testing, Part 01 - HTML Injection"
 ---
 

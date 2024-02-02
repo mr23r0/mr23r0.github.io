@@ -16,7 +16,7 @@ The site management applications I choose typically include the capability of cr
 
 ### [Selection](#selection)
 I invested about 8-9 days after which I realised that Google Dorks[^2] are not the best way of finding similar products and applications, then I remembered about [Crunchbase](https://crunchbase.com){:target="_blank"} and how helpful it is in finding similar products and applications.<br/>
-I made a list of 12 similar applications and started looking in the [archive logs](https://mr23r0.github.io/uncovering-the-secrets-part-1.html){:target="_blank"} for these applications.
+I made a list of 12 similar applications and started looking in the archive logs[^3] for these applications.
 
 
 During the detection process, I found the `email` query parameter in the unsubscribe path and after testing I found that I can change the user email preferences without proper authentication and authorization, therefore I assumed that there is a high possibility of more bugs in the application and I contacted the CTO of the company.
@@ -69,4 +69,4 @@ When I initially contacted the CTO of the company, although he gave me a green f
 
 [^1]: [Code flaws leads to Organization Account Takeover](https://mr23r0.github.io/code-flaws-part-1.html){:target="_blank"}
 [^2]: [Google Dorks](https://book.hacktricks.xyz/generic-methodologies-and-resources/external-recon-methodology/github-leaked-secrets){:target="_blank"}
-
+[^3]: [The Potential of Web archive in bug bounty programs](https://mr23r0.github.io/uncovering-the-secrets-part-1.html){:target="_blank"}

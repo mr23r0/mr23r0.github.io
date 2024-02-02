@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Four(4) tions of Penetration</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Four(4) tions of Penetration" />
+<meta name="author" content="Saransh Saraf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Index Introduction Selection Detection Relation" />
+<meta property="og:description" content="Index Introduction Selection Detection Relation" />
+<link rel="canonical" href="http://localhost:4000/four-4-tions-of-penetration.html" />
+<meta property="og:url" content="http://localhost:4000/four-4-tions-of-penetration.html" />
+<meta property="og:site_name" content="[mr23r0] Saransh Saraf" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-02T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Four(4) tions of Penetration" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/four-4-tions-of-penetration.html"},"author":{"@type":"Person","name":"Saransh Saraf"},"url":"http://localhost:4000/four-4-tions-of-penetration.html","@type":"BlogPosting","description":"Index Introduction Selection Detection Relation","headline":"Four(4) tions of Penetration","dateModified":"2024-02-02T00:00:00+05:30","datePublished":"2024-02-02T00:00:00+05:30","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="[mr23r0] Saransh Saraf" /><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/logo.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head><body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <header>
+    <h1>[mr23r0] Saransh Saraf</h1><dir style="text-align: left; display: flex; justify-content: center;">
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize; background-color: #07b10f;"><a href="archive">posts</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="resources-archive">resources</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="guides-archive">guides</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="books-archive">books</a></p>
+      
+    </dir>
+  </header>
+<a href="/">../</a><article>
+  <p class="post-meta">
+    <time datetime="2024-02-02 00:00:00 +0530">2024-02-02</time>
+  </p>
+  
+  <h1>Four(4) tions of Penetration</h1>
+
+  <h3 id="index">Index</h3>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#selection">Selection</a></li>
+  <li><a href="#detection">Detection</a></li>
+  <li><a href="#relation">Relation</a></li>
+</ul>
+
+<h3 id="introduction"><a href="#introduction">Introduction</a></h3>
+<p>After my last extensive vulnerability test<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>, I got the taste of site management applications and had a craving to do more of similar kinds. This post will elaborate the target selection, a series of tests and the way I managed to make a good working relationship with the company.<br /></p>
+
+<p>The site management applications I choose typically include the capability of creating and managing multiple sites in one account and also supports team management.</p>
+
+<h3 id="selection"><a href="#selection">Selection</a></h3>
+<p>I invested about 8-9 days after which I realised that Google Dorks<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> are not the best way of finding similar products and applications, then I remembered about <a href="https://crunchbase.com" target="_blank">Crunchbase</a> and how helpful it is in finding similar products and applications.<br />
+I made a list of 12 similar applications and started looking in the <a href="https://mr23r0.github.io/uncovering-the-secrets-part-1.html" target="_blank">archive logs</a> for these applications.</p>
+
+<p>During the detection process, I found the <code class="language-plaintext highlighter-rouge">email</code> query parameter in the unsubscribe path and after testing I found that I can change the user email preferences without proper authentication and authorization, therefore I assumed that there is a high possibility of more bugs in the application and I contacted the CTO of the company.</p>
+
+<h3 id="detection"><a href="#detection">Detection</a></h3>
+<p>As soon as I got a green flag from the CTO, I initiated my tests with creating two accounts in the same team.<br /></p>
+
+<h4 id="broken-access-control">Broken Access Control</h4>
+<p>After checking small amount of things on the application, I shifted my focus to break the <a href="https://www.cloudflare.com/learning/cloud/what-is-multitenancy" target="_blank">Multitenancy</a> of the application, therefore I deleted one account from the same team while the user was loggedin. I quickly realised that the user’s access and the session is not revoked, and the removed user still has all the administrator privileges.</p>
+
+<h4 id="magic-link-reverse-engineering">Magic Link Reverse Engineering</h4>
+<p>After creating an account for the previously removed user, the first time login magic link caught my attention <code class="language-plaintext highlighter-rouge">&lt;instance&gt;.censored.com/editor/login?password_set=y&amp;account=true&amp;a=&lt;victim's username&gt;</code><br />
+ So I checked my first account and solved the puzzle of all the query parameters and using the crafted link, I was able to get into the first account without authentication.</p>
+
+<h4 id="account-takeover">Account Takeover</h4>
+<p>Magic link reverse engineering filled me with a sense of amazement.
+ Then I started an extensive test on the registration process, while creating the third account, I noticed a <code class="language-plaintext highlighter-rouge">POST</code> request</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /signupajax-v3 HTTP/1.1
+Host: censored.com
+Connection: close
+Content-Length: 359
+sec-ch-ua: "Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"
+Accept: */*
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+X-Requested-With: XMLHttpRequest
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+sec-ch-ua-platform: "Linux"
+Origin: https://censored.com
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://censored.com/signup
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Cookie: &lt;cookies&gt;
+
+siteName=myThirdAccountSite&amp;siteUrl=myThirdAccountSite&amp;evstart=&amp;adminEmail=root@mr23r0.rocks&amp;duplicate=false&amp;hash=&lt;hash&gt;
+</code></pre></div></div>
+<p>I changed the email to the first account email, received a magic link in response, by using the magic link I was able to get into the first account, not only this I was also able to navigate between account sites and make changes.</p>
+
+<h3 id="relation"><a href="#relation">Relation</a></h3>
+<p>When I initially contacted the CTO of the company, although he gave me a green flag but specifically mentioned that he has a tight budget and won’t be able to provide reward (bounty), but when I submitted the report he appreciated my work and squeezed the company’s budget a bit to show their gratitude.</p>
+
+<hr data-content="footnotes" />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://mr23r0.github.io/code-flaws-part-1.html" target="_blank">Code flaws leads to Organization Account Takeover</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/external-recon-methodology/github-leaked-secrets" target="_blank">Google Dorks</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+      </div>
+    </main>
+  </body><footer style="text-align:center">
+    <a href="https://www.linkedin.com/in/saransh-saraf-2b514b20b/" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg></a>
+    <a href="https://twitter.com/MR23R0" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></a>
+    <a href="https://mr23r0.medium.com/" target="_blank" rel="noopener noreferrer"><svg width="24" height="24"
+            xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+            <path
+                d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z" />
+        </svg></a>
+    <a href="https://www.instagram.com/sarans0x00h/" target="_blank" rel="noopener noreferrer"><svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+        <p style="text-align: center;">Theme by Jekyll + Customizations</p>
+</footer></html>

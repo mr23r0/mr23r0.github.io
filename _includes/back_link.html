@@ -5,7 +5,7 @@
     {%-endif-%}
     <dir style="text-align: left; display: flex; justify-content: center;">
       {% for i in site.data.categories %}
-      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;{% if page.category == i.category %} background-color: #07b10f;{%endif%}"><a href="{{i.url}}">{{i.category}}</a></p>
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;{% if page.category == i.category %} background-color: #07b10f;{%endif%}"><a href="/{{i.url}}">{{i.category}}</a></p>
       {% endfor %}
     </dir>
   </header>

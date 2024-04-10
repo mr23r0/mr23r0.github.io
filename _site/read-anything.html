@@ -5,30 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow">
 
-  <title>All Resources</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+  <title>Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</title><!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="All Resources" />
+<meta property="og:title" content="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" />
 <meta name="author" content="Saransh Saraf" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="One place to share everything necessery" />
-<meta property="og:description" content="One place to share everything necessery" />
-<link rel="canonical" href="http://localhost:4000/resources-archive/" />
-<meta property="og:url" content="http://localhost:4000/resources-archive/" />
+<meta name="description" content="Index Introduction User Interface Under The Hood" />
+<meta property="og:description" content="Index Introduction User Interface Under The Hood" />
+<link rel="canonical" href="http://localhost:4000/read-anything" />
+<meta property="og:url" content="http://localhost:4000/read-anything" />
 <meta property="og:site_name" content="[mr23r0] Saransh Saraf" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-31T00:00:00+05:30" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="All Resources" />
+<meta property="twitter:title" content="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/resources-archive/","headline":"All Resources","author":{"@type":"Person","name":"Saransh Saraf"},"@type":"WebPage","description":"One place to share everything necessery","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/read-anything"},"author":{"@type":"Person","name":"Saransh Saraf"},"url":"http://localhost:4000/read-anything","@type":"BlogPosting","description":"Index Introduction User Interface Under The Hood","headline":"Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned","dateModified":"2024-01-31T00:00:00+05:30","datePublished":"2024-01-31T00:00:00+05:30","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="[mr23r0] Saransh Saraf" /><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/logo.png" />
   <link rel="stylesheet" href="/assets/css/main.css" />
 </head><body a="auto">
     <main class="page-content" aria-label="Content">
       <div class="w">
-        <header>
+        <head>
+  <meta name="robots" content="index, follow">
+</head><header>
     <h1>[mr23r0] Saransh Saraf</h1><dir style="text-align: left; display: flex; justify-content: center;">
       
-      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="/archive">posts</a></p>
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize; background-color: #07b10f;"><a href="/archive">posts</a></p>
       
       <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="/resources-archive">resources</a></p>
       
@@ -38,7 +42,52 @@
       
     </dir>
   </header>
-<a href="/">../</a><h1>All Resources</h1>
+<a href="/">../</a><article>
+  <p class="post-meta">
+  <time datetime="2024-01-31 00:00:00 +0530">2024-01-31</time>
+  </p>
+  <div class="share-buttons">
+    <p>Share with &nbsp;</p>
+    <a href="https://twitter.com/intent/tweet?text=Check out this awesome blog post by @mr23r0 https://mr23r0.github.io/read-anything"
+      target="_blank">
+      <img src="/assets/img/x.png"" alt="Share on Twitter" style="width: 25px; height: 25px; margin-right: 10px;">
+    </a>
+  </div>
+
+  <style>
+    .share-buttons {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+
+  <h1>Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</h1>
+
+  <h3 id="index">Index</h3>
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#user-interface">User Interface</a></li>
+  <li><a href="#under-the-hood">Under The Hood</a></li>
+</ul>
+
+<h3 id="introduction"><a href="#introduction">Introduction</a></h3>
+
+<p>In my pursuit of knowledge within a digital audiobook and PDF service, I uncovered a noteworthy security vulnerability that facilitated unrestricted access to all content, including unpublished manuscripts, without the need for a subscription. <br />
+This exploration stemmed from the belief instilled by my father, emphasizing the inherent freedom of knowledge in contrast to the prevailing model that demanded substantial financial investments for each literary endeavor.</p>
+
+<h3 id="user-interface"><a href="#user-interface">User Interface</a></h3>
+<p>As a regular user navigating the platform, my initial attempts to access content without a subscription through the user interface proved unfruitful.<br />
+Serendipitously, I stumbled upon the authors’ subdomain—a space dedicated to writing and publishing. <code class="language-plaintext highlighter-rouge">https://community.censored.com</code><br /><br />
+However, despite this discovery, the conventional interface lacked a straightforward method to access the literary works of others without financial obligations, indicating a critical gap in user accessibility.</p>
+
+<h3 id="under-the-hood"><a href="#under-the-hood">Under The Hood</a></h3>
+<p>Transitioning into a more technical exploration, I meticulously scrutinized the functionality of the authors’ subdomain. Through the monitoring of network requests, a fascinating revelation emerged: the submission of a book for review triggered a browser request to open the submitted book.<br /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /api/v1/spark/novels/{Integer_IDs}/
+Host: community.censored.com
+</code></pre></div></div>
+<p>Seizing this opportunity, I exploited the system by modifying the numerical book IDs in the requests. Given that the book IDs were numerical, I successfully engaged in a brute force attack, systematically testing and accessing different IDs. This not only granted unauthorized access to my own submissions but also to the works of fellow authors, spotlighting a critical security vulnerability in the nuanced interplay between the author’s submission process and the underlying review infrastructure.</p>
+
+</article>
       </div>
     </main>
   </body><footer style="text-align:center">

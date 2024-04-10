@@ -7,10 +7,27 @@ layout: default
 </head>
 {%-include back_link.html-%}
 
+
+
+
 <article>
   <p class="post-meta">
-    <time datetime="{{ page.date }}">{{ page.date | date: site.theme_config.date_format }}</time>
+  <time datetime="{{ page.date }}">{{ page.date | date: site.theme_config.date_format }}</time>
   </p>
+  <div class="share-buttons">
+    <p>Share with &nbsp;</p>
+    <a href="https://twitter.com/intent/tweet?text=Check out this awesome blog post by @mr23r0 https://mr23r0.github.io{{ page.url | relative_url }}"
+      target="_blank">
+      <img src="{{ "assets/img/x.png" | relative_url }}"" alt="Share on Twitter" style="width: 25px; height: 25px; margin-right: 10px;">
+    </a>
+  </div>
+
+  <style>
+    .share-buttons {
+      display: flex;
+      align-items: center;
+    }
+  </style>
 
   <h1>{{ page.title }}</h1>
 

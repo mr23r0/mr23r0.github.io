@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow">
+
+  <title>Hacking DNS Instance Applications Inside-Out</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Hacking DNS Instance Applications Inside-Out" />
+<meta name="author" content="Saransh Saraf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="DNS Instance Application Testing Guide" />
+<meta property="og:description" content="DNS Instance Application Testing Guide" />
+<link rel="canonical" href="http://localhost:4000/dns-instance-iba" />
+<meta property="og:url" content="http://localhost:4000/dns-instance-iba" />
+<meta property="og:site_name" content="[mr23r0] Saransh Saraf" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-07T00:00:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Hacking DNS Instance Applications Inside-Out" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dns-instance-iba"},"author":{"@type":"Person","name":"Saransh Saraf"},"url":"http://localhost:4000/dns-instance-iba","@type":"BlogPosting","description":"DNS Instance Application Testing Guide","headline":"Hacking DNS Instance Applications Inside-Out","dateModified":"2024-04-07T00:00:00+05:30","datePublished":"2024-04-07T00:00:00+05:30","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="[mr23r0] Saransh Saraf" /><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/logo.png" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head><body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <head>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="DNS Instance Application Testing Guide">
+  <meta name="keywords" content="Hacking,PenetrationTesting,BugBounty,DNSHacking,Misconfigurations,DNSImplementation">
+  <meta name="author" content="Saransh Saraf">
+</head><header>
+    <h1>[mr23r0] Saransh Saraf</h1><dir style="text-align: left; display: flex; justify-content: center;">
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize; background-color: #07b10f;"><a href="/archive">posts</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="/resources-archive">resources</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="/guides-archive">guides</a></p>
+      
+      <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;"><a href="/books-archive">books</a></p>
+      
+    </dir>
+  </header>
+<a href="/">../</a><article>
+  <p class="post-meta">
+    <time datetime="2024-04-07 00:00:00 +0530">2024-04-07</time>
+  </p>
+
+
+  <h1>Hacking DNS Instance Applications Inside-Out</h1>
+
+  <p>You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mr23r0.okta.com | mr23r0.github.io
+</code></pre></div></div>
+
+<p>But there’s a difference in these applications internally as well as externally, some gives you ability to access your data and manage it through a custom organization subdomain and others just allow you to serve that data on organization subdomain, like okta gives you ability to manage your data through a subdomain and github just allows you publish your data on a subdomain, while using <code class="language-plaintext highlighter-rouge">.io</code> domain to differentiate between the main application and published data.</p>
+
+<p><span style="color:blue"><b>Why do that? why not just use simple centralized subdomain like <code class="language-plaintext highlighter-rouge">app</code>, <code class="language-plaintext highlighter-rouge">portal</code> or something?</b></span><br />
+The answer to all these questions lies into the <em>psychology</em> of the customer and the vendor, people have tendency to stick to places where they get some special treatment, additionally by receving a custom subdomain customers think that its isolated from the central application and they’re far away from the <em>Cyber Threats</em>.</p>
+
+<p><span style="color:blue"><b>How much of this asumption is true? [Based on my research]</b></span><br /></p>
+
+<p>In reality there’s no way possible to create a sudomain on the fly (correct me if I’m wrong) and create a tenant specific copy of the application, although it’s possible for the databases, which is called multi-tenancy<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>
+What they do is, they point the wildcard domain <code class="language-plaintext highlighter-rouge">*.mr23r0.app</code> to the main IP address and serve the same application on any subdomain [virtual] created. See the below code to understand it better :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen       80;
+    server_name  app.mr23r0.app  *.mr23r0.app;
+    root /path_to_your_site/public;
+    passenger_enabled on;
+    rails_env development;
+}
+</code></pre></div></div>
+<p>So The application isn’t offering anything special to customers, but the illustion of giving custom special subdomains, which in reality doesn’t make any difference or enhances the security of the application, since every other thing in the backend is going through the same pipe or plate.
+<img src="/assets/img/dns-instance.png" alt="DNS-Instance" /></p>
+
+<p>In the last handful of months, I had the chance to learn and test these IBA applications, and there are some major security concerns that could be found in these applications, such as</p>
+<ul>
+  <li>Insecure Direct Object Reference to Add yourself or the resource to any Organization</li>
+  <li>Organization Infinite Loop</li>
+  <li>Forced Claim to Organizations</li>
+  <li>Claiming Other’s Access Token</li>
+</ul>
+
+<p><span style="color:blue"><b>Insecure Direct Object Reference to Add yourself to any Organization</b></span><br />
+Whenever you land on these type of Applications, On the registration page these applications ask you to create the resource, before the organization (seen in event management, site management and documentation applications) and after that the resource is assigned to the newly created organization.<br /> As you may have already got the idea, that this workflow of doing things is very prone to misconfigurations and weak implementation.</p>
+
+<p><em>This example is from my test on an Event Hosting Application, which I discovered for the third time in this category of applications (IBA)</em></p>
+
+<p>On the registration, the application asks the visitor to create an event before moving ahead, the visitor does it and gets the <code class="language-plaintext highlighter-rouge">eventId</code> in response, nothing too suspicious, in the next onboarding step application asks the user to create his/her account with all the best practices implemented but in the last two steps the application asks the user to create and organization but as soon as the <code class="language-plaintext highlighter-rouge">orgId</code> is returned in the repsponse, the application makes a <code class="language-plaintext highlighter-rouge">PATCH</code> request<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> to the backend to add the <code class="language-plaintext highlighter-rouge">userId</code> along with the <code class="language-plaintext highlighter-rouge">eventId</code> to the organization <code class="language-plaintext highlighter-rouge">/api/v3/orgAdditionOperation</code> with the json body</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "orgId":"UUID2",
+    "user":{
+        "id":"",
+        "eventId":Integer
+        }
+}
+</code></pre></div></div>
+<p>the only to handle this properly is to use a flag of some sort to detect if the <code class="language-plaintext highlighter-rouge">orgId</code> organization is newly created or the old one, which can prevent the malicous attackers from joining the already active organization, but there wasn’t such implementation.</p>
+
+<p><span style="color:blue"><b>Organization Infinite Loop</b></span><br />
+During the onboarding process of these applications, you get the option to select and claim a unique subdomain to access your application, the http request may look something like this</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /api/v3/orgOperation
+Host:
+&lt;headers&gt;
+
+{
+    "subdomain":"mr23r0"
+}
+</code></pre></div></div>
+<p>Its important to understand that, some applications only allow you to do this only one time and no way to change the sudomain aferwards but other applications allow you to change this afterwards as well.
+The interesting thing is, that in the example server config, the application has used a wildcard, therefore the application should also respond to non claimable subdomains like <code class="language-plaintext highlighter-rouge">www</code>, <code class="language-plaintext highlighter-rouge">docs</code> and <code class="language-plaintext highlighter-rouge">crm</code> etc, which may cause an internal server conflict since the DNS Server<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> would have both, static application address and the main application address. to prevent this the developers implement a blocklist of subdomains that could not be claimed, and rejected if requested, But this is a bit complex to handle and people are lazy.
+<img src="/assets/img/assign-logic.png" alt="DNS-Instance" /></p>
+
+<p>In my case people weren’t lazy and did a secure implementation on the <em>onboarding process</em>, but this onboarding process is done by a visitor, so there should be two different components to handle this, first on the onboarding and the second on the organization administration settings, In my case the request from the administrative settings looked like this, and didn’t had backend verification using a blocklist.
+<img src="/assets/img/bad-assign-logic.png" alt="DNS-Instance" /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PATCH /api/v3/orgOperation/admin/UUID2
+HOST : 
+&lt;headers&gt;
+
+{
+    "subdomain":"mr23r0"
+}
+</code></pre></div></div>
+<p>As soon as the new subdomain gets assigned to the organization, the previous subdomain will no longer be a valid one, and the application redirects the administrator to the new subdomain, but the new subdomain is a static site and redirects the user to the designated subdomain, creating a never ending loop. Ultimetly the browser gets <code class="language-plaintext highlighter-rouge">too many redirects</code> and the organization data will no longer be accessiable.</p>
+
+<p><span style="color:blue"><b>Force Claim Organizations</b></span><br />
+On the same organization administrative settings request, if someone puts a subdomain which is already in use by some other organization, the application throws an error “subdomain already in use”, There’s also absense of limit on how frequently you can change the subdomain.<br />
+By following race condition<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> approach, and sending a handful of unique and an already in use subdomain in a row (4 unique, 6-10 times single already in use subdomain) the application fails to handle all the requests in a short period of time and returns <code class="language-plaintext highlighter-rouge">500 Internal Server Error</code> but assigns the subdomain to both organizations.</p>
+
+<p><span style="color:blue"><b>Claiming Other’s Access Token</b></span><br />
+Coming back to the application onboarding flow, resource has been created, user account has been created, <em>without email verification</em>, as soon as the user and the organization is being linked, the API returns a temporary access token to login the user for the <em>first time in the organization</em>, so what’s the attack? what can you leverage here, you might be asking this question by now, so read this block once more, focus on the <code class="language-plaintext highlighter-rouge">italic</code> fonts.
+I notice two things :</p>
+<ul>
+  <li>Without Email Verification</li>
+  <li>Login first time, in newly created organization</li>
+</ul>
+
+<p>If the application doesn’t verifies the ownership of the email, before handing-out the access token, it’s already bad but, it can be further followed to a much higher risk.<br />
+Since we have this behavior in the application, We can create a new organization with the victim’s email, and get the one-time access token, following the ideal flow. Instance Based Applications, while they are internally stand as a centraliezed (sigular) application but use header like referer and orgin to seperate the different DNS instance data, so the token should have resource access assigned in some way, Ideally.
+<img src="/assets/img/dns-token-generation.png" alt="DNS-Instance" /></p>
+
+<p>This can be tested, by trying to use the token on the previously created organization, the token should not allow you to access the previously created organization, since there’s no possible way to switch between the organizations using the application UI, user must login into the second instance to access it.
+Ultimately, we got the access of the target instance with just by knowing an email address, funny isn’t it?</p>
+
+<p>As we wrap up, I want to suggest that you learn whatever interests you and get really good at it. It’s always useful in some way, and keep dreaming until you can make those dreams real. Thanks!</p>
+
+<hr data-content="footnotes" />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.gooddata.com/blog/multi-tenant-architecture/" target="_blank">Multi-tenancy</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods" target="_blank">Requests - HTTP Verbs</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://www.cloudflare.com/learning/dns/what-is-a-dns-server/" target="_blank">DNS Server</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="https://www.techtarget.com/searchstorage/definition/race-condition" target="_blank">Race Condition</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+  <div class="container">
+  <div class="share-buttons">
+    <p>Share with &nbsp;</p>
+    <a href="https://twitter.com/intent/tweet?text=Check out this awesome blog post by @mr23r0 https://mr23r0.github.io/dns-instance-iba"
+      target="_blank">
+      <img src="/assets/img/x.png" "alt=" Share on Twitter"
+        style="width: 25px; height: 25px; margin-right: 10px;">
+    </a>
+  </div>
+  <div class="share-buttons" >
+    <p>Discussions &nbsp;</p>
+    <a href="https://discord.com/channels/1156182342226956299/1176565821082959932"
+      target="_blank">
+      <svg width="24" height="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+        <g fill="#000000">
+
+          <path
+            d="M11.25 1a.75.75 0 010 1.5h-9a.75.75 0 00-.75.75v6.531l.706-.51a.75.75 0 01.88 1.214L1.19 11.858A.75.75 0 010 11.25v-8A2.25 2.25 0 012.25 1h9z" />
+
+          <path fill-rule="evenodd"
+            d="M6.25 4A2.25 2.25 0 004 6.25v4.534a2.25 2.25 0 002.25 2.25h6.041l2.52 1.824A.75.75 0 0016 14.25v-8A2.25 2.25 0 0013.75 4h-7.5zM5.5 6.25a.75.75 0 01.75-.75h7.5a.75.75 0 01.75.75v6.531l-1.526-1.104a.75.75 0 00-.44-.143H6.25a.75.75 0 01-.75-.75V6.25z"
+            clip-rule="evenodd" />
+
+        </g>
+
+      </svg>
+    </a>
+  </div>
+</div>
+  <style>
+    .container {
+  display: flex;
+  justify-content: space-between;
+}
+    .share-buttons {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</article>
+      </div>
+    </main>
+  </body><footer style="text-align: center">
+  <a
+    href="https://www.linkedin.com/in/saransh-saraf-2b514b20b/"
+    target="_blank"
+    rel="noopener noreferrer"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+      /></svg
+  ></a>
+  <a href="https://twitter.com/MR23R0" target="_blank" rel="noopener noreferrer"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+      /></svg
+  ></a>
+  <a href="https://mr23r0.medium.com/" target="_blank" rel="noopener noreferrer"
+    ><svg
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    >
+      <path
+        d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z"
+      /></svg
+  ></a>
+  <a
+    href="https://www.instagram.com/sarans0x00h/"
+    target="_blank"
+    rel="noopener noreferrer"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+      /></svg
+  ></a>
+  <a href="https://discord.com/invite/JWnwgd55ZZ" target="_blank" rel="noopener noreferrer"
+    ><svg
+      width="24"
+      height="24"
+      viewBox="0 -28.5 256 256"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      preserveAspectRatio="xMidYMid"
+    >
+      <g>
+        <path
+          d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z"
+          fill-rule="nonzero"
+        ></path>
+      </g></svg
+  ></a>
+  <p style="text-align: center">Theme by Jekyll + Customizations</p>
+</footer>
+</html>

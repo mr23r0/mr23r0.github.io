@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-10T23:05:09+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Four(4) tions of Penetration</title><link href="http://localhost:4000/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>http://localhost:4000/four-4-tions-of-penetration</id><content type="html" xml:base="http://localhost:4000/four-4-tions-of-penetration">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-16T23:50:12+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-07T00:00:00+05:30</published><updated>2024-04-07T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mr23r0.okta.com | mr23r0.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But there’s a difference in these applications internally as well as externally, some gives you ability to access your data and manage it through a custom organization subdomain and others just allow you to serve that data on organization subdomain, like okta gives you ability to manage your data through a subdomain and github just allows you publish your data on a subdomain, while using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.io&lt;/code&gt; domain to differentiate between the main application and published data.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:blue&quot;&gt;&lt;b&gt;Why do that? why not just use simple centralized subdomain like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;app&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;portal&lt;/code&gt; or something?&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+The answer to all these questions lies into the &lt;em&gt;psychology&lt;/em&gt; of the customer and the vendor, people have tendency to stick to places where they get some special treatment, additionally by receving a custom subdomain customers think that its isolated from the central application and they’re far away from the &lt;em&gt;Cyber Threats&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:blue&quot;&gt;&lt;b&gt;How much of this asumption is true? [Based on my research]&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In reality there’s no way possible to create a sudomain on the fly (correct me if I’m wrong) and create a tenant specific copy of the application, although it’s possible for the databases, which is called multi-tenancy&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+What they do is, they point the wildcard domain &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*.mr23r0.app&lt;/code&gt; to the main IP address and serve the same application on any subdomain [virtual] created. See the below code to understand it better :&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+    listen       80;
+    server_name  app.mr23r0.app  *.mr23r0.app;
+    root /path_to_your_site/public;
+    passenger_enabled on;
+    rails_env development;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;So The application isn’t offering anything special to customers, but the illustion of giving custom special subdomains, which in reality doesn’t make any difference or enhances the security of the application, since every other thing in the backend is going through the same pipe or plate.
+&lt;img src=&quot;/assets/img/dns-instance.png&quot; alt=&quot;DNS-Instance&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the last handful of months, I had the chance to learn and test these IBA applications, and there are some major security concerns that could be found in these applications, such as&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Insecure Direct Object Reference to Add yourself or the resource to any Organization&lt;/li&gt;
+  &lt;li&gt;Organization Infinite Loop&lt;/li&gt;
+  &lt;li&gt;Forced Claim to Organizations&lt;/li&gt;
+  &lt;li&gt;Claiming Other’s Access Token&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:blue&quot;&gt;&lt;b&gt;Insecure Direct Object Reference to Add yourself to any Organization&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+Whenever you land on these type of Applications, On the registration page these applications ask you to create the resource, before the organization (seen in event management, site management and documentation applications) and after that the resource is assigned to the newly created organization.&lt;br /&gt; As you may have already got the idea, that this workflow of doing things is very prone to misconfigurations and weak implementation.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This example is from my test on an Event Hosting Application, which I discovered for the third time in this category of applications (IBA)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;On the registration, the application asks the visitor to create an event before moving ahead, the visitor does it and gets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eventId&lt;/code&gt; in response, nothing too suspicious, in the next onboarding step application asks the user to create his/her account with all the best practices implemented but in the last two steps the application asks the user to create and organization but as soon as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orgId&lt;/code&gt; is returned in the repsponse, the application makes a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATCH&lt;/code&gt; request&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; to the backend to add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userId&lt;/code&gt; along with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eventId&lt;/code&gt; to the organization &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/api/v3/orgAdditionOperation&lt;/code&gt; with the json body&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;orgId&quot;:&quot;UUID2&quot;,
+    &quot;user&quot;:{
+        &quot;id&quot;:&quot;&quot;,
+        &quot;eventId&quot;:Integer
+        }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;the only to handle this properly is to use a flag of some sort to detect if the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;orgId&lt;/code&gt; organization is newly created or the old one, which can prevent the malicous attackers from joining the already active organization, but there wasn’t such implementation.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:blue&quot;&gt;&lt;b&gt;Organization Infinite Loop&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+During the onboarding process of these applications, you get the option to select and claim a unique subdomain to access your application, the http request may look something like this&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PUT /api/v3/orgOperation
+Host:
+&amp;lt;headers&amp;gt;
+
+{
+    &quot;subdomain&quot;:&quot;mr23r0&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Its important to understand that, some applications only allow you to do this only one time and no way to change the sudomain aferwards but other applications allow you to change this afterwards as well.
+The interesting thing is, that in the example server config, the application has used a wildcard, therefore the application should also respond to non claimable subdomains like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;crm&lt;/code&gt; etc, which may cause an internal server conflict since the DNS Server&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; would have both, static application address and the main application address. to prevent this the developers implement a blocklist of subdomains that could not be claimed, and rejected if requested, But this is a bit complex to handle and people are lazy.
+&lt;img src=&quot;/assets/img/assign-logic.png&quot; alt=&quot;DNS-Instance&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In my case people weren’t lazy and did a secure implementation on the &lt;em&gt;onboarding process&lt;/em&gt;, but this onboarding process is done by a visitor, so there should be two different components to handle this, first on the onboarding and the second on the organization administration settings, In my case the request from the administrative settings looked like this, and didn’t had backend verification using a blocklist.
+&lt;img src=&quot;/assets/img/bad-assign-logic.png&quot; alt=&quot;DNS-Instance&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PATCH /api/v3/orgOperation/admin/UUID2
+HOST : 
+&amp;lt;headers&amp;gt;
+
+{
+    &quot;subdomain&quot;:&quot;mr23r0&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;As soon as the new subdomain gets assigned to the organization, the previous subdomain will no longer be a valid one, and the application redirects the administrator to the new subdomain, but the new subdomain is a static site and redirects the user to the designated subdomain, creating a never ending loop. Ultimetly the browser gets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;too many redirects&lt;/code&gt; and the organization data will no longer be accessiable.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:blue&quot;&gt;&lt;b&gt;Force Claim Organizations&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+On the same organization administrative settings request, if someone puts a subdomain which is already in use by some other organization, the application throws an error “subdomain already in use”, There’s also absense of limit on how frequently you can change the subdomain.&lt;br /&gt;
+By following race condition&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; approach, and sending a handful of unique and an already in use subdomain in a row (4 unique, 6-10 times single already in use subdomain) the application fails to handle all the requests in a short period of time and returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;500 Internal Server Error&lt;/code&gt; but assigns the subdomain to both organizations.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&quot;color:blue&quot;&gt;&lt;b&gt;Claiming Other’s Access Token&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+Coming back to the application onboarding flow, resource has been created, user account has been created, &lt;em&gt;without email verification&lt;/em&gt;, as soon as the user and the organization is being linked, the API returns a temporary access token to login the user for the &lt;em&gt;first time in the organization&lt;/em&gt;, so what’s the attack? what can you leverage here, you might be asking this question by now, so read this block once more, focus on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;italic&lt;/code&gt; fonts.
+I notice two things :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Without Email Verification&lt;/li&gt;
+  &lt;li&gt;Login first time, in newly created organization&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If the application doesn’t verifies the ownership of the email, before handing-out the access token, it’s already bad but, it can be further followed to a much higher risk.&lt;br /&gt;
+Since we have this behavior in the application, We can create a new organization with the victim’s email, and get the one-time access token, following the ideal flow. Instance Based Applications, while they are internally stand as a centraliezed (sigular) application but use header like referer and orgin to seperate the different DNS instance data, so the token should have resource access assigned in some way, Ideally.
+&lt;img src=&quot;/assets/img/dns-token-generation.png&quot; alt=&quot;DNS-Instance&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This can be tested, by trying to use the token on the previously created organization, the token should not allow you to access the previously created organization, since there’s no possible way to switch between the organizations using the application UI, user must login into the second instance to access it.
+Ultimately, we got the access of the target instance with just by knowing an email address, funny isn’t it?&lt;/p&gt;
+
+&lt;p&gt;As we wrap up, I want to suggest that you learn whatever interests you and get really good at it. It’s always useful in some way, and keep dreaming until you can make those dreams real. Thanks!&lt;/p&gt;
+
+&lt;hr data-content=&quot;footnotes&quot; /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.gooddata.com/blog/multi-tenant-architecture/&quot; target=&quot;_blank&quot;&gt;Multi-tenancy&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods&quot; target=&quot;_blank&quot;&gt;Requests - HTTP Verbs&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.cloudflare.com/learning/dns/what-is-a-dns-server/&quot; target=&quot;_blank&quot;&gt;DNS Server&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.techtarget.com/searchstorage/definition/race-condition&quot; target=&quot;_blank&quot;&gt;Race Condition&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="Hacking," /><category term="Penetration" /><category term="Testing," /><category term="Bug" /><category term="Bounty," /><category term="DNS" /><category term="Hacking," /><category term="Misconfigurations," /><category term="DNS" /><category term="Implementation" /><summary type="html">You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com. mr23r0.okta.com | mr23r0.github.io</summary></entry><entry><title type="html">Four(4) tions of Penetration</title><link href="http://localhost:4000/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>http://localhost:4000/four-4-tions-of-penetration</id><content type="html" xml:base="http://localhost:4000/four-4-tions-of-penetration">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#selection&quot;&gt;Selection&lt;/a&gt;&lt;/li&gt;

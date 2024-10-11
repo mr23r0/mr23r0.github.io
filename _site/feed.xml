@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-17T01:41:51+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-12T13:30:40+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">OAuth Implementation Vulnerabilities - Chapter One</title><link href="http://localhost:4000/oauth-implementation-vulnerabilities-part-one" rel="alternate" type="text/html" title="OAuth Implementation Vulnerabilities - Chapter One" /><published>2024-04-27T00:00:00+05:30</published><updated>2024-04-27T00:00:00+05:30</updated><id>http://localhost:4000/oauth-implementation-vulnerabilities-part-one</id><content type="html" xml:base="http://localhost:4000/oauth-implementation-vulnerabilities-part-one">&lt;p&gt;In mostly all applications these day, there’s atleast one button for social login, like Google, Microsoft, Slack, Github or Linkedin. while it gives the ability to register and login into the applications pretty easily but like everything else in this world it also comes with multiple complications and potential ground breaking security issues for that application.&lt;/p&gt;
+
+&lt;p&gt;These type of features can have a large number of implementation issues which can’t be explained in a single post, therefore I’ve divided this in multiple chapters, which be released one by one in upcoming weeks.&lt;/p&gt;
+
+&lt;p&gt;Before I dive into the details, I would recommend you to watch this amazing BlackHat session on &lt;a href=&quot;https://www.youtube.com/watch?v=77doS9hCe8A&quot; target=&quot;_blank&quot;&gt;“The Accidental Discovery of a New Vulnerability in Google’s OAuth Implementation”&lt;/a&gt; by &lt;a href=&quot;https://www.linkedin.com/in/bsmithsweeney/&quot; target=&quot;_blank&quot;&gt;Brian Smith-Sweeney&lt;/a&gt; which was the major spark for this post and small research.&lt;/p&gt;
+
+&lt;p&gt;Assuming that you’ve watched the session, let’s dive a bit deeper into the entire workflow of tokens.&lt;/p&gt;
+
+&lt;p&gt;With oauth 2.0 people grant two type of tokens, which has it’s own unique use,&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ID Tokens&lt;/li&gt;
+  &lt;li&gt;Access Tokens&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;id-tokens&quot;&gt;ID Tokens&lt;/h3&gt;
+&lt;p&gt;In simple terms, ID Tokens are like your identity card for a theme park, they hold your identity information such as email, openid, full name and avatar.&lt;/p&gt;
+
+&lt;h3 id=&quot;access-tokens&quot;&gt;Access Tokens&lt;/h3&gt;
+&lt;p&gt;Access Tokens are more like special ride passes in the theme park. they hold the permissions that the app needs to access your data or perform actions on your behalf (like accessing your Google Drive or Calendar). Apps use this token to do things for you, like read your emails or add an event to your calendar, depending on what you allowed.&lt;/p&gt;
+
+&lt;p&gt;In order to issue a token on behalf of you application, let’s say you want to provide google social sign in and show user’s drive files on your application. In order to do these, you first need to create a oauth consumer on &lt;a href=&quot;https://console.cloud.google.com&quot; target=&quot;_blank&quot;&gt;Google Cloud Platform&lt;/a&gt; and then create a handler to on your application to initiate the login (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/google/oauth/signin&lt;/code&gt;), and capture the returned token (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/google/callback&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/gcpCreds.png&quot; alt=&quot;&amp;quot;GCP API Credentials&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Each created consumer is assigned a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clientID&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;secret&lt;/code&gt; by google to identify and validate the login requests,&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html">In mostly all applications these day, there’s atleast one button for social login, like Google, Microsoft, Slack, Github or Linkedin. while it gives the ability to register and login into the applications pretty easily but like everything else in this world it also comes with multiple complications and potential ground breaking security issues for that application.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mr23r0.okta.com | mr23r0.github.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -610,81 +634,4 @@ Thanks!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://owasp.org/www-community/attacks/Session_fixation&quot; target=&quot;_blank&quot;&gt;Session Fixation or No Logout&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">The Database Handover | A Dumb Mistake | Critical BUG</title><link href="http://localhost:4000/the-database-handover" rel="alternate" type="text/html" title="The Database Handover | A Dumb Mistake | Critical BUG" /><published>2022-09-02T00:00:00+05:30</published><updated>2022-09-02T00:00:00+05:30</updated><id>http://localhost:4000/the-database-handover</id><content type="html" xml:base="http://localhost:4000/the-database-handover">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*xCrUUPjQj7flq5ReQUfcXA.png&quot; alt=&quot;banner&quot; class=&quot;ioda&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-wakeup-call&quot;&gt;The Wakeup Call&lt;/h3&gt;
-&lt;p&gt;Have you ever used these type of tools ?
--ShareIt&lt;br /&gt;
--Xender&lt;br /&gt;
--Inshare&lt;br /&gt;
--ShareMe&lt;br /&gt;
-If yes, then you’re gonna enjoy it, if you never used it than I don’t believe that you ever lived your 13 age, Go and try using one now before reading it further.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;These tools are used to share Data from one device to another, and sometimes also helps to switch devices (move data from one to another)&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-beginning-of-the-story&quot;&gt;The Beginning of the Story&lt;/h3&gt;
-&lt;p&gt;I had a Pentesting Contract from a big German Company, and I earned 1000 Euros from it….. :) For :&lt;/p&gt;
-
-&lt;p&gt;-Email Verification Bypass (2 Methods)&lt;br /&gt;
--Stored Cross Site Scripting&lt;br /&gt;
--Insecure Direct Object reference (IDOR) leaking Employee Data&lt;br /&gt;
--Broken Link Hijacking&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*n3DAfWFDWbRSHKtRE86ZVQ.png&quot; alt=&quot;image&quot; class=&quot;ioda&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So I again Started to look for more bugs and called it #2 Round. I had mapped the whole infrastructure in the #1st Round.&lt;/p&gt;
-
-&lt;p&gt;So this time I had small and well-mapped scope for testing, So I started to revisit my old issues (to try bypassing these) but this “Broken link hijacking” returned as a weird result,…. For fixing it The Company changed the whole child company name &amp;amp; also the domain.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-ritual-of-comparing&quot;&gt;The Ritual of Comparing&lt;/h3&gt;
-&lt;p&gt;After visiting the new domain “IAMNEW.COM” I saw something really terrible form of “moving on”. All subdomains were totally Identical…. and I started to get demotivated that I’m not gonna find anything new here, but by mistake I viewed my wappalyzer and saw “Wordpress 4.8” banner.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:440/format:webp/1*jQ_rudboUxgB-QixF0mEZQ.gif&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-ritual-of-background-enumeration&quot;&gt;The Ritual of Background Enumeration&lt;/h3&gt;
-&lt;p&gt;I quickly started my WPSCAN but I didn’t get any amazing results, Obviously I was sad &amp;amp; frustrated… so I gave myself 30 minutes and started thinking what can I do now, but after a couple of thoughts I got a spark I recalled A Line of my Mentor/ Inspiration “If you wanna do something to make sure you do your best”&lt;/p&gt;
-
-&lt;p&gt;Without waiting a minute I made a WordPress API token and ran it in the background, meanwhile I started my manual recon and testing but No luck :(
-So I came to look at the WpScan results, And saw &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;debug.log&lt;/code&gt; is publicly accessible.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-ritual-of-dumb-mistakes&quot;&gt;The Ritual of Dumb Mistakes&lt;/h3&gt;
-&lt;p&gt;I started looking at the log, and I found list of Users and some Auth keys and reported it as an “Information disclosure”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*L1zj18S9eLUl28FR8RZ1aQ.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But I was still feeling dumb, my Gut feeling was telling me that I’m missing something, So I again started to look at the log and I found the Database Name so I again added it in my previous “Information disclosure”&lt;/p&gt;
-
-&lt;p&gt;But still, something was missing, “my mind was keeping telling me to look deeper you dumb idiot” so took a cup of tea and viewed the log on my TV (for better preview) after reading 580 lines of logs I found the treasure:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*qxBl4V0C131ob-EswiVMfQ.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;But I again did the dumb mistake, I saw that the backup size is &amp;gt;500MB so reported it as Possible Denial of Service (DOS) because I was unable to extract it, I never encountered a file like this backup before. :(&lt;/p&gt;
-
-&lt;h3 id=&quot;the-miracle&quot;&gt;The Miracle&lt;/h3&gt;
-&lt;p&gt;The Next Day I was still thinking about this file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.Daf&lt;/code&gt; questing myself why? Why are you so dumb?&lt;/p&gt;
-
-&lt;p&gt;So I started again looking for the answers, after reading some threads on stackoverflow.com I moved myself to YouTube and after trying multiple search queries I finally found a video and really great tutorial :&lt;/p&gt;
-
-&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/d7JrZYoiRuE&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;After navigating nested folders, I’ve found the Database backup SQL file under: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dup-installer/database.sql&lt;/code&gt;
-It was containing All users, password hashes and much more juicy stuff :)&lt;/p&gt;
-
-&lt;h3 id=&quot;the-bug&quot;&gt;The BUG&lt;/h3&gt;
-&lt;p&gt;As we have used the file transfer applications, similar thing is available in Wordpress which is called &lt;a href=&quot;https://wordpress.org/plugins/duplicator/&quot; target=&quot;_blank&quot;&gt;Duplicator&lt;/a&gt; which allows the admin to make a copy of the existing Wordpress Application and it’s too easy to use.&lt;/p&gt;
-
-&lt;p&gt;But sometimes developer forgets to remove the Backup files to remove from the new server (domain)&lt;/p&gt;
-
-&lt;p&gt;Simple isn’t it?&lt;/p&gt;
-
-&lt;h3 id=&quot;discovery&quot;&gt;Discovery&lt;/h3&gt;
-&lt;p&gt;There is a list of files that you may find in the backup:&lt;/p&gt;
-
-&lt;p&gt;wp-config.bak (wordpress config backup)&lt;br /&gt;
-All users Info&lt;br /&gt;
-full database backup (containing Users with password hashes &amp;amp; articles)&lt;br /&gt;
-all articles (including unlisted &amp;amp; drafts)&lt;br /&gt;
-all wordpress files (for static analysis)&lt;br /&gt;
-You may have to dig between folders and unique files, but I can promise you one thing at the end of the I’ll be worth it.&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Thanks!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry></feed>
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry></feed>

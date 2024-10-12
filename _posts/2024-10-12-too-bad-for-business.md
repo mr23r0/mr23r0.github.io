@@ -6,9 +6,9 @@ description : "Too Bad for Business - an IDOR Vulnerability, is a tale about how
 tags : "idor"
 ---
 
-Whether you're 15 or 60, you've probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping files safe from hackers is a key part of their business.
+Whether you're 15 or 60, you've probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.
 
-But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the files can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.
+But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the documents can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.
 
 ![E-Signature-Application]({{ site.baseurl }}/assets/img/e-sign-app-struct.png)
 
@@ -21,11 +21,11 @@ Some of the basic features from this set are,
 Implementing these features securely is a challenge on its own, not to mention keeping the same format and quality across all parts of the application.
 
 I recently came across a similar case during one of my testing projects. It was a well-known but mid-sized company/product, with strong security against Insecure Direct Object Reference (IDOR), though I did find a few low-severity bugs.
-I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit. I shifted my focus to learning more about the application. On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the files. Sounds pretty secure.
+I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit. I shifted my focus to learning more about the application. On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the documents. Sounds pretty secure.
 
 ![Document-Transaction]({{ site.baseurl }}/assets/img/doc-tran-aws.png){:.iod}
 
-Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to files from other accounts... now that would be interesting!
+Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to documents from other accounts... now that would be interesting!
 I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
 To understand this better, I recommend watching this [Project Air video](https://www.youtube.com/watch?v=tEpn-6dBn-M&t=330). It explains a similar issue in a really simple way.
 

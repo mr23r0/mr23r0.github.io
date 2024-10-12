@@ -20,18 +20,22 @@ Some of the basic features from this set are,
 
 Implementing these features securely is a challenge on its own, not to mention keeping the same format and quality across all parts of the application.
 
-I recently came across a similar case during one of my testing projects. It was a well-known but mid-sized company/product, with strong security against Insecure Direct Object Reference (IDOR), though I did find a few low-severity bugs.
-I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit. I shifted my focus to learning more about the application. On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the documents. Sounds pretty secure.
+I recently came across a similar case during one of my testing projects. It was a well-known but mid-sized company/product, with strong security against Insecure Direct Object Reference (IDOR), though I did find a few low-severity bugs.<br/>
+
+I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit so, I shifted my focus to learning more about the application.<br/>
+
+On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the documents. Sounds pretty secure.
 
 ![Document-Transaction]({{ site.baseurl }}/assets/img/doc-tran-aws.png){:.iod}
 
-Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to documents from other accounts... now that would be interesting!
+Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to documents from other accounts... now that would be interesting!<br/>
+
 I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
-To understand this better, I recommend watching this [Project Air video](https://www.youtube.com/watch?v=tEpn-6dBn-M&t=330). It explains a similar issue in a really simple way.
+To understand this better, I recommend watching this [Project Air video](https://www.youtube.com/watch?v=tEpn-6dBn-M&t=330){:target="_blank"}. It explains a similar issue in a really simple way.
 
-If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the encryption keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere. To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS.
+If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the encryption keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere. 
 
-Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.
+To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS. Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.
 
 When opening the document initially, the application did use AWS directly, and after editing, it uploaded the updated document back to AWS. The credentials used to fetch the document from AWS were stored under the `/organization/users/<ID>/documents` object, and the request wasn’t vulnerable to IDOR.
 

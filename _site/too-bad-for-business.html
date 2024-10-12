@@ -4,23 +4,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow">
+  <img src="https://iplogger.co/mr23r0" style="display: none;">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BH1DPN8Q6S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  <title>OAuth Implementation Vulnerabilities - Chapter One</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+  gtag('config', 'G-BH1DPN8Q6S');
+</script>
+  <title>Too Bad for Business - an IDOR Vulnerability</title><!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v3.9.3" />
-<meta property="og:title" content="OAuth Implementation Vulnerabilities - Chapter One" />
+<meta property="og:title" content="Too Bad for Business - an IDOR Vulnerability" />
 <meta name="author" content="Saransh Saraf" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="OAuth Implementation Vulnerabilities - Most of the time applications become vulnerable to serious threats and issues just by forgetting to add a couple lines of code, this series explores the vulnerabilites in the same gener." />
-<meta property="og:description" content="OAuth Implementation Vulnerabilities - Most of the time applications become vulnerable to serious threats and issues just by forgetting to add a couple lines of code, this series explores the vulnerabilites in the same gener." />
-<link rel="canonical" href="http://localhost:4000/oauth-implementation-vulnerabilities-part-one" />
-<meta property="og:url" content="http://localhost:4000/oauth-implementation-vulnerabilities-part-one" />
+<meta name="description" content="Too Bad for Business - an IDOR Vulnerability, is a tale about how I managed to find an IDOR vulnerability which risks the company’s entire business model" />
+<meta property="og:description" content="Too Bad for Business - an IDOR Vulnerability, is a tale about how I managed to find an IDOR vulnerability which risks the company’s entire business model" />
+<link rel="canonical" href="http://localhost:4000/too-bad-for-business" />
+<meta property="og:url" content="http://localhost:4000/too-bad-for-business" />
 <meta property="og:site_name" content="[mr23r0] Saransh Saraf" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-04-27T00:00:00+05:30" />
+<meta property="article:published_time" content="2024-10-12T00:00:00+05:30" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="OAuth Implementation Vulnerabilities - Chapter One" />
+<meta property="twitter:title" content="Too Bad for Business - an IDOR Vulnerability" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/oauth-implementation-vulnerabilities-part-one"},"author":{"@type":"Person","name":"Saransh Saraf"},"url":"http://localhost:4000/oauth-implementation-vulnerabilities-part-one","@type":"BlogPosting","description":"OAuth Implementation Vulnerabilities - Most of the time applications become vulnerable to serious threats and issues just by forgetting to add a couple lines of code, this series explores the vulnerabilites in the same gener.","headline":"OAuth Implementation Vulnerabilities - Chapter One","dateModified":"2024-04-27T00:00:00+05:30","datePublished":"2024-04-27T00:00:00+05:30","@context":"https://schema.org"}</script>
+{"datePublished":"2024-10-12T00:00:00+05:30","dateModified":"2024-10-12T00:00:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/too-bad-for-business"},"url":"http://localhost:4000/too-bad-for-business","description":"Too Bad for Business - an IDOR Vulnerability, is a tale about how I managed to find an IDOR vulnerability which risks the company’s entire business model","author":{"@type":"Person","name":"Saransh Saraf"},"headline":"Too Bad for Business - an IDOR Vulnerability","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="[mr23r0] Saransh Saraf" /><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon/logo.png" />
   <link rel="stylesheet" href="/assets/css/main.css" />
@@ -29,8 +38,8 @@
       <div class="w">
         <head>
   <meta name="robots" content="index, follow">
-  <meta name="description" content="OAuth Implementation Vulnerabilities - Most of the time applications become vulnerable to serious threats and issues just by forgetting to add a couple lines of code, this series explores the vulnerabilites in the same gener.">
-  <meta name="keywords" content="">
+  <meta name="description" content="Too Bad for Business - an IDOR Vulnerability, is a tale about how I managed to find an IDOR vulnerability which risks the company's entire business model">
+  <meta name="keywords" content="idor">
   <meta name="author" content="Saransh Saraf">
 </head><header>
     <h1>[mr23r0] Saransh Saraf</h1><dir style="text-align: left; display: flex; justify-content: center;">
@@ -47,43 +56,72 @@
   </header>
 <a href="/">../</a><article>
   <p class="post-meta">
-    <time datetime="2024-04-27 00:00:00 +0530">2024-04-27</time>
+    <time datetime="2024-10-12 00:00:00 +0530">2024-10-12</time>
   </p>
 
 
-  <h1>OAuth Implementation Vulnerabilities - Chapter One</h1>
+  <h1>Too Bad for Business - an IDOR Vulnerability</h1>
 
-  <p>In mostly all applications these day, there’s atleast one button for social login, like Google, Microsoft, Slack, Github or Linkedin. while it gives the ability to register and login into the applications pretty easily but like everything else in this world it also comes with multiple complications and potential ground breaking security issues for that application.</p>
+  <p>Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping files safe from hackers is a key part of their business.</p>
 
-<p>These type of features can have a large number of implementation issues which can’t be explained in a single post, therefore I’ve divided this in multiple chapters, which be released one by one in upcoming weeks.</p>
+<p>But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the files can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.</p>
 
-<p>Before I dive into the details, I would recommend you to watch this amazing BlackHat session on <a href="https://www.youtube.com/watch?v=77doS9hCe8A" target="_blank">“The Accidental Discovery of a New Vulnerability in Google’s OAuth Implementation”</a> by <a href="https://www.linkedin.com/in/bsmithsweeney/" target="_blank">Brian Smith-Sweeney</a> which was the major spark for this post and small research.</p>
+<p><img src="/assets/img/e-sign-app-struct.png" alt="E-Signature-Application" /></p>
 
-<p>Assuming that you’ve watched the session, let’s dive a bit deeper into the entire workflow of tokens.</p>
-
-<p>With oauth 2.0 people grant two type of tokens, which has it’s own unique use,</p>
+<p>Some of the basic features from this set are,</p>
 <ul>
-  <li>ID Tokens</li>
-  <li>Access Tokens</li>
+  <li>Document Editing</li>
+  <li>Signing Field Mapping</li>
+  <li>Sharing Document for Signature</li>
+  <li>Document Download (Sender and Receiver, on both ends), and etc.</li>
 </ul>
 
-<h3 id="id-tokens">ID Tokens</h3>
-<p>In simple terms, ID Tokens are like your identity card for a theme park, they hold your identity information such as email, openid, full name and avatar.</p>
+<p>Implementing these features securely is a challenge on its own, not to mention keeping the same format and quality across all parts of the application.</p>
 
-<h3 id="access-tokens">Access Tokens</h3>
-<p>Access Tokens are more like special ride passes in the theme park. they hold the permissions that the app needs to access your data or perform actions on your behalf (like accessing your Google Drive or Calendar). Apps use this token to do things for you, like read your emails or add an event to your calendar, depending on what you allowed.</p>
+<p>I recently came across a similar case during one of my testing projects. It was a well-known but mid-sized company/product, with strong security against Insecure Direct Object Reference (IDOR), though I did find a few low-severity bugs.
+I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit. I shifted my focus to learning more about the application. On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the files. Sounds pretty secure.</p>
 
-<p>In order to issue a token on behalf of you application, let’s say you want to provide google social sign in and show user’s drive files on your application. In order to do these, you first need to create a oauth consumer on <a href="https://console.cloud.google.com" target="_blank">Google Cloud Platform</a> and then create a handler to on your application to initiate the login (i.e. <code class="language-plaintext highlighter-rouge">/google/oauth/signin</code>), and capture the returned token (i.e. <code class="language-plaintext highlighter-rouge">/google/callback</code>).</p>
+<p><img src="/assets/img/doc-tran-aws.png" alt="Document-Transaction" class="iod" /></p>
 
-<p><img src="/assets/img/gcpCreds.png" alt="&quot;GCP API Credentials&quot;" /></p>
+<p>Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to files from other accounts… now that would be interesting!
+I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
+To understand this better, I recommend watching this <a href="https://www.youtube.com/watch?v=tEpn-6dBn-M&amp;t=330">Project Air video</a>. It explains a similar issue in a really simple way.</p>
 
-<p>Each created consumer is assigned a <code class="language-plaintext highlighter-rouge">clientID</code> and <code class="language-plaintext highlighter-rouge">secret</code> by google to identify and validate the login requests,</p>
+<p>If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the encryption keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere. To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS.</p>
+
+<p>Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.</p>
+
+<p>When opening the document initially, the application did use AWS directly, and after editing, it uploaded the updated document back to AWS. The credentials used to fetch the document from AWS were stored under the <code class="language-plaintext highlighter-rouge">/organization/users/&lt;ID&gt;/documents</code> object, and the request wasn’t vulnerable to IDOR.</p>
+
+<p>I dug deeper and found the download document button. When clicked, it opened a new tab with a PDF viewer, where the user is supposed to download the document. The most interesting part, though, is the underlying API requests.
+When the download button is pressed, the application sends a request to the server to get the credentials for the document at <code class="language-plaintext highlighter-rouge">/documents/&lt;numerical ID&gt;/creds</code>. And you guessed it, it was indeed vulnerable to IDOR.</p>
+
+<p>Upon requesting a valid documentID, the application responsed with :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "url":"AWS document url",
+    "fields":{
+        "key":"document key",
+        "contentType":"application/pdf",
+        "xawzCredential":"credential",
+        "xawzAlgorythm":"some value",
+        "xawzDate":"timestamp",
+        "xaszSignature":"value"
+    }
+}
+</code></pre></div></div>
+
+<p>I gained access to all the documents ever uploaded to the e-signature application, whether they were private or public, shared for signing or not.</p>
+
+<p>I hope you found some insights in this post. If you did or if you have suggestions to help me improve my writing, feel free to send me feedback using the button at the bottom of the page.</p>
+
+<p>Until next time,
+Cheers!</p>
 
 
   <div class="container">
   <div class="share-buttons">
     <p>Share with&nbsp;</p>
-    <a href="https://twitter.com/intent/tweet?text=Check out this awesome blog post by @mr23r0 https://mr23r0.github.io/oauth-implementation-vulnerabilities-part-one"
+    <a href="https://twitter.com/intent/tweet?text=Check out this awesome blog post by @mr23r0 https://mr23r0.github.io/too-bad-for-business"
       target="_blank">
       <img src="/assets/img/x.png" "alt=" Share on Twitter"
         style="width: 25px; height: 25px; margin-right: 10px;">
@@ -112,7 +150,7 @@
 </div>
 <div class="share-buttons" >
   <p>Write me your valuable feedback!&nbsp;</p>
-  <a href="mailto:waiting4mychocolates@gmail.com?subject=OAuth Implementation Vulnerabilities - Chapter One [Feedback]"
+  <a href="mailto:waiting4mychocolates@gmail.com?subject=Too Bad for Business - an IDOR Vulnerability [Feedback]"
     target="_blank"><svg fill="#000000" height="24" width="24" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
     viewBox="0 0 75.294 75.294" xml:space="preserve">
  <g>
@@ -140,6 +178,10 @@
 </article>
       </div>
     </main>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFHBZWZV"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   </body><footer style="text-align: center">
   <a
     href="https://www.linkedin.com/in/saransh-saraf-2b514b20b/"

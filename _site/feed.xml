@@ -1,28 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-06-12T13:30:40+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">OAuth Implementation Vulnerabilities - Chapter One</title><link href="http://localhost:4000/oauth-implementation-vulnerabilities-part-one" rel="alternate" type="text/html" title="OAuth Implementation Vulnerabilities - Chapter One" /><published>2024-04-27T00:00:00+05:30</published><updated>2024-04-27T00:00:00+05:30</updated><id>http://localhost:4000/oauth-implementation-vulnerabilities-part-one</id><content type="html" xml:base="http://localhost:4000/oauth-implementation-vulnerabilities-part-one">&lt;p&gt;In mostly all applications these day, there’s atleast one button for social login, like Google, Microsoft, Slack, Github or Linkedin. while it gives the ability to register and login into the applications pretty easily but like everything else in this world it also comes with multiple complications and potential ground breaking security issues for that application.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-13T00:24:12+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Too Bad for Business - an IDOR Vulnerability</title><link href="http://localhost:4000/too-bad-for-business" rel="alternate" type="text/html" title="Too Bad for Business - an IDOR Vulnerability" /><published>2024-10-12T00:00:00+05:30</published><updated>2024-10-12T00:00:00+05:30</updated><id>http://localhost:4000/too-bad-for-business</id><content type="html" xml:base="http://localhost:4000/too-bad-for-business">&lt;p&gt;Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping files safe from hackers is a key part of their business.&lt;/p&gt;
 
-&lt;p&gt;These type of features can have a large number of implementation issues which can’t be explained in a single post, therefore I’ve divided this in multiple chapters, which be released one by one in upcoming weeks.&lt;/p&gt;
+&lt;p&gt;But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the files can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.&lt;/p&gt;
 
-&lt;p&gt;Before I dive into the details, I would recommend you to watch this amazing BlackHat session on &lt;a href=&quot;https://www.youtube.com/watch?v=77doS9hCe8A&quot; target=&quot;_blank&quot;&gt;“The Accidental Discovery of a New Vulnerability in Google’s OAuth Implementation”&lt;/a&gt; by &lt;a href=&quot;https://www.linkedin.com/in/bsmithsweeney/&quot; target=&quot;_blank&quot;&gt;Brian Smith-Sweeney&lt;/a&gt; which was the major spark for this post and small research.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/e-sign-app-struct.png&quot; alt=&quot;E-Signature-Application&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Assuming that you’ve watched the session, let’s dive a bit deeper into the entire workflow of tokens.&lt;/p&gt;
-
-&lt;p&gt;With oauth 2.0 people grant two type of tokens, which has it’s own unique use,&lt;/p&gt;
+&lt;p&gt;Some of the basic features from this set are,&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;ID Tokens&lt;/li&gt;
-  &lt;li&gt;Access Tokens&lt;/li&gt;
+  &lt;li&gt;Document Editing&lt;/li&gt;
+  &lt;li&gt;Signing Field Mapping&lt;/li&gt;
+  &lt;li&gt;Sharing Document for Signature&lt;/li&gt;
+  &lt;li&gt;Document Download (Sender and Receiver, on both ends), and etc.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;id-tokens&quot;&gt;ID Tokens&lt;/h3&gt;
-&lt;p&gt;In simple terms, ID Tokens are like your identity card for a theme park, they hold your identity information such as email, openid, full name and avatar.&lt;/p&gt;
+&lt;p&gt;Implementing these features securely is a challenge on its own, not to mention keeping the same format and quality across all parts of the application.&lt;/p&gt;
 
-&lt;h3 id=&quot;access-tokens&quot;&gt;Access Tokens&lt;/h3&gt;
-&lt;p&gt;Access Tokens are more like special ride passes in the theme park. they hold the permissions that the app needs to access your data or perform actions on your behalf (like accessing your Google Drive or Calendar). Apps use this token to do things for you, like read your emails or add an event to your calendar, depending on what you allowed.&lt;/p&gt;
+&lt;p&gt;I recently came across a similar case during one of my testing projects. It was a well-known but mid-sized company/product, with strong security against Insecure Direct Object Reference (IDOR), though I did find a few low-severity bugs.
+I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit. I shifted my focus to learning more about the application. On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the files. Sounds pretty secure.&lt;/p&gt;
 
-&lt;p&gt;In order to issue a token on behalf of you application, let’s say you want to provide google social sign in and show user’s drive files on your application. In order to do these, you first need to create a oauth consumer on &lt;a href=&quot;https://console.cloud.google.com&quot; target=&quot;_blank&quot;&gt;Google Cloud Platform&lt;/a&gt; and then create a handler to on your application to initiate the login (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/google/oauth/signin&lt;/code&gt;), and capture the returned token (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/google/callback&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/doc-tran-aws.png&quot; alt=&quot;Document-Transaction&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/gcpCreds.png&quot; alt=&quot;&amp;quot;GCP API Credentials&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to files from other accounts… now that would be interesting!
+I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
+To understand this better, I recommend watching this &lt;a href=&quot;https://www.youtube.com/watch?v=tEpn-6dBn-M&amp;amp;t=330&quot;&gt;Project Air video&lt;/a&gt;. It explains a similar issue in a really simple way.&lt;/p&gt;
 
-&lt;p&gt;Each created consumer is assigned a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clientID&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;secret&lt;/code&gt; by google to identify and validate the login requests,&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html">In mostly all applications these day, there’s atleast one button for social login, like Google, Microsoft, Slack, Github or Linkedin. while it gives the ability to register and login into the applications pretty easily but like everything else in this world it also comes with multiple complications and potential ground breaking security issues for that application.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
+&lt;p&gt;If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the encryption keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere. To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS.&lt;/p&gt;
+
+&lt;p&gt;Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.&lt;/p&gt;
+
+&lt;p&gt;When opening the document initially, the application did use AWS directly, and after editing, it uploaded the updated document back to AWS. The credentials used to fetch the document from AWS were stored under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/organization/users/&amp;lt;ID&amp;gt;/documents&lt;/code&gt; object, and the request wasn’t vulnerable to IDOR.&lt;/p&gt;
+
+&lt;p&gt;I dug deeper and found the download document button. When clicked, it opened a new tab with a PDF viewer, where the user is supposed to download the document. The most interesting part, though, is the underlying API requests.
+When the download button is pressed, the application sends a request to the server to get the credentials for the document at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/documents/&amp;lt;numerical ID&amp;gt;/creds&lt;/code&gt;. And you guessed it, it was indeed vulnerable to IDOR.&lt;/p&gt;
+
+&lt;p&gt;Upon requesting a valid documentID, the application responsed with :&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;url&quot;:&quot;AWS document url&quot;,
+    &quot;fields&quot;:{
+        &quot;key&quot;:&quot;document key&quot;,
+        &quot;contentType&quot;:&quot;application/pdf&quot;,
+        &quot;xawzCredential&quot;:&quot;credential&quot;,
+        &quot;xawzAlgorythm&quot;:&quot;some value&quot;,
+        &quot;xawzDate&quot;:&quot;timestamp&quot;,
+        &quot;xaszSignature&quot;:&quot;value&quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I gained access to all the documents ever uploaded to the e-signature application, whether they were private or public, shared for signing or not.&lt;/p&gt;
+
+&lt;p&gt;I hope you found some insights in this post. If you did or if you have suggestions to help me improve my writing, feel free to send me feedback using the button at the bottom of the page.&lt;/p&gt;
+
+&lt;p&gt;Until next time,
+Cheers!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="idor" /><summary type="html">Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping files safe from hackers is a key part of their business.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mr23r0.okta.com | mr23r0.github.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 

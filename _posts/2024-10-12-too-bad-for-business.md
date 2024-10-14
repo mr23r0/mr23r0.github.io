@@ -33,7 +33,7 @@ Uploading the document and linking it to the user account seemed secure enough, 
 I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
 To understand this better, I recommend watching this [Project Air video](https://www.youtube.com/watch?v=tEpn-6dBn-M&t=330){:target="_blank"}. It explains a similar issue in a really simple way.
 
-If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the encryption keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere. 
+If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere. 
 
 To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS. Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.
 

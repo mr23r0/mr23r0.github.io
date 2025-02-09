@@ -23,11 +23,11 @@
     {%-if site.theme_config.show_description-%}
       <p>{{ site.description }}</p>
     {%-endif-%}
-    <div class="category-nav">
+    <div class="category-nav" style="text-align: center;">
       {% for i in site.data.categories %}
-      <p class="category-item {% if page.category == i.category %}active{% endif %}">
+      <span class="category-item {% if page.category == i.category %}active{% endif %}">
         <a href="/{{i.url}}">{{i.category}}</a>
-      </p>
+      </span>
       {% endfor %}
     </div>
 </header>

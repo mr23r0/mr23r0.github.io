@@ -1,31 +1,66 @@
 {%-if include.category-%}
-  {%-assign posts = site.categories[include.category]-%}  
+{%-assign posts = site.categories[include.category]-%}
 {%-else-%}
-  {%-assign posts = site.posts-%}
+{%-assign posts = site.posts-%}
 {%-endif-%}
 
 {%-if include.limit and posts.size > include.limit-%}
-  {%-assign limit_exceeded = true-%}
+{%-assign limit_exceeded = true-%}
 {%-else-%}
-  {%-assign limit_exceeded = false-%}
+{%-assign limit_exceeded = false-%}
 {%-endif-%}
 
 {%- if posts.size > 0 -%}
-  <ul>
-    {%- for post in posts limit: include.limit -%}
-       
-        <li class="post-item" data-date="{{ post.date | date_to_xmlschema }}">
-          <span>{{- post.date | date: site.theme_config.date_format -}}</span>
-          <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}<span class="new-post-badge">NEW!</span></a>
-        </li>
-    {%- endfor -%}
-    {%- if include.show_more and limit_exceeded -%}
-      <li><a href="{{ include.show_more_url }}">{{ include.show_more_text | default: "Show more..." }}</a></li>
-    {%- endif -%}
-  </ul>
+<ul>
+  {%- for post in posts limit: include.limit -%}
+
+  <li class="post-item" data-date="{{ post.date | date_to_xmlschema }}">
+    <span>{{- post.date | date: site.theme_config.date_format -}}</span>
+    <a href="{{ post.url | relative_url }}">
+      {{ post.title | downcase }}
+      {%- if post.ai_generated -%}
+      <span class="ai-badge">AI</span>
+      {%- endif -%}
+      <span class="new-post-badge">NEW!</span>
+    </a>
+  </li>
+  {%- endfor -%}
+  {%- if include.show_more and limit_exceeded -%}
+  <li><a href="{{ include.show_more_url }}">{{ include.show_more_text | default: "Show more..." }}</a></li>
+  {%- endif -%}
+</ul>
 {%- endif -%}
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFHBZWZV"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- End Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFHBZWZV" height="0" width="0"
+    style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->
+
+<style>
+  .ai-badge {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #000000;
+    padding: 2px 8px;
+
+
+
+    margin-left: 4px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 2px 8px;
+    margin-left: 8px;
+    border: 1px solid #e90404;
+    border-radius: 8px;
+    color: #1f2704;
+    font-size: 0.8em;
+    font-weight: bold;
+    background-color: rgba(40, 167, 69, 0.1);
+
+  }
+
+  /* Optional: if you want to add a subtle hover effect */
+  .ai-badge:hover {
+    background: #19bb19;
+  }
+</style>

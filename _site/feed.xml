@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mr23r0.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mr23r0.github.io/" rel="alternate" type="text/html" /><updated>2025-02-09T11:21:45+05:30</updated><id>https://mr23r0.github.io/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Too Bad for Business - an IDOR Vulnerability</title><link href="https://mr23r0.github.io/too-bad-for-business" rel="alternate" type="text/html" title="Too Bad for Business - an IDOR Vulnerability" /><published>2025-01-30T00:00:00+05:30</published><updated>2025-01-30T00:00:00+05:30</updated><id>https://mr23r0.github.io/too-bad-for-business</id><content type="html" xml:base="https://mr23r0.github.io/too-bad-for-business">&lt;p&gt;Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T12:30:16+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">The Curious Case of Unlimited AI Calls: A Security Story</title><link href="http://localhost:4000/unlimited-ai-calls" rel="alternate" type="text/html" title="The Curious Case of Unlimited AI Calls: A Security Story" /><published>2025-02-09T00:00:00+05:30</published><updated>2025-02-09T00:00:00+05:30</updated><id>http://localhost:4000/unlimited-ai-calls</id><content type="html" xml:base="http://localhost:4000/unlimited-ai-calls">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Imagine walking into a coffee shop that charges for refills. You get your first cup, but instead of paying for more, you find a secret trick to keep getting unlimited refills—all without the cashier noticing. Sounds fun, right? Well, something similar happened in the digital world with an AI-powered platform that charged users for making AI requests. Due to a simple yet impactful vulnerability, it was possible to override the limit and get unlimited AI requests—for free.&lt;/p&gt;
+
+&lt;p&gt;Let’s dive into how this issue worked, why it happened, and what security professionals can learn from it.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-ai-that-didnt-know-when-to-stop&quot;&gt;The AI That Didn’t Know When to Stop&lt;/h2&gt;
+
+&lt;p&gt;The AI platform in question allowed users to generate content using artificial intelligence. Users on free accounts were given a limited number of AI requests, and once they hit the limit, they had to either wait or upgrade to a paid plan. This limit was meant to ensure fair usage and encourage users to subscribe.&lt;/p&gt;
+
+&lt;p&gt;But here’s where things got interesting: instead of enforcing these limits strictly on the backend, the system relied on information &lt;strong&gt;sent from the client-side&lt;/strong&gt;. This means the application itself was telling the server, “Hey, I’ve hit my limit!”—something that, as a security researcher, immediately caught my attention.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-the-bug-worked&quot;&gt;How the Bug Worked&lt;/h2&gt;
+
+&lt;p&gt;This AI service had an API endpoint that handled AI requests:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST /designer-api/api/v1/generation-prompt HTTP/1.1
+Host: api.example.com
+Authorization: Bearer &amp;lt;user_token&amp;gt;
+Content-Type: application/json
+
+{
+  &quot;prompt&quot;: &quot;Generate an AI response&quot;,
+  &quot;stats&quot;: {
+    &quot;remaining_calls&quot;: 15,
+    &quot;limit&quot;: 15
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Each request contained a &lt;strong&gt;stats&lt;/strong&gt; section that included details about the user’s usage limits. Normally, when a user reached their limit, they would get a &lt;strong&gt;429 Too Many Requests&lt;/strong&gt; error:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HTTP/1.1 429 Too Many Requests
+Content-Type: application/json
+
+{
+  &quot;error&quot;: &quot;Rate limit exceeded&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But what if we could simply &lt;strong&gt;change the number&lt;/strong&gt; in the request body before it reached the server? That’s exactly what was possible here! By modifying the stats section, an attacker could:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Trick the system into thinking they still had AI requests left&lt;/li&gt;
+  &lt;li&gt;Continue making API calls well beyond the intended limit&lt;/li&gt;
+  &lt;li&gt;Effectively get an &lt;strong&gt;unlimited&lt;/strong&gt; AI service for free&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;visual-breakdown-of-the-issue&quot;&gt;Visual Breakdown of the Issue&lt;/h3&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+sequenceDiagram
+    participant User
+    participant Client
+    participant Server
+    User-&amp;gt;&amp;gt;Client: Sends AI request
+    Client-&amp;gt;&amp;gt;Server: {&quot;remaining_calls&quot;: 15, &quot;limit&quot;: 15}
+    Note right of User: Modifies request body
+    Client-&amp;gt;&amp;gt;Server: {&quot;remaining_calls&quot;: 100, &quot;limit&quot;: 100}
+    Server-&amp;gt;&amp;gt;Client: AI response (No rate limit enforcement)
+&lt;/div&gt;
+
+&lt;h2 id=&quot;why-did-this-happen&quot;&gt;Why Did This Happen?&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-trusting-client-side-data&quot;&gt;1. &lt;strong&gt;Trusting Client-Side Data&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;One of the golden rules of security is &lt;strong&gt;never trust user input&lt;/strong&gt;—and that includes request data. The AI platform mistakenly relied on a value in the request body to determine rate limits instead of tracking it properly on the server side.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-lack-of-server-side-validation&quot;&gt;2. &lt;strong&gt;Lack of Server-Side Validation&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;A well-designed system should verify limits &lt;strong&gt;independently&lt;/strong&gt; on the backend. In this case, since the API simply accepted what the request told it, there was no mechanism ensuring that the limit was actually being enforced.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-failure-to-use-secure-tokens-or-signatures&quot;&gt;3. &lt;strong&gt;Failure to Use Secure Tokens or Signatures&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Many modern APIs use cryptographic signatures (like HMAC) to verify request integrity. Had this platform signed the request metadata, any tampering would have been detected.&lt;/p&gt;
+
+&lt;h2 id=&quot;lessons-for-security-professionals&quot;&gt;Lessons for Security Professionals&lt;/h2&gt;
+
+&lt;h3 id=&quot;-enforce-rate-limits-server-side&quot;&gt;🔹 &lt;strong&gt;Enforce Rate Limits Server-Side&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Never rely on client-side values for enforcing restrictions. Always track API usage in a backend database or a secure session store.&lt;/p&gt;
+
+&lt;h3 id=&quot;-use-immutable-request-metadata&quot;&gt;🔹 &lt;strong&gt;Use Immutable Request Metadata&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Instead of allowing the request body to dictate limits, the system should generate and store limits on the server side, making them read-only for users.&lt;/p&gt;
+
+&lt;h3 id=&quot;-monitor-anomalous-activity&quot;&gt;🔹 &lt;strong&gt;Monitor Anomalous Activity&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Rate-limiting dashboards and API monitoring tools can detect when a single user is making an unusually high number of requests, preventing abuse.&lt;/p&gt;
+
+&lt;p&gt;For an in-depth guide on API security, check out the &lt;a href=&quot;https://owasp.org/www-project-api-security/&quot;&gt;OWASP API Security Top 10&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;This case highlights a fundamental security lesson: &lt;strong&gt;never trust the client to enforce security rules&lt;/strong&gt;. Whether it’s API rate limiting, authentication, or access control, these checks should always be handled &lt;strong&gt;on the server&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Interestingly, after responsibly disclosing this issue, the company’s security team acknowledged the value of the report, stating it was one of the most impactful submissions they had received from an external researcher. As a token of appreciation, they issued a &lt;strong&gt;$800 reward&lt;/strong&gt;—a rare gesture that underscores the importance of proactive security research.&lt;/p&gt;
+
+&lt;p&gt;Have you encountered a similar vulnerability? Let’s discuss in the comments below!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="API" /><category term="Security," /><category term="Rate" /><category term="Limiting," /><category term="Penetration" /><category term="Testing," /><category term="Bug" /><category term="Bounty," /><category term="Ethical" /><category term="Hacking," /><category term="Security" /><category term="Research," /><category term="Web" /><category term="Security," /><category term="OWASP," /><category term="Server-Side" /><category term="Validation," /><category term="API" /><category term="Abuse," /><category term="Cybersecurity," /><category term="Responsible" /><category term="Disclosure," /><category term="AI" /><category term="Security" /><summary type="html">Introduction</summary></entry><entry><title type="html">Too Bad for Business - an IDOR Vulnerability</title><link href="http://localhost:4000/too-bad-for-business" rel="alternate" type="text/html" title="Too Bad for Business - an IDOR Vulnerability" /><published>2025-01-30T00:00:00+05:30</published><updated>2025-01-30T00:00:00+05:30</updated><id>http://localhost:4000/too-bad-for-business</id><content type="html" xml:base="http://localhost:4000/too-bad-for-business">&lt;p&gt;Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.&lt;/p&gt;
 
 &lt;p&gt;But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the documents can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.&lt;/p&gt;
 
@@ -55,7 +147,7 @@ When the download button is pressed, the application sends a request to the serv
 &lt;p&gt;I hope you found some insights in this post. If you did or if you have suggestions to help me improve my writing, feel free to send me feedback using the button at the bottom of the page.&lt;/p&gt;
 
 &lt;p&gt;Until next time,
-Cheers!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="idor," /><category term="aws," /><category term="e-signature," /><category term="document," /><category term="security," /><category term="information" /><category term="disclosure" /><summary type="html">Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="https://mr23r0.github.io/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>https://mr23r0.github.io/dns-instance-IBA</id><content type="html" xml:base="https://mr23r0.github.io/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
+Cheers!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="idor," /><category term="aws," /><category term="e-signature," /><category term="document," /><category term="security," /><category term="information" /><category term="disclosure" /><summary type="html">Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mr23r0.okta.com | mr23r0.github.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -167,7 +259,7 @@ Ultimately, we got the access of the target instance with just by knowing an ema
       &lt;p&gt;&lt;a href=&quot;https://www.techtarget.com/searchstorage/definition/race-condition&quot; target=&quot;_blank&quot;&gt;Race Condition&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="dns," /><category term="hacking," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="dns" /><category term="hacking," /><category term="dns" /><category term="implementation" /><summary type="html">You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com. mr23r0.okta.com | mr23r0.github.io</summary></entry><entry><title type="html">Four(4) tions of Penetration</title><link href="https://mr23r0.github.io/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>https://mr23r0.github.io/four-4-tions-of-penetration</id><content type="html" xml:base="https://mr23r0.github.io/four-4-tions-of-penetration">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="dns," /><category term="hacking," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="dns" /><category term="hacking," /><category term="dns" /><category term="implementation" /><summary type="html">You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com. mr23r0.okta.com | mr23r0.github.io</summary></entry><entry><title type="html">Four(4) tions of Penetration</title><link href="http://localhost:4000/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>http://localhost:4000/four-4-tions-of-penetration</id><content type="html" xml:base="http://localhost:4000/four-4-tions-of-penetration">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#selection&quot;&gt;Selection&lt;/a&gt;&lt;/li&gt;
@@ -241,7 +333,7 @@ siteName=myThirdAccountSite&amp;amp;siteUrl=myThirdAccountSite&amp;amp;evstart=&
       &lt;p&gt;&lt;a href=&quot;https://mr23r0.github.io/uncovering-the-secrets-part-1.html&quot; target=&quot;_blank&quot;&gt;The Potential of Web archive in bug bounty programs&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="site" /><category term="management," /><category term="application," /><category term="security" /><summary type="html">Index Introduction Selection Detection Relation</summary></entry><entry><title type="html">Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</title><link href="https://mr23r0.github.io/read-anything" rel="alternate" type="text/html" title="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" /><published>2024-01-31T00:00:00+05:30</published><updated>2024-01-31T00:00:00+05:30</updated><id>https://mr23r0.github.io/read-anything</id><content type="html" xml:base="https://mr23r0.github.io/read-anything">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="site" /><category term="management," /><category term="application," /><category term="security" /><summary type="html">Index Introduction Selection Detection Relation</summary></entry><entry><title type="html">Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</title><link href="http://localhost:4000/read-anything" rel="alternate" type="text/html" title="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" /><published>2024-01-31T00:00:00+05:30</published><updated>2024-01-31T00:00:00+05:30</updated><id>http://localhost:4000/read-anything</id><content type="html" xml:base="http://localhost:4000/read-anything">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#user-interface&quot;&gt;User Interface&lt;/a&gt;&lt;/li&gt;
@@ -263,7 +355,7 @@ However, despite this discovery, the conventional interface lacked a straightfor
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /api/v1/spark/novels/{Integer_IDs}/
 Host: community.censored.com
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Seizing this opportunity, I exploited the system by modifying the numerical book IDs in the requests. Given that the book IDs were numerical, I successfully engaged in a brute force attack, systematically testing and accessing different IDs. This not only granted unauthorized access to my own submissions but also to the works of fellow authors, spotlighting a critical security vulnerability in the nuanced interplay between the author’s submission process and the underlying review infrastructure.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="digital" /><category term="audiobook," /><category term="pdf," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html">Index Introduction User Interface Under The Hood</summary></entry><entry><title type="html">01 HTML Injection | Web 101</title><link href="https://mr23r0.github.io/html-injection-guide" rel="alternate" type="text/html" title="01 HTML Injection | Web 101" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>https://mr23r0.github.io/html-injection-guide</id><content type="html" xml:base="https://mr23r0.github.io/html-injection-guide">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;p&gt;Seizing this opportunity, I exploited the system by modifying the numerical book IDs in the requests. Given that the book IDs were numerical, I successfully engaged in a brute force attack, systematically testing and accessing different IDs. This not only granted unauthorized access to my own submissions but also to the works of fellow authors, spotlighting a critical security vulnerability in the nuanced interplay between the author’s submission process and the underlying review infrastructure.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="digital" /><category term="audiobook," /><category term="pdf," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html">Index Introduction User Interface Under The Hood</summary></entry><entry><title type="html">01 HTML Injection | Web 101</title><link href="http://localhost:4000/html-injection-guide" rel="alternate" type="text/html" title="01 HTML Injection | Web 101" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>http://localhost:4000/html-injection-guide</id><content type="html" xml:base="http://localhost:4000/html-injection-guide">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#html&quot;&gt;HTML&lt;/a&gt;&lt;/li&gt;
@@ -385,7 +477,7 @@ This technique, while seeming innocuous at first glance, poses a significant thr
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/1537149&quot; target=&quot;_blank&quot;&gt;Hackerone&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/381553&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/150179&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><category term="html," /><category term="injection," /><category term="web," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="security" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Podcast 01</title><link href="https://mr23r0.github.io/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>https://mr23r0.github.io/podcast-01</id><content type="html" xml:base="https://mr23r0.github.io/podcast-01">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="https://mr23r0.github.io/unlocking-the-power-of-observation-part-2" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>https://mr23r0.github.io/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="https://mr23r0.github.io/unlocking-the-power-of-observation-part-2">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><category term="html," /><category term="injection," /><category term="web," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="security" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Podcast 01</title><link href="http://localhost:4000/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/podcast-01</id><content type="html" xml:base="http://localhost:4000/podcast-01">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.&lt;/p&gt;
 
@@ -433,7 +525,7 @@ Thank you!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://www.egnyte.com/guides/governance/user-management#:~:text=User%20management%20is%20a%20system,Providing%20users%20with%20authenticated%20access&quot; target=&quot;_blank&quot;&gt;User Management System&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="https://mr23r0.github.io/uncovering-the-secrets-part-1" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>https://mr23r0.github.io/uncovering-the-secrets-part-1</id><content type="html" xml:base="https://mr23r0.github.io/uncovering-the-secrets-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="http://localhost:4000/uncovering-the-secrets-part-1" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>http://localhost:4000/uncovering-the-secrets-part-1</id><content type="html" xml:base="http://localhost:4000/uncovering-the-secrets-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;the-infamous-wayback-machine&quot;&gt;The Infamous WayBack Machine&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;“According to ChatGPT, The Wayback Machine is a digital archive of the World Wide Web, maintained by the Internet Archive. It is a valuable tool that allows users to access and browse archived versions of websites as they appeared at different points in time. The Wayback Machine captures and stores snapshots of web pages, creating a historical record of the internet.”&lt;/em&gt;&lt;/p&gt;
@@ -518,7 +610,7 @@ Thanks!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://blog.reputationx.com/block-wayback-machine&quot; target=&quot;_blank&quot;&gt;reputationx.com&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="https://mr23r0.github.io/unlocking-the-power-of-observation-part-1" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>https://mr23r0.github.io/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="https://mr23r0.github.io/unlocking-the-power-of-observation-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-1" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hackers need to embrace their superpower in order to become more efficient and meaningful, while doing bug bounty they have to search for weaknesses and also make sure that with their actions the application doesn’t crash.&lt;/p&gt;
 
@@ -592,79 +684,4 @@ Thank You!
       &lt;p&gt;&lt;a href=&quot;https://portswigger.net/burp&quot; target=&quot;_blank&quot;&gt;Burp Suite&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry><entry><title type="html">Code flaws leads to Organization Account Takeover</title><link href="https://mr23r0.github.io/code-flaws-part-1" rel="alternate" type="text/html" title="Code flaws leads to Organization Account Takeover" /><published>2022-10-13T00:00:00+05:30</published><updated>2022-10-13T00:00:00+05:30</updated><id>https://mr23r0.github.io/code-flaws-part-1</id><content type="html" xml:base="https://mr23r0.github.io/code-flaws-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-application-design&quot;&gt;the Application Design&lt;/h3&gt;
-&lt;p&gt;The Application was only allowing one Admin/Manager per one organization, but other viewers has to login in order to view the content.&lt;br /&gt;
-&lt;em&gt;Note: After creating an account user cannot change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;organization_name&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;design-flaw-insecure-design&quot;&gt;Design Flaw/ Insecure Design&lt;/h3&gt;
-&lt;p&gt;While creating an account I saw a very weird parameter in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; request&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;POST /some_ajax/create_event_flow HTTP/1.1
-Host: portal.example.com
-Connection: close
-Content-Length: 663
-sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;105&quot;, &quot;Not)A;Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;105&quot;
-Accept: application/json, text/javascript, */*; q=0.01
-Content-Type: application/json; charset=UTF-8
-X-Requested-With: XMLHttpRequest
-sec-ch-ua-mobile: ?0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
-sec-ch-ua-platform: &quot;Linux&quot;
-Origin: https://portal.example.com
-Sec-Fetch-Site: same-origin
-Sec-Fetch-Mode: cors
-Se;c-Fetch-Dest: empty
-Referer: https://portal.example.com/create_event_flow
-Accept-Encoding: gzip, deflate
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Cookie:
-{&quot;methodName&quot;:&quot;onboard&quot;,&quot;params&quot;:{&quot;some_params&quot;:{&quot;some_name&quot;:&quot;Account takeover&quot;,&quot;some_modules&quot;:[1]},&quot;user_params&quot;:{&quot;name&quot;:&quot;User_name&quot;,&quot;email&quot;:&quot;admin@mr23r0.rocks&quot;,&quot;password&quot;:&quot;Password_Secret&quot;},&quot;community_params&quot;:{&quot;name&quot;:&quot;Organization_name&quot;,&quot;slug&quot;:&quot;testthing-for-ato&quot;,&quot;c_id&quot;:683,&quot;client_time_zone&quot;:&quot;Asia/Calcutta&quot;}}}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; noticed it? I hope so, let’s see what is happening in the backend, While trying to register, the application creates a entry with the email address and creates a row in the organization table (if it’s SQL) then our current request goes into the users table and makes a user with a predefined organization.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;INSERT INTO users (username, password, organization) VALUES (&quot;Jack&quot;,&quot;123&quot;, &quot;organization_name&quot;) WHERE c_id=&apos;683&apos;;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;So I changed the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; with the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; and as expected it took me to the victim’s organization. So we got our first bug ;) Design flaw but we can also call it &lt;em&gt;Horizontal Privilege Escalation&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;br /&gt;
-&lt;em&gt;Note : The Application doesn’t supports multiple Admin/Manager in one organization.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When I do testing, primarily what I want to achieve is an Account takeover and testing is like a video game for me completing every level one by one… so I started looking for more vulnerabilities, after 15 minutes of search I got it, found a &lt;em&gt;Stored Cross Site Scripting&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt; now the problem is how can I change the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;I tried to replicate the create an account request and BOOM!! we can send a POST request to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/some_ajax/create_event_flow&lt;/code&gt; no authentication required and also if we put cross site scripting payload in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt; and change our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt; with the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c_id&lt;/code&gt;, the victim’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Organization_name&lt;/code&gt; gets changed ;)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:562/format:webp/1*Pkd4zlVh7_ynWK7o1TOR8g.png&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We got the victim’s active cookies — but no-one will accept account takeover with active cookies, So I simply checked for &lt;em&gt;Session Fixation or No Logout&lt;/em&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; and I got lucky the application was vulnerable.&lt;/p&gt;
-
-&lt;p&gt;Last two vulnerability, the application was taking current password in order to change password but after intercepting the request I found that they’re not sending or checking the current password and there wasn’t any authentication on change email operation.&lt;/p&gt;
-
-&lt;h3 id=&quot;quick-wrap-up&quot;&gt;Quick wrap up&lt;/h3&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Create an account --&amp;gt; change the &quot;c_id&quot; and add the blind xss payload in the &quot;organization_name&quot;
-copy the victim&apos;s cookies 
-Login as the victim by using the cookies
-change the password by using:
-           i. Change Password
-           ii. Change Email --&amp;gt; Recover password
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I hope you’ve learned something new from this.&lt;br /&gt;
-Thanks!&lt;/p&gt;
-
-&lt;hr data-content=&quot;footnotes&quot; /&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://heimdalsecurity.com/blog/privilege-escalation/&quot; target=&quot;_blank&quot;&gt;Horizontal Privilege Escalation&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://portswigger.net/web-security/cross-site-scripting/stored&quot; target=&quot;_blank&quot;&gt;Stored Cross Site Scripting&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://owasp.org/www-community/attacks/Session_fixation&quot; target=&quot;_blank&quot;&gt;Session Fixation or No Logout&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="account" /><category term="takeover" /><summary type="html"></summary></entry></feed>
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry></feed>

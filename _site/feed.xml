@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T12:38:50+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">The Curious Case of Unlimited AI Calls</title><link href="http://localhost:4000/unlimited-ai-calls" rel="alternate" type="text/html" title="The Curious Case of Unlimited AI Calls" /><published>2025-02-09T00:00:00+05:30</published><updated>2025-02-09T00:00:00+05:30</updated><id>http://localhost:4000/unlimited-ai-calls</id><content type="html" xml:base="http://localhost:4000/unlimited-ai-calls">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T12:52:51+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Adaptive Web Design ED1 - Some fundamental good reads</title><link href="http://localhost:4000/adaptive-web-design-v1" rel="alternate" type="text/html" title="Adaptive Web Design ED1 - Some fundamental good reads" /><published>2025-02-09T00:00:00+05:30</published><updated>2025-02-09T00:00:00+05:30</updated><id>http://localhost:4000/adaptive-web-design-v1</id><content type="html" xml:base="http://localhost:4000/adaptive-web-design-v1">&lt;p&gt;“Adaptive Web Design” by Aaron Gustafson explains how to build websites that work well on all devices by focusing on accessibility, usability, and flexibility. For security researchers, it shows how designing with these principles can help reduce security risks, make websites more reliable, and improve user safety. A great read for anyone interested in the connection between web design and security. (something that I found very interesting and useful, your opinion may vary)&lt;/p&gt;
+
+&lt;div class=&quot;iframe-container&quot; style=&quot;position: relative; width: 100%; height: 600px; margin: 20px 0;&quot;&gt;
+    &lt;iframe src=&quot;https://adaptivewebdesign.info/1st-edition/read/&quot; style=&quot;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #ccc;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can also read it directly at &lt;a href=&quot;https://adaptivewebdesign.info/1st-edition/read/&quot; target=&quot;_blank&quot;&gt;adaptivewebdesign.info ↗&lt;/a&gt;&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="books" /><summary type="html">“Adaptive Web Design” by Aaron Gustafson explains how to build websites that work well on all devices by focusing on accessibility, usability, and flexibility. For security researchers, it shows how designing with these principles can help reduce security risks, make websites more reliable, and improve user safety. A great read for anyone interested in the connection between web design and security. (something that I found very interesting and useful, your opinion may vary)</summary></entry><entry><title type="html">The Curious Case of Unlimited AI Calls</title><link href="http://localhost:4000/unlimited-ai-calls" rel="alternate" type="text/html" title="The Curious Case of Unlimited AI Calls" /><published>2025-02-09T00:00:00+05:30</published><updated>2025-02-09T00:00:00+05:30</updated><id>http://localhost:4000/unlimited-ai-calls</id><content type="html" xml:base="http://localhost:4000/unlimited-ai-calls">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Imagine walking into a coffee shop that charges for refills. You get your first cup, but instead of paying for more, you find a secret trick to keep getting unlimited refills—all without the cashier noticing. Sounds fun, right? Well, something similar happened in the digital world with an AI-powered platform that charged users for making AI requests. Due to a simple yet impactful vulnerability, it was possible to override the limit and get unlimited AI requests—for free.&lt;/p&gt;
 
@@ -610,78 +616,4 @@ Thanks!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://blog.reputationx.com/block-wayback-machine&quot; target=&quot;_blank&quot;&gt;reputationx.com&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-1" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hackers need to embrace their superpower in order to become more efficient and meaningful, while doing bug bounty they have to search for weaknesses and also make sure that with their actions the application doesn’t crash.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*7TL7yeUfzC8zLRgDtJcyXA.jpeg&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the interest of time, let’s talk about one feature I saw in the middle of last year.&lt;/p&gt;
-
-&lt;h3 id=&quot;functionality&quot;&gt;Functionality&lt;/h3&gt;
-&lt;p&gt;This functionality gives users the ability to claim a subdomain on the application (website) to create a workspace and work directly on that subdomain. (In simple words, the application allows users to create instances)&lt;/p&gt;
-
-&lt;h3 id=&quot;attack-i--account-takeover&quot;&gt;Attack (i) : Account Takeover&lt;/h3&gt;
-&lt;p&gt;I’ve already touched on this, so I suggest you read my previous &lt;em&gt;article&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. I assume you read this article, so let’s continue.&lt;/p&gt;
-
-&lt;h3 id=&quot;attack-ii--account-takeover&quot;&gt;Attack (ii) : Account Takeover&lt;/h3&gt;
-&lt;p&gt;Application Flow : When a user tries to sign-up, the application doesn’t requires user to verify the email first and after completing the sign-up process successfully the user gets a “login token” and with the help of this “login token” user can login into his/her account without the password.&lt;br /&gt;
-&lt;em&gt;Note: This token is “One Time Token”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This is the same application as &lt;em&gt;the Attack (i)&lt;/em&gt; so again, I created a new subdomain and on the claim subdomain request I replaced my email with the victim’s email and as I don’t know the password of the victim’s email I added “anything” in the password field.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
-  &quot;methodName&quot;: &quot;onboard&quot;,
-  &quot;params&quot;: {
-    &quot;some_params&quot;: {
-      &quot;some_name&quot;: &quot;anything&quot;,
-      &quot;some_modules&quot;: [
-        1
-      ]
-    },
-    &quot;user_params&quot;: {
-      &quot;name&quot;: &quot;CanBeAnything&quot;,
-      &quot;email&quot;: &quot;hunterzerocipher@gmail.com&quot;,
-      &quot;password&quot;: &quot;Anything&quot;
-    },
-    &quot;community_params&quot;: {
-      &quot;name&quot;: &quot;anything&quot;,
-      &quot;slug&quot;: &quot;anything&quot;,
-      &quot;c_id&quot;: 715,
-      &quot;client_time_zone&quot;: &quot;Asia/Calcutta&quot;
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;On the response I got the “login token” and made a browser GET request on the victim’s subdomain with the “login token” and I was logged-in in the victim’s account.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://victim.application.com/admin/login?login_token=xxxxxxxxxxx&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;In this example what happened is the application doesn’t actually generate the login token with multiple details of the user, it only used the email to generate the login token and as the login token only contains a pass to login as the user without checking the subdomain or the organization, allowing attacker to create login pass with the victim email.&lt;/p&gt;
-
-&lt;h3 id=&quot;attack-iii--system-conflict&quot;&gt;Attack (iii) : System Conflict&lt;/h3&gt;
-&lt;p&gt;I have to say this example is a bit funny ;)&lt;/p&gt;
-
-&lt;p&gt;As the previous example I was trying to create a subdomain in the application and the url was &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://portal.application.com/register&lt;/code&gt; and while login I noticed that the url is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://login.application.com/admin/login&lt;/code&gt;
-So I again tried to create a subdomain “xzcvb” and Intercepted the request in &lt;em&gt;Burp Suite&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; changed the subdomain name to “login” and sent the request and as a surprise I got “200 OK”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:640/format:webp/1*XzlnW_sVtRflEd_je697Iw.png&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;What’s the Impact? Due to some reason &lt;em&gt;(Well I think it happened because the application’s module which was responsible to create subdomains had over privileges)&lt;/em&gt; when a user tries to visit login.application.com or tries to recreate his/her session the application gets confused “where to take the user” making the subdomain not reachable ultimately making the application not reachable.&lt;/p&gt;
-
-&lt;p data-content=&quot;footnotes&quot;&gt;I hope it gave you a clear idea how efficient bug bounty and penetration testing becomes when you use your superpowers rather than relaying on the automation and third party tools.
-I hope you’ve learnt something new with this.&lt;br /&gt;
-Thank You!
-—&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;/code-flaws-part-1&quot; target=&quot;_blank&quot;&gt;Previous Article&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://portswigger.net/burp&quot; target=&quot;_blank&quot;&gt;Burp Suite&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry></feed>
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"></summary></entry></feed>

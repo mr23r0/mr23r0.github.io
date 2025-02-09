@@ -1,8 +1,8 @@
 ---
 layout: post
 category: posts
-title: "The Curious Case of Unlimited AI Calls: A Security Story"
-description : "The Curious Case of Unlimited AI Calls: A Security Story, is a tale about how I managed to find a vulnerability which allows an attacker to bypass API rate limits and make unlimited AI calls"
+title: "The Curious Case of Unlimited AI Calls"
+description : "The Curious Case of Unlimited AI Calls, is a tale about how I managed to find a vulnerability which allows an attacker to bypass API rate limits and make unlimited AI calls"
 tags : "API Security, Rate Limiting, Penetration Testing, Bug Bounty, Ethical Hacking, Security Research, Web Security, OWASP, Server-Side Validation, API Abuse, Cybersecurity, Responsible Disclosure, AI Security"
 ai_generated: true
 ---

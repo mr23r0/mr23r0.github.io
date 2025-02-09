@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-10-13T00:34:29+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Too Bad for Business - an IDOR Vulnerability</title><link href="http://localhost:4000/too-bad-for-business" rel="alternate" type="text/html" title="Too Bad for Business - an IDOR Vulnerability" /><published>2024-10-12T00:00:00+05:30</published><updated>2024-10-12T00:00:00+05:30</updated><id>http://localhost:4000/too-bad-for-business</id><content type="html" xml:base="http://localhost:4000/too-bad-for-business">&lt;p&gt;Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T11:21:04+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0] Saransh Saraf</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Too Bad for Business - an IDOR Vulnerability</title><link href="http://localhost:4000/too-bad-for-business" rel="alternate" type="text/html" title="Too Bad for Business - an IDOR Vulnerability" /><published>2025-01-30T00:00:00+05:30</published><updated>2025-01-30T00:00:00+05:30</updated><id>http://localhost:4000/too-bad-for-business</id><content type="html" xml:base="http://localhost:4000/too-bad-for-business">&lt;p&gt;Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.&lt;/p&gt;
 
 &lt;p&gt;But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the documents can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.&lt;/p&gt;
 
@@ -28,7 +27,7 @@
 &lt;p&gt;I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
 To understand this better, I recommend watching this &lt;a href=&quot;https://www.youtube.com/watch?v=tEpn-6dBn-M&amp;amp;t=330&quot; target=&quot;_blank&quot;&gt;Project Air video&lt;/a&gt;. It explains a similar issue in a really simple way.&lt;/p&gt;
 
-&lt;p&gt;If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the encryption keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere.&lt;/p&gt;
+&lt;p&gt;If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere.&lt;/p&gt;
 
 &lt;p&gt;To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS. Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.&lt;/p&gt;
 
@@ -56,7 +55,7 @@ When the download button is pressed, the application sends a request to the serv
 &lt;p&gt;I hope you found some insights in this post. If you did or if you have suggestions to help me improve my writing, feel free to send me feedback using the button at the bottom of the page.&lt;/p&gt;
 
 &lt;p&gt;Until next time,
-Cheers!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="idor" /><summary type="html">Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
+Cheers!&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="idor," /><category term="aws," /><category term="e-signature," /><category term="document," /><category term="security," /><category term="information" /><category term="disclosure" /><summary type="html">Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.</summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba">&lt;p&gt;You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mr23r0.okta.com | mr23r0.github.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -70,86 +69,12 @@ The answer to all these questions lies into the &lt;em&gt;psychology&lt;/em&gt; 
 &lt;p&gt;In reality there’s no way possible to create a sudomain on the fly (correct me if I’m wrong) and create a tenant specific copy of the application, although it’s possible for the databases, which is called multi-tenancy&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
 What they do is, they point the wildcard domain &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*.mr23r0.app&lt;/code&gt; to the main IP address and serve the same application on any subdomain [virtual] created. See the below code to understand it better :&lt;/p&gt;
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
-=======
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T10:25:18+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><entry><title type="html">Too Bad for Business - an IDOR Vulnerability</title><link href="http://localhost:4000/too-bad-for-business" rel="alternate" type="text/html" title="Too Bad for Business - an IDOR Vulnerability" /><published>2025-01-30T00:00:00+05:30</published><updated>2025-01-30T00:00:00+05:30</updated><id>http://localhost:4000/too-bad-for-business</id><content type="html" xml:base="http://localhost:4000/too-bad-for-business"><![CDATA[<p>Whether you’re 15 or 60, you’ve probably heard of and used an e-signature application at least once. These apps are meant to help share confidential documents for signing, so it’s no surprise that keeping documents safe from hackers is a key part of their business.</p>
-
-<p>But, of course, nothing is ever that easy, if it were, it wouldn’t be life! These apps usually come with certain features to securely share documents, including strict rules on how the documents can be opened and how long they stay accessible. The person managing the application (the Instance Administrator) can adjust these settings based on what they or their company needs.</p>
-
-<p><img src="/assets/img/e-sign-app-struct.png" alt="E-Signature-Application" /></p>
-
-<p>Some of the basic features from this set are,</p>
-<ul>
-  <li>Document Editing</li>
-  <li>Signing Field Mapping</li>
-  <li>Sharing Document for Signature</li>
-  <li>Document Download (Sender and Receiver, on both ends), and etc.</li>
-</ul>
-
-<p>Implementing these features securely is a challenge on its own, not to mention keeping the same format and quality across all parts of the application.</p>
-
-<p>I recently came across a similar case during one of my testing projects. It was a well-known but mid-sized company/product, with strong security against Insecure Direct Object Reference (IDOR), though I did find a few low-severity bugs.<br /></p>
-
-<p>I spent a couple of hours reviewing everything, and while I had four low-severity bugs on my list, there weren’t any other clear vulnerabilities to exploit so, I shifted my focus to learning more about the application.<br /></p>
-
-<p>On their data protection policy page, I found that they store every document on AWS, with encryption at rest and a valid access token required to access the documents. Sounds pretty secure.</p>
-
-<p><img src="/assets/img/doc-tran-aws.png" alt="Document-Transaction" class="iod" /></p>
-
-<p>Uploading the document and linking it to the user account seemed secure enough, but let’s be honest—that’s not the fun part to exploit. If I could somehow get access to documents from other accounts… now that would be interesting!<br /></p>
-
-<p>I set up some documents and started the signing request process. However, the URL provided to the end user for accessing the document fetched it directly from the application server. The application was temporarily storing the document on its own server as a failsafe mechanism.
-To understand this better, I recommend watching this <a href="https://www.youtube.com/watch?v=tEpn-6dBn-M&amp;t=330" target="_blank">Project Air video</a>. It explains a similar issue in a really simple way.</p>
-
-<p>If that wasn’t clear, here’s a quick summary: Loading the document from AWS would mean somehow sharing the keys and a valid token with the end user, which is hard to secure. The user could extract those credentials and keep access to the document, including any future updates. Or the application would need to constantly regenerate and update those credentials everywhere.</p>
-
-<p>To avoid this hassle, the application temporarily stores the document on its server, and once the signing is done, it updates the document on AWS. Even the download button on the user end just created a PDF of the loaded document and exported it. It seemed too good to be true, everything has vulnerabilities, right? So, I decided to test the same feature from the customer’s end.</p>
-
-<p>When opening the document initially, the application did use AWS directly, and after editing, it uploaded the updated document back to AWS. The credentials used to fetch the document from AWS were stored under the <code class="language-plaintext highlighter-rouge">/organization/users/&lt;ID&gt;/documents</code> object, and the request wasn’t vulnerable to IDOR.</p>
-
-<p>I dug deeper and found the download document button. When clicked, it opened a new tab with a PDF viewer, where the user is supposed to download the document. The most interesting part, though, is the underlying API requests.
-When the download button is pressed, the application sends a request to the server to get the credentials for the document at <code class="language-plaintext highlighter-rouge">/documents/&lt;numerical ID&gt;/creds</code>. And you guessed it, it was indeed vulnerable to IDOR.</p>
-
-<p>Upon requesting a valid documentID, the application responsed with :</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "url":"AWS document url",
-    "fields":{
-        "key":"document key",
-        "contentType":"application/pdf",
-        "xawzCredential":"credential",
-        "xawzAlgorythm":"some value",
-        "xawzDate":"timestamp",
-        "xaszSignature":"value"
-    }
-}
-</code></pre></div></div>
-
-<p>I gained access to all the documents ever uploaded to the e-signature application, whether they were private or public, shared for signing or not.</p>
-
-<p>I hope you found some insights in this post. If you did or if you have suggestions to help me improve my writing, feel free to send me feedback using the button at the bottom of the page.</p>
-
-<p>Until next time,
-Cheers!</p>]]></content><author><name></name></author><category term="posts" /><category term="idor," /><category term="aws," /><category term="e-signature," /><category term="document," /><category term="security" /><summary type="html"><![CDATA[Too Bad for Business - an IDOR Vulnerability, is a tale about how I managed to find an IDOR vulnerability which risks the company's entire business model]]></summary></entry><entry><title type="html">Hacking DNS Instance Applications Inside-Out</title><link href="http://localhost:4000/dns-instance-iba" rel="alternate" type="text/html" title="Hacking DNS Instance Applications Inside-Out" /><published>2024-04-16T00:00:00+05:30</published><updated>2024-04-16T00:00:00+05:30</updated><id>http://localhost:4000/dns-instance-IBA</id><content type="html" xml:base="http://localhost:4000/dns-instance-iba"><![CDATA[<p>You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mr23r0.okta.com | mr23r0.github.io
-</code></pre></div></div>
-
-<p>But there’s a difference in these applications internally as well as externally, some gives you ability to access your data and manage it through a custom organization subdomain and others just allow you to serve that data on organization subdomain, like okta gives you ability to manage your data through a subdomain and github just allows you publish your data on a subdomain, while using <code class="language-plaintext highlighter-rouge">.io</code> domain to differentiate between the main application and published data.</p>
-
-<p><span style="color:blue"><b>Why do that? why not just use simple centralized subdomain like <code class="language-plaintext highlighter-rouge">app</code>, <code class="language-plaintext highlighter-rouge">portal</code> or something?</b></span><br />
-The answer to all these questions lies into the <em>psychology</em> of the customer and the vendor, people have tendency to stick to places where they get some special treatment, additionally by receving a custom subdomain customers think that its isolated from the central application and they’re far away from the <em>Cyber Threats</em>.</p>
-
-<p><span style="color:blue"><b>How much of this asumption is true? [Based on my research]</b></span><br /></p>
-
-<p>In reality there’s no way possible to create a sudomain on the fly (correct me if I’m wrong) and create a tenant specific copy of the application, although it’s possible for the databases, which is called multi-tenancy<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>
-What they do is, they point the wildcard domain <code class="language-plaintext highlighter-rouge">*.mr23r0.app</code> to the main IP address and serve the same application on any subdomain [virtual] created. See the below code to understand it better :</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
->>>>>>> 31e4449 (Initial commit)
     listen       80;
     server_name  app.mr23r0.app  *.mr23r0.app;
     root /path_to_your_site/public;
     passenger_enabled on;
     rails_env development;
 }
-<<<<<<< HEAD
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;So The application isn’t offering anything special to customers, but the illustion of giving custom special subdomains, which in reality doesn’t make any difference or enhances the security of the application, since every other thing in the backend is going through the same pipe or plate.
 &lt;img src=&quot;/assets/img/dns-instance.png&quot; alt=&quot;DNS-Instance&quot; /&gt;&lt;/p&gt;
@@ -242,7 +167,7 @@ Ultimately, we got the access of the target instance with just by knowing an ema
       &lt;p&gt;&lt;a href=&quot;https://www.techtarget.com/searchstorage/definition/race-condition&quot; target=&quot;_blank&quot;&gt;Race Condition&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="Hacking," /><category term="Penetration" /><category term="Testing," /><category term="Bug" /><category term="Bounty," /><category term="DNS" /><category term="Hacking," /><category term="Misconfigurations," /><category term="DNS" /><category term="Implementation" /><summary type="html">You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com. mr23r0.okta.com | mr23r0.github.io</summary></entry><entry><title type="html">Four(4) tions of Penetration</title><link href="http://localhost:4000/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>http://localhost:4000/four-4-tions-of-penetration</id><content type="html" xml:base="http://localhost:4000/four-4-tions-of-penetration">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="dns," /><category term="hacking," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="dns" /><category term="hacking," /><category term="dns" /><category term="implementation" /><summary type="html">You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com. mr23r0.okta.com | mr23r0.github.io</summary></entry><entry><title type="html">Four(4) tions of Penetration</title><link href="http://localhost:4000/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>http://localhost:4000/four-4-tions-of-penetration</id><content type="html" xml:base="http://localhost:4000/four-4-tions-of-penetration">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#selection&quot;&gt;Selection&lt;/a&gt;&lt;/li&gt;
@@ -280,148 +205,12 @@ Host: censored.com
 Connection: close
 Content-Length: 359
 sec-ch-ua: &quot;Not_A Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;120&quot;, &quot;Google Chrome&quot;;v=&quot;120&quot;
-=======
-</code></pre></div></div>
-<p>So The application isn’t offering anything special to customers, but the illustion of giving custom special subdomains, which in reality doesn’t make any difference or enhances the security of the application, since every other thing in the backend is going through the same pipe or plate.
-<img src="/assets/img/dns-instance.png" alt="DNS-Instance" /></p>
-
-<p>In the last handful of months, I had the chance to learn and test these IBA applications, and there are some major security concerns that could be found in these applications, such as</p>
-<ul>
-  <li>Insecure Direct Object Reference to Add yourself or the resource to any Organization</li>
-  <li>Organization Infinite Loop</li>
-  <li>Forced Claim to Organizations</li>
-  <li>Claiming Other’s Access Token</li>
-</ul>
-
-<p><span style="color:blue"><b>Insecure Direct Object Reference to Add yourself to any Organization</b></span><br />
-Whenever you land on these type of Applications, On the registration page these applications ask you to create the resource, before the organization (seen in event management, site management and documentation applications) and after that the resource is assigned to the newly created organization.<br /> As you may have already got the idea, that this workflow of doing things is very prone to misconfigurations and weak implementation.</p>
-
-<p><em>This example is from my test on an Event Hosting Application, which I discovered for the third time in this category of applications (IBA)</em></p>
-
-<p>On the registration, the application asks the visitor to create an event before moving ahead, the visitor does it and gets the <code class="language-plaintext highlighter-rouge">eventId</code> in response, nothing too suspicious, in the next onboarding step application asks the user to create his/her account with all the best practices implemented but in the last two steps the application asks the user to create and organization but as soon as the <code class="language-plaintext highlighter-rouge">orgId</code> is returned in the repsponse, the application makes a <code class="language-plaintext highlighter-rouge">PATCH</code> request<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> to the backend to add the <code class="language-plaintext highlighter-rouge">userId</code> along with the <code class="language-plaintext highlighter-rouge">eventId</code> to the organization <code class="language-plaintext highlighter-rouge">/api/v3/orgAdditionOperation</code> with the json body</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "orgId":"UUID2",
-    "user":{
-        "id":"",
-        "eventId":Integer
-        }
-}
-</code></pre></div></div>
-<p>the only to handle this properly is to use a flag of some sort to detect if the <code class="language-plaintext highlighter-rouge">orgId</code> organization is newly created or the old one, which can prevent the malicous attackers from joining the already active organization, but there wasn’t such implementation.</p>
-
-<p><span style="color:blue"><b>Organization Infinite Loop</b></span><br />
-During the onboarding process of these applications, you get the option to select and claim a unique subdomain to access your application, the http request may look something like this</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /api/v3/orgOperation
-Host:
-&lt;headers&gt;
-
-{
-    "subdomain":"mr23r0"
-}
-</code></pre></div></div>
-<p>Its important to understand that, some applications only allow you to do this only one time and no way to change the sudomain aferwards but other applications allow you to change this afterwards as well.
-The interesting thing is, that in the example server config, the application has used a wildcard, therefore the application should also respond to non claimable subdomains like <code class="language-plaintext highlighter-rouge">www</code>, <code class="language-plaintext highlighter-rouge">docs</code> and <code class="language-plaintext highlighter-rouge">crm</code> etc, which may cause an internal server conflict since the DNS Server<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> would have both, static application address and the main application address. to prevent this the developers implement a blocklist of subdomains that could not be claimed, and rejected if requested, But this is a bit complex to handle and people are lazy.
-<img src="/assets/img/assign-logic.png" alt="DNS-Instance" /></p>
-
-<p>In my case people weren’t lazy and did a secure implementation on the <em>onboarding process</em>, but this onboarding process is done by a visitor, so there should be two different components to handle this, first on the onboarding and the second on the organization administration settings, In my case the request from the administrative settings looked like this, and didn’t had backend verification using a blocklist.
-<img src="/assets/img/bad-assign-logic.png" alt="DNS-Instance" /></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PATCH /api/v3/orgOperation/admin/UUID2
-HOST : 
-&lt;headers&gt;
-
-{
-    "subdomain":"mr23r0"
-}
-</code></pre></div></div>
-<p>As soon as the new subdomain gets assigned to the organization, the previous subdomain will no longer be a valid one, and the application redirects the administrator to the new subdomain, but the new subdomain is a static site and redirects the user to the designated subdomain, creating a never ending loop. Ultimetly the browser gets <code class="language-plaintext highlighter-rouge">too many redirects</code> and the organization data will no longer be accessiable.</p>
-
-<p><span style="color:blue"><b>Force Claim Organizations</b></span><br />
-On the same organization administrative settings request, if someone puts a subdomain which is already in use by some other organization, the application throws an error “subdomain already in use”, There’s also absense of limit on how frequently you can change the subdomain.<br />
-By following race condition<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> approach, and sending a handful of unique and an already in use subdomain in a row (4 unique, 6-10 times single already in use subdomain) the application fails to handle all the requests in a short period of time and returns <code class="language-plaintext highlighter-rouge">500 Internal Server Error</code> but assigns the subdomain to both organizations.</p>
-
-<p><span style="color:blue"><b>Claiming Other’s Access Token</b></span><br />
-Coming back to the application onboarding flow, resource has been created, user account has been created, <em>without email verification</em>, as soon as the user and the organization is being linked, the API returns a temporary access token to login the user for the <em>first time in the organization</em>, so what’s the attack? what can you leverage here, you might be asking this question by now, so read this block once more, focus on the <code class="language-plaintext highlighter-rouge">italic</code> fonts.
-I notice two things :</p>
-<ul>
-  <li>Without Email Verification</li>
-  <li>Login first time, in newly created organization</li>
-</ul>
-
-<p>If the application doesn’t verifies the ownership of the email, before handing-out the access token, it’s already bad but, it can be further followed to a much higher risk.<br />
-Since we have this behavior in the application, We can create a new organization with the victim’s email, and get the one-time access token, following the ideal flow. Instance Based Applications, while they are internally stand as a centraliezed (sigular) application but use header like referer and orgin to seperate the different DNS instance data, so the token should have resource access assigned in some way, Ideally.
-<img src="/assets/img/dns-token-generation.png" alt="DNS-Instance" /></p>
-
-<p>This can be tested, by trying to use the token on the previously created organization, the token should not allow you to access the previously created organization, since there’s no possible way to switch between the organizations using the application UI, user must login into the second instance to access it.
-Ultimately, we got the access of the target instance with just by knowing an email address, funny isn’t it?</p>
-
-<p>As we wrap up, I want to suggest that you learn whatever interests you and get really good at it. It’s always useful in some way, and keep dreaming until you can make those dreams real. Thanks!</p>
-
-<hr data-content="footnotes" />
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://www.gooddata.com/blog/multi-tenant-architecture/" target="_blank">Multi-tenancy</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods" target="_blank">Requests - HTTP Verbs</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://www.cloudflare.com/learning/dns/what-is-a-dns-server/" target="_blank">DNS Server</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:4">
-      <p><a href="https://www.techtarget.com/searchstorage/definition/race-condition" target="_blank">Race Condition</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name></name></author><category term="posts" /><category term="dns," /><category term="hacking," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="dns" /><category term="hacking," /><category term="misconfigurations," /><category term="dns" /><category term="implementation" /><summary type="html"><![CDATA[DNS Instance Application Testing Guide]]></summary></entry><entry><title type="html">Four(4) tions of Penetration</title><link href="http://localhost:4000/four-4-tions-of-penetration" rel="alternate" type="text/html" title="Four(4) tions of Penetration" /><published>2024-02-02T00:00:00+05:30</published><updated>2024-02-02T00:00:00+05:30</updated><id>http://localhost:4000/four-4-tions-of-penetration</id><content type="html" xml:base="http://localhost:4000/four-4-tions-of-penetration"><![CDATA[<h3 id="index">Index</h3>
-<ul>
-  <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#selection">Selection</a></li>
-  <li><a href="#detection">Detection</a></li>
-  <li><a href="#relation">Relation</a></li>
-</ul>
-
-<h3 id="introduction"><a href="#introduction">Introduction</a></h3>
-<p>After my last extensive vulnerability test<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>, I got the taste of site management applications and had a craving to do more of similar kinds. This post will elaborate the target selection, a series of tests and the way I managed to make a good working relationship with the company.<br /></p>
-
-<p>The site management applications I choose typically include the capability of creating and managing multiple sites in one account and also supports team management.</p>
-
-<h3 id="selection"><a href="#selection">Selection</a></h3>
-<p>I invested about 8-9 days after which I realised that Google Dorks<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> are not the best way of finding similar products and applications, then I remembered about <a href="https://crunchbase.com" target="_blank">Crunchbase</a> and how helpful it is in finding similar products and applications.<br />
-I made a list of 12 similar applications and started looking in the archive logs<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> for these applications.</p>
-
-<p>During the detection process, I found the <code class="language-plaintext highlighter-rouge">email</code> query parameter in the unsubscribe path and after testing I found that I can change the user email preferences without proper authentication and authorization, therefore I assumed that there is a high possibility of more bugs in the application and I contacted the CTO of the company.</p>
-
-<h3 id="detection"><a href="#detection">Detection</a></h3>
-<p>As soon as I got a green flag from the CTO, I initiated my tests with creating two accounts in the same team.<br /></p>
-
-<h4 id="broken-access-control">Broken Access Control</h4>
-<p>After checking small amount of things on the application, I shifted my focus to break the <a href="https://www.cloudflare.com/learning/cloud/what-is-multitenancy" target="_blank">Multitenancy</a> of the application, therefore I deleted one account from the same team while the user was loggedin. I quickly realised that the user’s access and the session is not revoked, and the removed user still has all the administrator privileges.</p>
-
-<h4 id="magic-link-reverse-engineering">Magic Link Reverse Engineering</h4>
-<p>After creating an account for the previously removed user, the first time login magic link caught my attention <code class="language-plaintext highlighter-rouge">&lt;instance&gt;.censored.com/editor/login?password_set=y&amp;account=true&amp;a=&lt;victim's username&gt;</code><br />
- So I checked my first account and solved the puzzle of all the query parameters and using the crafted link, I was able to get into the first account without authentication.</p>
-
-<h4 id="account-takeover">Account Takeover</h4>
-<p>Magic link reverse engineering filled me with a sense of amazement.
- Then I started an extensive test on the registration process, while creating the third account, I noticed a <code class="language-plaintext highlighter-rouge">POST</code> request</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /signupajax-v3 HTTP/1.1
-Host: censored.com
-Connection: close
-Content-Length: 359
-sec-ch-ua: "Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"
->>>>>>> 31e4449 (Initial commit)
 Accept: */*
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 X-Requested-With: XMLHttpRequest
 sec-ch-ua-mobile: ?0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-<<<<<<< HEAD
 sec-ch-ua-platform: &quot;Linux&quot;
-=======
-sec-ch-ua-platform: "Linux"
->>>>>>> 31e4449 (Initial commit)
 Origin: https://censored.com
 Sec-Fetch-Site: same-origin
 Sec-Fetch-Mode: cors
@@ -429,7 +218,6 @@ Sec-Fetch-Dest: empty
 Referer: https://censored.com/signup
 Accept-Encoding: gzip, deflate
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-<<<<<<< HEAD
 Cookie: &amp;lt;cookies&amp;gt;
 
 siteName=myThirdAccountSite&amp;amp;siteUrl=myThirdAccountSite&amp;amp;evstart=&amp;amp;adminEmail=root@mr23r0.rocks&amp;amp;duplicate=false&amp;amp;hash=&amp;lt;hash&amp;gt;
@@ -453,7 +241,7 @@ siteName=myThirdAccountSite&amp;amp;siteUrl=myThirdAccountSite&amp;amp;evstart=&
       &lt;p&gt;&lt;a href=&quot;https://mr23r0.github.io/uncovering-the-secrets-part-1.html&quot; target=&quot;_blank&quot;&gt;The Potential of Web archive in bug bounty programs&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html">Index Introduction Selection Detection Relation</summary></entry><entry><title type="html">Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</title><link href="http://localhost:4000/read-anything" rel="alternate" type="text/html" title="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" /><published>2024-01-31T00:00:00+05:30</published><updated>2024-01-31T00:00:00+05:30</updated><id>http://localhost:4000/read-anything</id><content type="html" xml:base="http://localhost:4000/read-anything">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="site" /><category term="management," /><category term="application," /><category term="security" /><summary type="html">Index Introduction Selection Detection Relation</summary></entry><entry><title type="html">Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</title><link href="http://localhost:4000/read-anything" rel="alternate" type="text/html" title="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" /><published>2024-01-31T00:00:00+05:30</published><updated>2024-01-31T00:00:00+05:30</updated><id>http://localhost:4000/read-anything</id><content type="html" xml:base="http://localhost:4000/read-anything">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#user-interface&quot;&gt;User Interface&lt;/a&gt;&lt;/li&gt;
@@ -475,7 +263,7 @@ However, despite this discovery, the conventional interface lacked a straightfor
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;GET /api/v1/spark/novels/{Integer_IDs}/
 Host: community.censored.com
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Seizing this opportunity, I exploited the system by modifying the numerical book IDs in the requests. Given that the book IDs were numerical, I successfully engaged in a brute force attack, systematically testing and accessing different IDs. This not only granted unauthorized access to my own submissions but also to the works of fellow authors, spotlighting a critical security vulnerability in the nuanced interplay between the author’s submission process and the underlying review infrastructure.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html">Index Introduction User Interface Under The Hood</summary></entry><entry><title type="html">01 HTML Injection | Web 101</title><link href="http://localhost:4000/html-injection-guide" rel="alternate" type="text/html" title="01 HTML Injection | Web 101" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>http://localhost:4000/html-injection-guide</id><content type="html" xml:base="http://localhost:4000/html-injection-guide">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;p&gt;Seizing this opportunity, I exploited the system by modifying the numerical book IDs in the requests. Given that the book IDs were numerical, I successfully engaged in a brute force attack, systematically testing and accessing different IDs. This not only granted unauthorized access to my own submissions but also to the works of fellow authors, spotlighting a critical security vulnerability in the nuanced interplay between the author’s submission process and the underlying review infrastructure.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="digital" /><category term="audiobook," /><category term="pdf," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html">Index Introduction User Interface Under The Hood</summary></entry><entry><title type="html">01 HTML Injection | Web 101</title><link href="http://localhost:4000/html-injection-guide" rel="alternate" type="text/html" title="01 HTML Injection | Web 101" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>http://localhost:4000/html-injection-guide</id><content type="html" xml:base="http://localhost:4000/html-injection-guide">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#html&quot;&gt;HTML&lt;/a&gt;&lt;/li&gt;
@@ -597,7 +385,7 @@ This technique, while seeming innocuous at first glance, poses a significant thr
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/1537149&quot; target=&quot;_blank&quot;&gt;Hackerone&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/381553&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/150179&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Podcast 01</title><link href="http://localhost:4000/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/podcast-01</id><content type="html" xml:base="http://localhost:4000/podcast-01">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><category term="html," /><category term="injection," /><category term="web," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="security" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Podcast 01</title><link href="http://localhost:4000/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/podcast-01</id><content type="html" xml:base="http://localhost:4000/podcast-01">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.&lt;/p&gt;
 
@@ -645,7 +433,7 @@ Thank you!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://www.egnyte.com/guides/governance/user-management#:~:text=User%20management%20is%20a%20system,Providing%20users%20with%20authenticated%20access&quot; target=&quot;_blank&quot;&gt;User Management System&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="http://localhost:4000/uncovering-the-secrets-part-1" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>http://localhost:4000/uncovering-the-secrets-part-1</id><content type="html" xml:base="http://localhost:4000/uncovering-the-secrets-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="http://localhost:4000/uncovering-the-secrets-part-1" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>http://localhost:4000/uncovering-the-secrets-part-1</id><content type="html" xml:base="http://localhost:4000/uncovering-the-secrets-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;the-infamous-wayback-machine&quot;&gt;The Infamous WayBack Machine&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;“According to ChatGPT, The Wayback Machine is a digital archive of the World Wide Web, maintained by the Internet Archive. It is a valuable tool that allows users to access and browse archived versions of websites as they appeared at different points in time. The Wayback Machine captures and stores snapshots of web pages, creating a historical record of the internet.”&lt;/em&gt;&lt;/p&gt;
@@ -730,7 +518,7 @@ Thanks!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://blog.reputationx.com/block-wayback-machine&quot; target=&quot;_blank&quot;&gt;reputationx.com&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-1" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-1" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Hackers need to embrace their superpower in order to become more efficient and meaningful, while doing bug bounty they have to search for weaknesses and also make sure that with their actions the application doesn’t crash.&lt;/p&gt;
 
@@ -804,7 +592,7 @@ Thank You!
       &lt;p&gt;&lt;a href=&quot;https://portswigger.net/burp&quot; target=&quot;_blank&quot;&gt;Burp Suite&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry><entry><title type="html">Code flaws leads to Organization Account Takeover</title><link href="http://localhost:4000/code-flaws-part-1" rel="alternate" type="text/html" title="Code flaws leads to Organization Account Takeover" /><published>2022-10-13T00:00:00+05:30</published><updated>2022-10-13T00:00:00+05:30</updated><id>http://localhost:4000/code-flaws-part-1</id><content type="html" xml:base="http://localhost:4000/code-flaws-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry><entry><title type="html">Code flaws leads to Organization Account Takeover</title><link href="http://localhost:4000/code-flaws-part-1" rel="alternate" type="text/html" title="Code flaws leads to Organization Account Takeover" /><published>2022-10-13T00:00:00+05:30</published><updated>2022-10-13T00:00:00+05:30</updated><id>http://localhost:4000/code-flaws-part-1</id><content type="html" xml:base="http://localhost:4000/code-flaws-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;the-application-design&quot;&gt;the Application Design&lt;/h3&gt;
 &lt;p&gt;The Application was only allowing one Admin/Manager per one organization, but other viewers has to login in order to view the content.&lt;br /&gt;
@@ -818,406 +606,12 @@ Host: portal.example.com
 Connection: close
 Content-Length: 663
 sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;105&quot;, &quot;Not)A;Brand&quot;;v=&quot;8&quot;, &quot;Chromium&quot;;v=&quot;105&quot;
-=======
-Cookie: &lt;cookies&gt;
-
-siteName=myThirdAccountSite&amp;siteUrl=myThirdAccountSite&amp;evstart=&amp;adminEmail=root@mr23r0.rocks&amp;duplicate=false&amp;hash=&lt;hash&gt;
-</code></pre></div></div>
-<p>I changed the email to the first account email, received a magic link in response, by using the magic link I was able to get into the first account, not only this I was also able to navigate between account sites and make changes.</p>
-
-<h3 id="relation"><a href="#relation">Relation</a></h3>
-<p>When I initially contacted the CTO of the company, although he gave me a green flag but specifically mentioned that he has a tight budget and won’t be able to provide reward (bounty), but when I submitted the report he appreciated my work and squeezed the company’s budget a bit to show their gratitude.</p>
-
-<hr data-content="footnotes" />
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://mr23r0.github.io/code-flaws-part-1.html" target="_blank">Code flaws leads to Organization Account Takeover</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="https://book.hacktricks.xyz/generic-methodologies-and-resources/external-recon-methodology/github-leaked-secrets" target="_blank">Google Dorks</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://mr23r0.github.io/uncovering-the-secrets-part-1.html" target="_blank">The Potential of Web archive in bug bounty programs</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name></name></author><category term="posts" /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="site" /><category term="management," /><category term="application," /><category term="security" /><summary type="html"><![CDATA[Four(4) tions of Penetration, is a tale about how I managed to find a series of vulnerabilities in a site management application]]></summary></entry><entry><title type="html">Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned</title><link href="http://localhost:4000/read-anything" rel="alternate" type="text/html" title="Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned" /><published>2024-01-31T00:00:00+05:30</published><updated>2024-01-31T00:00:00+05:30</updated><id>http://localhost:4000/read-anything</id><content type="html" xml:base="http://localhost:4000/read-anything"><![CDATA[<h3 id="index">Index</h3>
-<ul>
-  <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#user-interface">User Interface</a></li>
-  <li><a href="#under-the-hood">Under The Hood</a></li>
-</ul>
-
-<h3 id="introduction"><a href="#introduction">Introduction</a></h3>
-
-<p>In my pursuit of knowledge within a digital audiobook and PDF service, I uncovered a noteworthy security vulnerability that facilitated unrestricted access to all content, including unpublished manuscripts, without the need for a subscription. <br />
-This exploration stemmed from the belief instilled by my father, emphasizing the inherent freedom of knowledge in contrast to the prevailing model that demanded substantial financial investments for each literary endeavor.</p>
-
-<h3 id="user-interface"><a href="#user-interface">User Interface</a></h3>
-<p>As a regular user navigating the platform, my initial attempts to access content without a subscription through the user interface proved unfruitful.<br />
-Serendipitously, I stumbled upon the authors’ subdomain—a space dedicated to writing and publishing. <code class="language-plaintext highlighter-rouge">https://community.censored.com</code><br /><br />
-However, despite this discovery, the conventional interface lacked a straightforward method to access the literary works of others without financial obligations, indicating a critical gap in user accessibility.</p>
-
-<h3 id="under-the-hood"><a href="#under-the-hood">Under The Hood</a></h3>
-<p>Transitioning into a more technical exploration, I meticulously scrutinized the functionality of the authors’ subdomain. Through the monitoring of network requests, a fascinating revelation emerged: the submission of a book for review triggered a browser request to open the submitted book.<br /></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /api/v1/spark/novels/{Integer_IDs}/
-Host: community.censored.com
-</code></pre></div></div>
-<p>Seizing this opportunity, I exploited the system by modifying the numerical book IDs in the requests. Given that the book IDs were numerical, I successfully engaged in a brute force attack, systematically testing and accessing different IDs. This not only granted unauthorized access to my own submissions but also to the works of fellow authors, spotlighting a critical security vulnerability in the nuanced interplay between the author’s submission process and the underlying review infrastructure.</p>]]></content><author><name></name></author><category term="posts" /><category term="digital" /><category term="audiobook," /><category term="pdf," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"><![CDATA[Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned, is a tale about how I managed to find a vulnerability in a digital audiobook and PDF service]]></summary></entry><entry><title type="html">01 HTML Injection | Web 101</title><link href="http://localhost:4000/html-injection-guide" rel="alternate" type="text/html" title="01 HTML Injection | Web 101" /><published>2023-12-30T00:00:00+05:30</published><updated>2023-12-30T00:00:00+05:30</updated><id>http://localhost:4000/html-injection-guide</id><content type="html" xml:base="http://localhost:4000/html-injection-guide"><![CDATA[<h3 id="index">Index</h3>
-<ul>
-  <li><a href="#introduction">Introduction</a></li>
-  <li><a href="#html">HTML</a></li>
-  <li><a href="#weaponize">Weaponize</a></li>
-  <li><a href="#detection">Detection</a></li>
-  <li><a href="#bypass">Bypass</a></li>
-  <li><a href="#rw-examples">RW Examples</a></li>
-</ul>
-
-<h3 id="introduction"><a href="#introduction">Introduction</a></h3>
-<p>In the realm of web security, understanding vulnerabilities is crucial. HTML Injection stands as a pivotal point in this landscape, representing a vulnerability that can compromise the integrity of web applications.
-This technique, while seeming innocuous at first glance, poses a significant threat by allowing attackers to manipulate a webpage’s content, structure, or functionality. For web testers and security professionals, comprehending HTML Injection is paramount. It serves as a means to evaluate and fortify web applications, ensuring they are robust enough to withstand such attacks.</p>
-
-<h3 id="html"><a href="#html">HTML</a></h3>
-<p>HTML, or Hypertext Markup Language, is the standard language used to create web pages. HTML is composed of various elements and tags that define the structure of a web page.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;My Web Page&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-    &lt;h1&gt;Welcome to My Page!&lt;/h1&gt;
-    
-    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
-    
-    &lt;img src="https://images.theconversation.com/files/450362/original/file-20220307-121610-zfik1f.jpeg" alt="A beautiful image"&gt;
-    
-    &lt;a href="https://en.wikipedia.org/wiki/Dead_Poets_Society"&gt;Visit Dead Poets Socity&lt;/a&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-
-</code></pre></div></div>
-<p>This basic HTML structure creates a webpage:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">&lt;!DOCTYPE html&gt;</code> declares the document type and version of HTML being used (in this case, HTML5).</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> encapsulates the entire content of the web page.</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> contains meta-information about the document, such as the page title, character set, etc.</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> sets the title of the webpage, which appears in the browser’s title bar or tab.</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> contains the visible content of the webpage.</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code> is a heading tag used to create the main header.</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> creates a paragraph of text.</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;img&gt;</code> inserts an image with the specified source (<code class="language-plaintext highlighter-rouge">src</code>) and alternative text (<code class="language-plaintext highlighter-rouge">alt</code>).</li>
-  <li><code class="language-plaintext highlighter-rouge">&lt;a&gt;</code> creates a hyperlink to another webpage specified in the <code class="language-plaintext highlighter-rouge">href</code> attribute.<br /></li>
-</ul>
-
-<p>This HTML code, when rendered in a web browser, would display a simple webpage with a heading, a paragraph of text, an image, and a hyperlink.</p>
-
-<h3 id="weaponize"><a href="#weaponize">Weaponize</a></h3>
-<p>Imagine HTML tags as building blocks that structure a webpage. Now, when one tag is placed inside another, it’s like nesting these building blocks. This nesting can lead to unintended consequences if not handled properly.</p>
-
-<p>For instance, if a website allows users to input text that gets displayed on the page, and this input isn’t properly sanitized (meaning, it’s not checked for harmful code), a user might enter HTML tags within their input.</p>
-
-<p>Let’s say a user innocently types something like <code class="language-plaintext highlighter-rouge">&lt;b&gt;Hello&lt;/b&gt;</code> in a comment section where bold text is not allowed through rich text editor. If the website doesn’t filter or neutralize these tags, the entire content following <code class="language-plaintext highlighter-rouge">&lt;b&gt;</code> will become bold until it reaches <code class="language-plaintext highlighter-rouge">&lt;/b&gt;</code>. This is harmless in most cases and is called HTML injection, but it becomes a problem when malicious users deliberately input code that can harm the website or its visitors.</p>
-
-<p>For instance, an attacker might input JavaScript code within HTML tags. When other users view this comment, their browsers might execute this JavaScript, potentially performing actions like redirecting to malicious sites, stealing session cookies, or displaying unwanted content—things the website’s creators never intended.</p>
-
-<p>So, the crux here is that allowing unfiltered HTML tags within other HTML tags on a website’s client side (what users see and interact with) can open the door to unexpected and harmful actions if not properly managed or sanitized. It’s like allowing someone to rearrange the building blocks in a tower—while most rearrangements might be harmless, some configurations could make the tower unstable or even collapse.</p>
-
-<h3 id="detection"><a href="#detection">Detection</a></h3>
-<p>Imagine you’re a web tester examining a site with input fields—like a search bar or a comment section. Your goal isn’t to break things but to find weaknesses that could allow someone with ill intentions to harm the website or its users.</p>
-
-<ul>
-  <li>Testing Input Fields:
- You start by typing harmless text into these fields to ensure they work properly. Then, you get crafty. Instead of regular words, you enter something sneaky: HTML tags or code snippets. For example, you might try typing <code class="language-plaintext highlighter-rouge">&lt;script&gt;alert("Test!")&lt;/script&gt;</code> instead of plain text.</li>
-  <li>Playing with Scripts:
- When you hit enter, if a pop-up saying “Test!” appears, you’ve found a vulnerability. This is like discovering a secret passage in a castle by trying different keys in various doors.</li>
-  <li>Sneaky Cross-Site Scripting:
- Now, imagine you can make the website run a script that steals information or alters its content. By entering special code into an innocent-looking comment, you might make it so that when others view it, their browsers unknowingly run harmful scripts.</li>
-  <li>
-    <p>Manipulating HTML:
- Sometimes, you try changing things like an image’s address or link tags to point somewhere unexpected. It’s like pretending to be a magician and making things on the webpage disappear or go to the wrong places.</p>
-  </li>
-  <li>Crafty URL Tweaking: 
- Changing the website’s address slightly in the browser’s address bar might reveal hidden weaknesses. It’s akin to altering a treasure map to find hidden paths.</li>
-</ul>
-
-<p>In essence, by playing around with HTML tags and injecting code in various parts of the website, you’re like a detective searching for clues. Your goal is to uncover these weaknesses before anyone with harmful intentions does, helping the website’s creators strengthen their defenses against potential attacks.</p>
-
-<h3 id="bypass"><a href="#bypass">Bypass</a></h3>
-<p>Developers implement validators and escape mechanisms to protect websites from malicious input. However, attackers often craft specialized payloads to slip through these defenses. These crafted payloads are designed to bypass validators and encoding systems, enabling the injection of harmful HTML code.</p>
-
-<p>These bypass techniques involve manipulating input fields by inserting deceptive HTML tags or using encoded representations of tags. For instance,</p>
-
-<ul>
-  <li>
-    <p>Understanding Input Validation:
- Websites often have forms or input fields where users can submit information. Input validation is the process of checking this information to ensure it’s safe before displaying or processing it. If the validation process is weak or nonexistent, attackers can exploit this vulnerability.</p>
-  </li>
-  <li>
-    <p>Bypassing Filters:
- Attackers attempt to bypass input filters or validation mechanisms by entering specially crafted strings that evade detection. They might use variations or combinations of HTML tags, special characters, or encoded representations of tags to confuse the validation process.</p>
-  </li>
-  <li>
-    <p>Encoding Techniques:
- Attackers might use encoding techniques like URL encoding (<code class="language-plaintext highlighter-rouge">%3Cscript%3E</code>) or character encoding (<code class="language-plaintext highlighter-rouge">&amp;lt;script&amp;gt;</code>) to disguise HTML tags and bypass filters that are looking for specific patterns of code.</p>
-  </li>
-  <li>
-    <p>Context-Specific Attacks:
- Injection attacks can be context-specific. For instance, if a website allows certain HTML tags in comments but not in usernames, an attacker might try injecting malicious code in the allowed comment section to later affect other parts of the website where HTML injections are not expected.</p>
-  </li>
-  <li>
-    <p>Polyglot Injection:
- This technique involves crafting a string that is both valid in HTML and JavaScript. It aims to bypass filters that are focused on HTML while still executing JavaScript code.</p>
-  </li>
-  <li>
-    <p>Whitespace Manipulation:
- Injecting code with spaces or newline characters can sometimes confuse filters, allowing malicious code to slip through undetected.</p>
-  </li>
-</ul>
-
-<h3 id="rw-examples"><a href="#rw-examples">RW Examples</a></h3>
-
-<ul>
-  <li><a href="https://hackerone.com/reports/181810" target="_blank">Hackerone</a></li>
-  <li><a href="https://hackerone.com/reports/1581499" target="_blank">Hackerone</a></li>
-  <li><a href="https://hackerone.com/reports/1537149" target="_blank">Hackerone</a></li>
-  <li><a href="https://hackerone.com/reports/381553" target="_blank">Hackerone - Personal Favourite</a></li>
-  <li><a href="https://hackerone.com/reports/150179" target="_blank">Hackerone - Personal Favourite</a></li>
-</ul>]]></content><author><name></name></author><category term="guides" /><category term="html," /><category term="injection," /><category term="web," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="security" /><summary type="html"><![CDATA[Mastering Web Penetration Testing, Part 01 - HTML Injection]]></summary></entry><entry><title type="html">Podcast 01</title><link href="http://localhost:4000/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>http://localhost:4000/podcast-01</id><content type="html" xml:base="http://localhost:4000/podcast-01"><![CDATA[<iframe width="98%" height="300" class="ioda" style="filter:invert(100%)" src="https://www.youtube.com/embed/jokYRytaHX4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>]]></content><author><name></name></author><category term="featured" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-2" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-2"><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png" alt="banner" class="iod" /></p>
-
-<p>We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.</p>
-
-<p>For those familiar with <em>web applications</em><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>, the concept is quite clear: applications require users to create accounts to establish user identities and workspaces. Within these workspaces, users can perform tasks and store their relevant information.</p>
-
-<p>The development and maintenance of user registrations and session management can be quite challenging in terms of security. Therefore, it’s not surprising that SaaS services offer user management features that can be easily integrated with just a few clicks. Startups often opt for these solutions as their primary choice. This allows them to allocate their resources and funds toward developing their core solutions, rather than diverting them to the complexities of user management.</p>
-
-<p>I noticed a similar situation during a <em>penetration test</em><sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> conducted on “company.com.” It’s worth noting that “company.com” serves as an alias for the actual application that will be the focus of discussion throughout this article.</p>
-
-<p>While examining the login page, I recognized that it was associated with a SaaS service providing user management features. To gain deeper insights, I routed every request through Burp Suite, with the assumption that I might discover something valuable about the service.</p>
-
-<p>Following several registration processes and login-logout interactions, I decided to inspect the requests within Burp Proxy and the Target tab. To my surprise, I noticed that certain domains and subdomains were making calls to the SaaS application. Given that such calls are typically intended to be executed on the server side, this observation raised suspicions.</p>
-
-<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*fDKgDM19nqs1NYWrNlbyDg.jpeg" alt="image" class="iod" /></p>
-
-<p>Among the various calls, two in particular from api.saasapp.com caught my attention. Upon closer examination, I discovered that the response from the POST request included an <em>OAuth token</em><sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>, with the request containing both a client ID and a secret.</p>
-
-<p>For those who may not be familiar, it’s essential to understand that virtually every SaaS application offering technical and non-technical services provides APIs for programmatic usage. As I delved into the SaaS application’s documentation, I learned that the key and secret serve the purpose of connecting the customer application (company.com) with the SaaS application (saasapp.com), facilitating the sharing of user identities and session tokens.</p>
-
-<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*d0iAUVZ-8GFNEO7HZcKlrg.jpeg" alt="image" class="iod" /></p>
-
-<p>Upon further exploration of the keys, I found that they possess administrative privileges. Using the generated token associated with these keys, I gained the ability to retrieve user data, make modifications to their information, and even add members with administrative control over the SaaS application account for the application (company.com).</p>
-
-<p>It granted me Administrator access to the <em>User Management System</em><sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>, highlighting yet another instance of how expanding the attack surface and meticulously scrutinizing details can uncover creative yet crucial vulnerabilities. I often refer to this approach as “Unlocking the Power of Observation.” This marks the second article in this series.</p>
-
-<p>Before concluding, I would like you to consider this scenario: What if I were unaware of these SaaS applications or the current trends in the development landscape? I might have dismissed it as a “rabbit hole.” Therefore, I encourage you not to limit your learning. Embrace the opportunity to learn about a wide range of topics because knowledge is an asset that never goes to waste — except perhaps for those intricate mathematical calculations we encountered in school ;)</p>
-
-<p>This concludes my discussion on this topic. I hope you’ve gained new insights from this.<br />
-Thank you!</p>
-
-<hr data-content="footnotes" />
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://aws.amazon.com/what-is/web-application/#:~:text=A%20web%20application%20is%20software,with%20customers%20conveniently%20and%20securely." target="_blank">Web Applications</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="https://www.synopsys.com/glossary/what-is-penetration-testing.html" target="_blank">Penetration Testing/Tests</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://www.rfc-editor.org/rfc/rfc6749" target="_blank">OAuth Tokens</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:4">
-      <p><a href="https://www.egnyte.com/guides/governance/user-management#:~:text=User%20management%20is%20a%20system,Providing%20users%20with%20authenticated%20access" target="_blank">User Management System</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name></name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"><![CDATA[Unlocking the Power of Observation : the front door key 🔑, is a tale about how I managed to find a vulnerability in a SaaS application]]></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="http://localhost:4000/uncovering-the-secrets-part-1" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>http://localhost:4000/uncovering-the-secrets-part-1</id><content type="html" xml:base="http://localhost:4000/uncovering-the-secrets-part-1"><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png" alt="banner" class="iod" /></p>
-
-<h3 id="the-infamous-wayback-machine">The Infamous WayBack Machine</h3>
-<p><em>“According to ChatGPT, The Wayback Machine is a digital archive of the World Wide Web, maintained by the Internet Archive. It is a valuable tool that allows users to access and browse archived versions of websites as they appeared at different points in time. The Wayback Machine captures and stores snapshots of web pages, creating a historical record of the internet.”</em></p>
-
-<p>The WayBack Machine was initially designed with the intention of serving a noble purpose by preserving valuable knowledge and information from web pages that have been removed or deleted. However, as it fulfills this objective, the WayBack Machine also records and retains the URLs and any sensitive information mentioned within those URLs.</p>
-
-<h3 id="unraveling-vulnerabilities-wide-open">Unraveling Vulnerabilities Wide Open</h3>
-<p>Although the WayBack Machine logs various aspects for its intended purpose, it also inadvertently captures vulnerabilities present in applications and sensitive information that was never intended to be made public. These may include confidential details like discount coupons, various types of tokens, hidden <code class="language-plaintext highlighter-rouge">GET</code> or query parameters, and similar information.</p>
-
-<p>If utilized correctly, these seemingly minor details can potentially lead bug bounty hunters to discover critical and groundbreaking vulnerabilities.</p>
-
-<p>To gain a better understanding, let’s examine a few examples I have come across within the past six months:</p>
-
-<h3 id="password-leakage">Password leakage</h3>
-<p>As we are aware, in approximately one out of every three SaaS applications or service provider applications, APIs are implemented to facilitate programmatic access to their data, In order to grant access to the appropriate resources, these applications typically require an <em>authentication and authorization flow</em><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>. While many applications offer login options with Google or OAuth, some still rely on their own password authentication or API tokens/keys. Typically, these credentials are passed as <code class="language-plaintext highlighter-rouge">POST</code> parameters. However, in the case of secret.app, they were transmitted as <code class="language-plaintext highlighter-rouge">GET</code> or query parameters. Furthermore, this particular application demanded both a username and password for authentication alongside OAuth.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/oauth/v2/token?client_id=&lt;ID&gt;&amp;client_secret=&lt;secret&gt;&amp;grant_type=password&amp;scope=user&amp;username=community@victim.com&amp;password=&lt;password&gt;
-</code></pre></div></div>
-
-<p>Evidences from API Documentation</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl --location 'https://api.secret.app/oauth/v2/token' \
---form 'client_id=""' \
---form 'client_secret=""' \
---form 'grant_type="password"' \
---form 'scope="user"' \
---form 'username=""' \
---form 'password=""'
-</code></pre></div></div>
-
-<p>During the OAuth or authentication process, the username and password were provided through query parameters, and these details were captured and recorded by the WayBack Machine.</p>
-
-<h3 id="authentication-bypass-detection">Authentication Bypass Detection</h3>
-<p>In this particular scenario, the vulnerable application is commonly susceptible to <em>CVE-2023–0328</em><sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> or a similar vulnerability. In simpler terms, this vulnerability enables an attacker to gain access to unauthorized resources by exploiting a lack of capability checks and handling of the <code class="language-plaintext highlighter-rouge">Authorization</code> header.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://api.secret.app/account/xxxx/members?members[fields][]=firstName&amp;member_data[fields][]=lastName&amp;membet_data[fields][]=organizationName&amp;sid=xxxxxx
-</code></pre></div></div>
-
-<p>By visiting the links that have been logged on archive.org (WayBack / WebArchive), it is possible to identify and detect this vulnerability.</p>
-
-<h3 id="user-personal-information-leakage">User Personal Information Leakage</h3>
-<p>This particular issue is commonly observed in applications that utilize <em>Shopify</em><sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> to create an online store for selling products. In such cases, the checkout and orders URL paths are often not adequately secured or configured to require authentication. As a consequence, when an actor visits the links stored in archive.org, they gain unauthorized access to the user’s personal information, including the billing details. <code class="language-plaintext highlighter-rouge">https://shop.secret.app/xxxxx/orders/&lt;SSID&gt;</code></p>
-
-<h3 id="unauthorized-access-to-user-preferences">Unauthorized Access to User Preferences</h3>
-<p>This issue arises when an application fails to enforce authentication through request headers or cookies, thereby granting access to any actor who possesses the preference link containing the user ID or token. In my case, the application did not require cookie or header authentication, enabling the actor to modify user preferences solely by accessing a specially crafted URL, which was logged in archive.org. <code class="language-plaintext highlighter-rouge">https://pref.secret.app/unsubscribe?unsubscribe=1&amp;uid=&lt;UUID&gt;</code></p>
-
-<h3 id="key-points">Key Points</h3>
-<p>As demonstrated by the examples provided above, the targeted application can be susceptible to various vulnerabilities. It is crucial to comprehend the underlying logic behind any functionality that an application allows. The vulnerabilities illustrated are not exhaustive, and with the help of the WayBack Machine, bug bounty hunters can uncover numerous intriguing vulnerabilities such as Cross-Site Scripting (XSS), Insecure Direct Object Reference (IDOR), and Remote Code Execution (RCE).</p>
-
-<h3 id="easy-hunt">Easy Hunt</h3>
-<p>While a significant number of individuals depend on the command line interface to retrieve information and access logged URLs from the WayBack Machine, here is an alternative method available for obtaining the same data through a web browser interface.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://web.archive.org/cdx/search/cdx?url=*.secret.app/*&amp;output=text&amp;fl=original&amp;collapse=urlkey
-</code></pre></div></div>
-
-<h3 id="solution">Solution</h3>
-<p>While the recommended approach is to identify and address each vulnerability individually, organizations can opt for a simple fix by utilizing a specific entry in their robots.txt file to prevent or block the WayBack Machine from crawling their applications.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User-agent: la_archiver
-Disallow: /
-</code></pre></div></div>
-
-<p>To gain further insight into the solution, I recommend reading an excellent article on the topic available at <em>reputationx.com</em><sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
-
-<p>I hope you have found this post informative and learnt something new from it.<br />
-Thanks!</p>
-
-<hr data-content="footnotes" />
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://www.rfc-editor.org/rfc/rfc6749" target="_blank">Authentication and Authorization flow</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="https://www.cve.org/CVERecord?id=CVE-2023-0328" target="_blank">CVE-2023–0328</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://www.shopify.com/" target="_blank">Shopify</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:4">
-      <p><a href="https://blog.reputationx.com/block-wayback-machine" target="_blank">reputationx.com</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name></name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"><![CDATA[Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs, is a tale about how I managed to find a vulnerability in a SaaS application using the WayBack Machine]]></summary></entry><entry><title type="html">Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs</title><link href="http://localhost:4000/unlocking-the-power-of-observation-part-1" rel="alternate" type="text/html" title="Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs" /><published>2023-02-12T00:00:00+05:30</published><updated>2023-02-12T00:00:00+05:30</updated><id>http://localhost:4000/unlocking-the-power-of-observation-part-1</id><content type="html" xml:base="http://localhost:4000/unlocking-the-power-of-observation-part-1"><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg" alt="banner" class="iod" /></p>
-
-<p>Hackers need to embrace their superpower in order to become more efficient and meaningful, while doing bug bounty they have to search for weaknesses and also make sure that with their actions the application doesn’t crash.</p>
-
-<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*7TL7yeUfzC8zLRgDtJcyXA.jpeg" alt="image" class="iod" /></p>
-
-<p>In the interest of time, let’s talk about one feature I saw in the middle of last year.</p>
-
-<h3 id="functionality">Functionality</h3>
-<p>This functionality gives users the ability to claim a subdomain on the application (website) to create a workspace and work directly on that subdomain. (In simple words, the application allows users to create instances)</p>
-
-<h3 id="attack-i--account-takeover">Attack (i) : Account Takeover</h3>
-<p>I’ve already touched on this, so I suggest you read my previous <em>article</em><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>. I assume you read this article, so let’s continue.</p>
-
-<h3 id="attack-ii--account-takeover">Attack (ii) : Account Takeover</h3>
-<p>Application Flow : When a user tries to sign-up, the application doesn’t requires user to verify the email first and after completing the sign-up process successfully the user gets a “login token” and with the help of this “login token” user can login into his/her account without the password.<br />
-<em>Note: This token is “One Time Token”</em></p>
-
-<p>This is the same application as <em>the Attack (i)</em> so again, I created a new subdomain and on the claim subdomain request I replaced my email with the victim’s email and as I don’t know the password of the victim’s email I added “anything” in the password field.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "methodName": "onboard",
-  "params": {
-    "some_params": {
-      "some_name": "anything",
-      "some_modules": [
-        1
-      ]
-    },
-    "user_params": {
-      "name": "CanBeAnything",
-      "email": "hunterzerocipher@gmail.com",
-      "password": "Anything"
-    },
-    "community_params": {
-      "name": "anything",
-      "slug": "anything",
-      "c_id": 715,
-      "client_time_zone": "Asia/Calcutta"
-    }
-  }
-}
-</code></pre></div></div>
-
-<p>On the response I got the “login token” and made a browser GET request on the victim’s subdomain with the “login token” and I was logged-in in the victim’s account.</p>
-
-<p><code class="language-plaintext highlighter-rouge">https://victim.application.com/admin/login?login_token=xxxxxxxxxxx</code></p>
-
-<p>In this example what happened is the application doesn’t actually generate the login token with multiple details of the user, it only used the email to generate the login token and as the login token only contains a pass to login as the user without checking the subdomain or the organization, allowing attacker to create login pass with the victim email.</p>
-
-<h3 id="attack-iii--system-conflict">Attack (iii) : System Conflict</h3>
-<p>I have to say this example is a bit funny ;)</p>
-
-<p>As the previous example I was trying to create a subdomain in the application and the url was <code class="language-plaintext highlighter-rouge">https://portal.application.com/register</code> and while login I noticed that the url is <code class="language-plaintext highlighter-rouge">https://login.application.com/admin/login</code>
-So I again tried to create a subdomain “xzcvb” and Intercepted the request in <em>Burp Suite</em><sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> changed the subdomain name to “login” and sent the request and as a surprise I got “200 OK”</p>
-
-<p><img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*XzlnW_sVtRflEd_je697Iw.png" alt="image" class="iod" /></p>
-
-<p>What’s the Impact? Due to some reason <em>(Well I think it happened because the application’s module which was responsible to create subdomains had over privileges)</em> when a user tries to visit login.application.com or tries to recreate his/her session the application gets confused “where to take the user” making the subdomain not reachable ultimately making the application not reachable.</p>
-
-<p data-content="footnotes">I hope it gave you a clear idea how efficient bug bounty and penetration testing becomes when you use your superpowers rather than relaying on the automation and third party tools.
-I hope you’ve learnt something new with this.<br />
-Thank You!
-—</p>
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="/code-flaws-part-1" target="_blank">Previous Article</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name></name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"><![CDATA[Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs]]></summary></entry><entry><title type="html">Code flaws leads to Organization Account Takeover</title><link href="http://localhost:4000/code-flaws-part-1" rel="alternate" type="text/html" title="Code flaws leads to Organization Account Takeover" /><published>2022-10-13T00:00:00+05:30</published><updated>2022-10-13T00:00:00+05:30</updated><id>http://localhost:4000/code-flaws-part-1</id><content type="html" xml:base="http://localhost:4000/code-flaws-part-1"><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png" alt="banner" class="iod" /></p>
-
-<h3 id="the-application-design">the Application Design</h3>
-<p>The Application was only allowing one Admin/Manager per one organization, but other viewers has to login in order to view the content.<br />
-<em>Note: After creating an account user cannot change the <code class="language-plaintext highlighter-rouge">organization_name</code>.</em></p>
-
-<h3 id="design-flaw-insecure-design">Design Flaw/ Insecure Design</h3>
-<p>While creating an account I saw a very weird parameter in the <code class="language-plaintext highlighter-rouge">POST</code> request</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /some_ajax/create_event_flow HTTP/1.1
-Host: portal.example.com
-Connection: close
-Content-Length: 663
-sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
->>>>>>> 31e4449 (Initial commit)
 Accept: application/json, text/javascript, */*; q=0.01
 Content-Type: application/json; charset=UTF-8
 X-Requested-With: XMLHttpRequest
 sec-ch-ua-mobile: ?0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
-<<<<<<< HEAD
 sec-ch-ua-platform: &quot;Linux&quot;
-=======
-sec-ch-ua-platform: "Linux"
->>>>>>> 31e4449 (Initial commit)
 Origin: https://portal.example.com
 Sec-Fetch-Site: same-origin
 Sec-Fetch-Mode: cors
@@ -1226,7 +620,6 @@ Referer: https://portal.example.com/create_event_flow
 Accept-Encoding: gzip, deflate
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
 Cookie:
-<<<<<<< HEAD
 {&quot;methodName&quot;:&quot;onboard&quot;,&quot;params&quot;:{&quot;some_params&quot;:{&quot;some_name&quot;:&quot;Account takeover&quot;,&quot;some_modules&quot;:[1]},&quot;user_params&quot;:{&quot;name&quot;:&quot;User_name&quot;,&quot;email&quot;:&quot;admin@mr23r0.rocks&quot;,&quot;password&quot;:&quot;Password_Secret&quot;},&quot;community_params&quot;:{&quot;name&quot;:&quot;Organization_name&quot;,&quot;slug&quot;:&quot;testthing-for-ato&quot;,&quot;c_id&quot;:683,&quot;client_time_zone&quot;:&quot;Asia/Calcutta&quot;}}}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1274,54 +667,4 @@ Thanks!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://owasp.org/www-community/attacks/Session_fixation&quot; target=&quot;_blank&quot;&gt;Session Fixation or No Logout&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><summary type="html"></summary></entry></feed>
-=======
-{"methodName":"onboard","params":{"some_params":{"some_name":"Account takeover","some_modules":[1]},"user_params":{"name":"User_name","email":"admin@mr23r0.rocks","password":"Password_Secret"},"community_params":{"name":"Organization_name","slug":"testthing-for-ato","c_id":683,"client_time_zone":"Asia/Calcutta"}}}
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">c_id</code> noticed it? I hope so, let’s see what is happening in the backend, While trying to register, the application creates a entry with the email address and creates a row in the organization table (if it’s SQL) then our current request goes into the users table and makes a user with a predefined organization.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO users (username, password, organization) VALUES ("Jack","123", "organization_name") WHERE c_id='683';
-</code></pre></div></div>
-
-<p>So I changed the <code class="language-plaintext highlighter-rouge">c_id</code> with the victim’s <code class="language-plaintext highlighter-rouge">c_id</code> and as expected it took me to the victim’s organization. So we got our first bug ;) Design flaw but we can also call it <em>Horizontal Privilege Escalation</em><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.<br />
-<em>Note : The Application doesn’t supports multiple Admin/Manager in one organization.</em></p>
-
-<p>When I do testing, primarily what I want to achieve is an Account takeover and testing is like a video game for me completing every level one by one… so I started looking for more vulnerabilities, after 15 minutes of search I got it, found a <em>Stored Cross Site Scripting</em><sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> on the <code class="language-plaintext highlighter-rouge">Organization_name</code> now the problem is how can I change the victim’s <code class="language-plaintext highlighter-rouge">Organization_name</code>.</p>
-
-<p>I tried to replicate the create an account request and BOOM!! we can send a POST request to <code class="language-plaintext highlighter-rouge">/some_ajax/create_event_flow</code> no authentication required and also if we put cross site scripting payload in <code class="language-plaintext highlighter-rouge">Organization_name</code> and change our <code class="language-plaintext highlighter-rouge">c_id</code> with the victim’s <code class="language-plaintext highlighter-rouge">c_id</code>, the victim’s <code class="language-plaintext highlighter-rouge">Organization_name</code> gets changed ;)</p>
-
-<p><img src="https://miro.medium.com/v2/resize:fit:562/format:webp/1*Pkd4zlVh7_ynWK7o1TOR8g.png" alt="image" class="iod" /></p>
-
-<p>We got the victim’s active cookies — but no-one will accept account takeover with active cookies, So I simply checked for <em>Session Fixation or No Logout</em><sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> and I got lucky the application was vulnerable.</p>
-
-<p>Last two vulnerability, the application was taking current password in order to change password but after intercepting the request I found that they’re not sending or checking the current password and there wasn’t any authentication on change email operation.</p>
-
-<h3 id="quick-wrap-up">Quick wrap up</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Create an account --&gt; change the "c_id" and add the blind xss payload in the "organization_name"
-copy the victim's cookies 
-Login as the victim by using the cookies
-change the password by using:
-           i. Change Password
-           ii. Change Email --&gt; Recover password
-</code></pre></div></div>
-
-<p>I hope you’ve learned something new from this.<br />
-Thanks!</p>
-
-<hr data-content="footnotes" />
-
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="https://heimdalsecurity.com/blog/privilege-escalation/" target="_blank">Horizontal Privilege Escalation</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p><a href="https://portswigger.net/web-security/cross-site-scripting/stored" target="_blank">Stored Cross Site Scripting</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p><a href="https://owasp.org/www-community/attacks/Session_fixation" target="_blank">Session Fixation or No Logout</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>]]></content><author><name></name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="account" /><category term="takeover" /><summary type="html"><![CDATA[Code flaws leads to Organization Account Takeover, is a tale about how I managed to find an account takeover vulnerability in a SaaS application]]></summary></entry></feed>
->>>>>>> 31e4449 (Initial commit)
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="account" /><category term="takeover" /><summary type="html"></summary></entry></feed>

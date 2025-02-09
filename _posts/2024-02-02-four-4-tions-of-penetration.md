@@ -2,6 +2,11 @@
 layout: post
 category: posts
 title: "Four(4) tions of Penetration"
+<<<<<<< HEAD
+=======
+description : "Four(4) tions of Penetration, is a tale about how I managed to find a series of vulnerabilities in a site management application"
+tags : "penetration testing, bug bounty, site management, application, security"
+>>>>>>> 31e4449 (Initial commit)
 ---
 ### Index
 - [Introduction](#introduction)

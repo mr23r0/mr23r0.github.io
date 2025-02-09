@@ -1,6 +1,47 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: "en" }}">
+<<<<<<< HEAD
   {%- include head.html -%}
+=======
+  <head>
+    {%- include head.html -%}
+    <style>
+        .new-post-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            margin-left: 8px;
+            border: 1px solid #3bb922;
+            border-radius: 8px;
+            color: #3bb922;
+            font-size: 0.8em;
+            font-weight: bold;
+            background-color: rgba(40, 167, 69, 0.1);
+            display: none; /* Hidden by default */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const posts = document.querySelectorAll('.post-item');
+            const DAYS_TO_SHOW = 30;
+            
+            posts.forEach(post => {
+                const dateStr = post.getAttribute('data-date');
+                const postDate = new Date(dateStr);
+                const currentDate = new Date();
+                const diffTime = currentDate - postDate;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays <= DAYS_TO_SHOW) {
+                    const badge = post.querySelector('.new-post-badge');
+                    if (badge) {
+                        badge.style.display = 'inline-block';
+                    }
+                }
+            });
+        });
+    </script>
+  </head>
+>>>>>>> 31e4449 (Initial commit)
   <body a="{{ site.theme_config.appearance | default: "auto" }}">
     <main class="page-content" aria-label="Content">
       <div class="w">

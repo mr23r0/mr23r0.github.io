@@ -2,6 +2,11 @@
 layout: post
 category: posts
 title: "Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs"
+<<<<<<< HEAD
+=======
+description : "Unlocking the Power of Observation: How Experienced Hackers Stand Out in a Sea of Amateurs"
+tags : "saas, application, security, vulnerability, bug bounty"
+>>>>>>> 31e4449 (Initial commit)
 ---
 
 ![banner](https://miro.medium.com/v2/resize:fit:720/format:webp/1*CSzOXZh3oguY5uNaFETg0g.jpeg){:.iod}

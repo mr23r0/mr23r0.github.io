@@ -2,6 +2,11 @@
 layout: post
 category: posts
 title: "Unlocking the Power of Observation : the front door key 🔑"
+<<<<<<< HEAD
+=======
+description : "Unlocking the Power of Observation : the front door key 🔑, is a tale about how I managed to find a vulnerability in a SaaS application"
+tags : "saas, application, security, vulnerability, bug bounty"
+>>>>>>> 31e4449 (Initial commit)
 ---
 
 ![banner](https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png){:.iod}

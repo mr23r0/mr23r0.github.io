@@ -1,4 +1,27 @@
 <header>
+<<<<<<< HEAD
+=======
+    <!-- Add Schema.org structured data for better SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{ site.url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ page.title }}",
+        "item": "{{ site.url }}{{ page.url }}"
+      }]
+    }
+    </script>
+
+>>>>>>> 31e4449 (Initial commit)
     <h1>{{ site.title }}</h1>
     {%-if site.theme_config.show_description-%}
       <p>{{ site.description }}</p>
@@ -8,5 +31,9 @@
       <p style="margin-inline: 4px;  text-decoration: none; text-transform: capitalize;{% if page.category == i.category %} background-color: #07b10f;{%endif%}"><a href="/{{i.url}}">{{i.category}}</a></p>
       {% endfor %}
     </dir>
+<<<<<<< HEAD
   </header>
+=======
+</header>
+>>>>>>> 31e4449 (Initial commit)
 <a href="{{ "/" | relative_url }}">{{ site.theme_config.back_home_text }}/</a>

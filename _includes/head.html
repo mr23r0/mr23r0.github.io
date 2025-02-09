@@ -3,6 +3,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow">
+<<<<<<< HEAD
   <img src="https://iplogger.co/mr23r0" style="display: none;">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BH1DPN8Q6S"></script>
@@ -13,6 +14,27 @@
 
   gtag('config', 'G-BH1DPN8Q6S');
 </script>
+=======
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <meta name="keywords" content="{{ page.tags | default: site.keywords }}">
+  <meta name="author" content="{{ site.author }}">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:image" content="{{ site.url }}/assets/favicon/logo.png">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@MR23R0">
+  <meta name="twitter:title" content="{%- if page.title -%}{{ page.title }}{%- else -%}{{ site.title }}{%- endif -%}">
+  <meta name="twitter:description" content="{{ page.description | default: site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}/assets/favicon/logo.png">
+
+>>>>>>> 31e4449 (Initial commit)
   <title>
     {%- if page.title -%}
     {{ page.title }}
@@ -26,4 +48,16 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="{{ "assets/favicon/logo.png" | relative_url }}" />
   <link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
+<<<<<<< HEAD
+=======
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BH1DPN8Q6S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BH1DPN8Q6S');
+  </script>
+>>>>>>> 31e4449 (Initial commit)
 </head>

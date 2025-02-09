@@ -2,6 +2,11 @@
 layout: post
 category: posts
 title: "Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned"
+<<<<<<< HEAD
+=======
+description : "Defying Paywalls in the Pursuit of Knowledge, Just as Dad Envisioned, is a tale about how I managed to find a vulnerability in a digital audiobook and PDF service"
+tags : "digital audiobook, pdf, security, vulnerability, bug bounty"
+>>>>>>> 31e4449 (Initial commit)
 ---
 ### Index
 - [Introduction](#introduction)

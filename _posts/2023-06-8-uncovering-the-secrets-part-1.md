@@ -2,6 +2,11 @@
 layout: post
 category: posts
 title: "Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs"
+<<<<<<< HEAD
+=======
+description : "Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs, is a tale about how I managed to find a vulnerability in a SaaS application using the WayBack Machine"
+tags : "saas, application, security, vulnerability, bug bounty, web archive"
+>>>>>>> 31e4449 (Initial commit)
 ---
 
 ![banner](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png){:.iod}

@@ -3,10 +3,7 @@ layout: post
 category: guides
 title: "01 HTML Injection | Web 101"
 description: "Mastering Web Penetration Testing, Part 01 - HTML Injection"
-<<<<<<< HEAD
-=======
 tags : "html, injection, web, penetration testing, bug bounty, security"
->>>>>>> 31e4449 (Initial commit)
 ---
 
 ### Index

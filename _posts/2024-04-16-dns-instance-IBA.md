@@ -3,11 +3,8 @@ layout: post
 category: posts
 title: "Hacking DNS Instance Applications Inside-Out"
 description : "DNS Instance Application Testing Guide"
-<<<<<<< HEAD
 tags : "Hacking, Penetration Testing, Bug Bounty, DNS Hacking, Misconfigurations, DNS Implementation"
-=======
 tags : "dns, hacking, penetration testing, bug bounty, dns hacking, dns implementation"
->>>>>>> 31e4449 (Initial commit)
 ---
 
 You may have already seen an application which provides you with a subdomain on the application domain based on your organization or team name, I call these applications, Instance Based Applications or IBA. There are many examples for these type of applications, such as Okta.com, Circle.so and github.com.

@@ -2,11 +2,8 @@
 layout: post
 category: posts
 title: "Code flaws leads to Organization Account Takeover"
-<<<<<<< HEAD
-=======
 description : "Code flaws leads to Organization Account Takeover, is a tale about how I managed to find an account takeover vulnerability in a SaaS application"
 tags : "saas, application, security, vulnerability, bug bounty, account takeover"
->>>>>>> 31e4449 (Initial commit)
 ---
 
 ![banner](https://miro.medium.com/v2/resize:fit:720/format:webp/1*TXPw0GXprB2NHBoW4-EvYA.png){:.iod}

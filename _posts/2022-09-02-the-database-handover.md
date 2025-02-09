@@ -2,11 +2,8 @@
 layout: post
 category: posts
 title: "The Database Handover | A Dumb Mistake | Critical BUG"
-<<<<<<< HEAD
-=======
 description : "The Database Handover | A Dumb Mistake | Critical BUG, is a tale about how I managed to find a critical vulnerability in Wordpress setups"
 tags : "saas, application, security, vulnerability, bug bounty, database, wordpress"
->>>>>>> 31e4449 (Initial commit)
 ---
 
 ![banner](https://miro.medium.com/v2/resize:fit:720/format:webp/1*xCrUUPjQj7flq5ReQUfcXA.png){:.ioda}

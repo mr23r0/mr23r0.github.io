@@ -8,6 +8,8 @@ This repository houses all the content, including:
 - Blog posts
 - Pages
 - Images
+- Videos
+- Pdfs
 - Documentation
 - Site configurations
 

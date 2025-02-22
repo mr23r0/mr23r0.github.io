@@ -2,8 +2,8 @@
 layout: post
 category: resources
 title: "Getting Started with Cloud Security"
-description : ""
-tags : ""
+description : "Getting started with cloud security? This beginner-friendly guide covers key concepts like IAM, encryption, compliance, logging, and best practices across AWS, Azure, and GCP. Learn how to secure cloud infrastructure and stay ahead in this ever-evolving field!"
+tags : "cloud security basics, getting started with cloud security, cloud security for beginners, cloud security best practices, IAM in cloud security, cloud encryption and key management, compliance in cloud security, SOC 2, HIPAA, ISO 27001, cloud logging and monitoring, AWS security, Azure security, GCP security, CSPM, cloud misconfigurations, cloud computing security, cybersecurity, cloud security fundamentals, information security, securing cloud infrastructure"
 ---
 ### Index
 - [Introduction](#introduction)

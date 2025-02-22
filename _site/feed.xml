@@ -1,4 +1,128 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-09T13:12:24+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Adaptive Web Design ED1 - Some fundamental good reads</title><link href="http://localhost:4000/adaptive-web-design-v1" rel="alternate" type="text/html" title="Adaptive Web Design ED1 - Some fundamental good reads" /><published>2025-02-09T00:00:00+05:30</published><updated>2025-02-09T00:00:00+05:30</updated><id>http://localhost:4000/adaptive-web-design-v1</id><content type="html" xml:base="http://localhost:4000/adaptive-web-design-v1">&lt;p&gt;“Adaptive Web Design” by &lt;a href=&quot;https://www.linkedin.com/in/aarongustafson&quot; target=&quot;_blank&quot;&gt;Aaron Gustafson&lt;/a&gt; explains how to build websites that work well on all devices by focusing on accessibility, usability, and flexibility. For security researchers, it shows how designing with these principles can help reduce security risks, make websites more reliable, and improve user safety. A great read for anyone interested in the connection between web design and security. (something that I found very interesting and useful, your opinion may vary)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-02-22T13:38:08+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Getting Started with Cloud Security</title><link href="http://localhost:4000/cloud-security-starter" rel="alternate" type="text/html" title="Getting Started with Cloud Security" /><published>2025-02-21T00:00:00+05:30</published><updated>2025-02-21T00:00:00+05:30</updated><id>http://localhost:4000/cloud-security-starter</id><content type="html" xml:base="http://localhost:4000/cloud-security-starter">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fundamentals&quot;&gt;Fundamentals&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#security-basics&quot;&gt;Security Basics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#compliance&quot;&gt;Compliance&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Cloud security isn’t something you can just point to and say, “I know this and that, so I know cloud security.” Like the entire security domain, it consists of multiple components that form its foundation. In this post, I’ll do my best to provide a starting point to help you navigate this vast field.&lt;/p&gt;
+
+&lt;h3 id=&quot;fundamentals&quot;&gt;&lt;a href=&quot;#fundamentals&quot;&gt;Fundamentals&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Before diving into cloud security, as the name suggests, you first need a solid understanding of the cloud itself. But even before that, I believe you should be familiar with these key concepts:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.ibm.com/think/topics/iaas&quot; target=&quot;_blank&quot;&gt;IaaS&lt;/a&gt;, or infrastructure as a service, is on-demand access to cloud-hosted physical and virtual servers, storage and networking—the backend IT infrastructure for running applications and workloads in the cloud.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.ibm.com/think/topics/paas&quot; target=&quot;_blank&quot;&gt;PaaS&lt;/a&gt;, or platform as a service, is on-demand access to a complete, ready-to-use, cloud-hosted platform for developing, running, maintaining and managing applications.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.ibm.com/think/topics/saas&quot; target=&quot;_blank&quot;&gt;SaaS&lt;/a&gt;, or software as a service, is on-demand access to ready-to-use, cloud-hosted application software.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Use the embedded links to explore these topics further, IBM provides some of the best videos and articles on the subject. Once you’re comfortable with these concepts, we can move on to understanding the cloud itself.
+There are multiple cloud platforms in the market but based on the market share they have, we’ll priortize the learning&lt;/p&gt;
+&lt;canvas id=&quot;marketShareChart&quot; width=&quot;600&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+        const ctx = document.getElementById(&apos;marketShareChart&apos;).getContext(&apos;2d&apos;);
+        const marketShareChart = new Chart(ctx, {
+            type: &apos;line&apos;,
+            data: {
+                labels: [&apos;AWS&apos;, &apos;Microsoft Azure&apos;, &apos;Google Cloud&apos;, &apos;Alibaba Cloud&apos;, &apos;Oracle&apos;, &apos;Others&apos;],
+                datasets: [{
+                    label: &apos;Market Share (%)&apos;,
+                    data: [30, 21, 12, 4, 3, 30],
+                    borderColor: &apos;rgba(75, 192, 192, 1)&apos;,
+                    backgroundColor: &apos;rgba(75, 192, 192, 0.2)&apos;,
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 40,
+                        title: {
+                            display: true,
+                            text: &apos;Market Share (%)&apos;
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: &apos;Cloud Providers Market Share in Q4 2024&apos;
+                    }
+                }
+            }
+        });
+    &lt;/script&gt;
+
+&lt;p&gt;Looking at market share, it’s smart to focus on AWS, Azure, and Google Cloud (GCP). Some might say that’s too much for beginners, but who gives a shit? You’re not going to stay a beginner forever. Better to start now and not get overwhelmed. 😉&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtu.be/bgPuPSPZe2U?si=pzvz4ky2U6MvOISr&quot; target=&quot;_blank&quot;&gt;AWS&lt;/a&gt; : &lt;a href=&quot;https://www.youtube.com/watch?v=QbipcgIdSJc&quot; target=&quot;_blank&quot;&gt;Architecture&lt;/a&gt; : &lt;a href=&quot;https://www.youtube.com/watch?v=c3Cn4xYfxJY&quot; target=&quot;_blank&quot;&gt;Deep-Dive&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=3Arj5zlUPG4&quot; target=&quot;_blank&quot;&gt;Azure&lt;/a&gt; : &lt;a href=&quot;https://www.youtube.com/watch?v=i6NzKvGUsBs&quot; target=&quot;_blank&quot;&gt;Deep-Dive&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Google Cloud, or GCP : &lt;a href=&quot;https://www.youtube.com/watch?v=uuotOQjOeb0&amp;amp;list=PLwi6PfxEP7zYLVCK_ywVD-RJNDu6mYXbi&quot; target=&quot;_blank&quot;&gt;Architecture&lt;/a&gt; : &lt;a href=&quot;https://www.youtube.com/watch?v=jpno8FSqpc8&quot; target=&quot;_blank&quot;&gt;Deep-Dive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Next, you’ll need to understand how Identity and Access Management (IAM) works. Within IAM, you’ll come across Role-Based Access Control (RBAC) and &lt;a href=&quot;https://learn.microsoft.com/en-us/security/zero-trust/zero-trust-overview&quot; target=&quot;_blank&quot;&gt;Zero Trust&lt;/a&gt; both essential concepts in cloud security. These topics are covered in the deep-dive of each cloud platform, but if you skipped those, here are some great resources to catch up, &lt;a href=&quot;https://www.anyshift.io/blog/a-deep-dive-in-aws-resources-best-practices-to-adopt-identity-and-access-management-(iam)&quot; target=&quot;_blank&quot;&gt;here is a one you can try&lt;/a&gt; or &lt;a href=&quot;https://www.techtarget.com/searchsecurity/definition/identity-access-management-IAM-system&quot; target=&quot;_blank&quot;&gt;try this&lt;/a&gt;, IAM principles remain fairly similar across all cloud platforms, so once you get the hang of it, transitioning between providers becomes easier.&lt;/p&gt;
+
+&lt;p&gt;To wrap up this section, the last key concept is Deployment Models, which you can explore &lt;a href=&quot;https://spacelift.io/blog/cloud-deployment-models&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;security-basics&quot;&gt;&lt;a href=&quot;#security-basics&quot;&gt;Security Basics&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;In the cloud, there are principles and models, a lot of them. But to get started, you only need to focus on a couple of key ones:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.wiz.io/academy/shared-responsibility-model&quot; target=&quot;_blank&quot;&gt;Shared Responsibility Model&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cyera.io/blog/the-fundamentals-of-data-security-in-cloud-computing&quot; target=&quot;_blank&quot;&gt;CIA Triad : Confidentiality, Integrity and Availability&lt;/a&gt; (this includes more interesting stuff as well, just a little format stuff)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Data security in the cloud ensures that your data is protected from unauthorized access, breaches, and leaks. Two major concepts in data security are encryption and key management. However, when it comes to the cloud, things get more granular.&lt;/p&gt;
+
+&lt;p&gt;Each cloud platform provides its own key management service to handle encryption keys securely, such as &lt;a href=&quot;https://www.youtube.com/watch?v=f3APF1dP8w0&quot;&gt;AWS KMS&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/watch?v=0cwcT06YwPE&quot; target=&quot;_blank&quot;&gt;Azure Key Vault&lt;/a&gt; and &lt;a href=&quot;https://www.youtube.com/playlist?list=PLi133fNSP6SiMDGwngZGaxFQYfWHMDAOW&quot; target=&quot;_blank&quot;&gt;Google Cloud KMS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;These services ensure that encryption keys are managed securely and efficiently, reducing the risk of unauthorized access to sensitive data.&lt;/p&gt;
+
+&lt;p&gt;Like any other aspect of security, nothing is complete without logs, monitoring, and security systems, and the cloud is no exception. Each cloud platform has its own logging and monitoring services. Some key examples include :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html&quot; target=&quot;_blank&quot;&gt;CloudTrail&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html&quot; target=&quot;_blank&quot;&gt;Security Hub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/guard-duty-rds-protection.html&quot; target=&quot;_blank&quot;&gt;GuardDuty&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.ibm.com/think/topics/siem&quot; target=&quot;_blank&quot;&gt;SIEM&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cloud.google.com/security/products/security-command-center&quot; target=&quot;_blank&quot;&gt;SCC&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://azure.microsoft.com/en-us/products/defender-for-cloud&quot; target=&quot;_blank&quot;&gt;Defender for Cloud&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.wiz.io/academy/what-is-cloud-security-posture-management-cspm&quot; target=&quot;_blank&quot;&gt;CSPM&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cyberark.com/what-is/secrets-management/&quot; target=&quot;_blank&quot;&gt;Secrets Management&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.encryptionconsulting.com/education-center/what-is-code-signing/&quot; target=&quot;_blank&quot;&gt;Code Signing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://circleci.com/blog/sast-vs-dast-when-to-use-them/&quot; target=&quot;_blank&quot;&gt;SAST/DAST&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;compliance&quot;&gt;&lt;a href=&quot;#compliance&quot;&gt;Compliance&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Compliance plays a major role in any infrastructure. It helps build customer trust by ensuring that the vendor follows a predefined set of security guidelines to protect data. These standards are updated periodically, so it’s always a good idea to do a quick Google search to find the latest official and free documentation for learning.&lt;/p&gt;
+
+&lt;p&gt;Some key compliance frameworks include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SOC 2&lt;/li&gt;
+  &lt;li&gt;HIPAA&lt;/li&gt;
+  &lt;li&gt;ISO 27001&lt;/li&gt;
+  &lt;li&gt;NIST&lt;/li&gt;
+  &lt;li&gt;CIS Benchmarks&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Organizations use Cloud Security Posture Management (CSPM) tools to maintain compliance and ensure configurations align with security best practices. However, compliance alone isn’t enough, concepts like Zero Trust, Least Privilege, and other security best practices also play a crucial role in keeping cloud environments secure.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As you’ve seen, many sub-services are involved in keeping infrastructure and applications running in the cloud. The only way to identify vulnerabilities is by following best practices, particularly in areas like misconfigurations and exposed data.&lt;/p&gt;
+
+&lt;p&gt;Like everything else in security, cloud security is an ever-evolving field. Every month, new services emerge, along with new ways to misconfigure them, making entire systems vulnerable. This means continuous learning is essential.&lt;/p&gt;
+
+&lt;p&gt;To stay ahead, it’s highly recommended to deep dive into specific cloud platforms, ensuring a strong understanding of security configurations and their behaviors within each platform.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="resources" /><summary type="html">Index Introduction Fundamentals Security Basics Compliance Conclusion</summary></entry><entry><title type="html">Adaptive Web Design ED1 - Some fundamental good reads</title><link href="http://localhost:4000/adaptive-web-design-v1" rel="alternate" type="text/html" title="Adaptive Web Design ED1 - Some fundamental good reads" /><published>2025-02-09T00:00:00+05:30</published><updated>2025-02-09T00:00:00+05:30</updated><id>http://localhost:4000/adaptive-web-design-v1</id><content type="html" xml:base="http://localhost:4000/adaptive-web-design-v1">&lt;p&gt;“Adaptive Web Design” by &lt;a href=&quot;https://www.linkedin.com/in/aarongustafson&quot; target=&quot;_blank&quot;&gt;Aaron Gustafson&lt;/a&gt; explains how to build websites that work well on all devices by focusing on accessibility, usability, and flexibility. For security researchers, it shows how designing with these principles can help reduce security risks, make websites more reliable, and improve user safety. A great read for anyone interested in the connection between web design and security. (something that I found very interesting and useful, your opinion may vary)&lt;/p&gt;
 
 &lt;div class=&quot;iframe-wrapper&quot; style=&quot;width: 100%; max-width: 100%; margin: 0 auto; padding: 0;&quot;&gt;
     &lt;div class=&quot;iframe-container&quot; style=&quot;position: relative; width: 100%; height: 600px; background-color: white; overflow: hidden;&quot;&gt;
@@ -546,89 +670,4 @@ Thank you!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://www.egnyte.com/guides/governance/user-management#:~:text=User%20management%20is%20a%20system,Providing%20users%20with%20authenticated%20access&quot; target=&quot;_blank&quot;&gt;User Management System&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry><entry><title type="html">Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs</title><link href="http://localhost:4000/uncovering-the-secrets-part-1" rel="alternate" type="text/html" title="Uncovering the Secrets : The Potential of Web Archive in Bug Bounty Programs" /><published>2023-06-08T00:00:00+05:30</published><updated>2023-06-08T00:00:00+05:30</updated><id>http://localhost:4000/uncovering-the-secrets-part-1</id><content type="html" xml:base="http://localhost:4000/uncovering-the-secrets-part-1">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:1100/format:webp/1*7tGxwHgIUzHlLJqIgWXAJA.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-infamous-wayback-machine&quot;&gt;The Infamous WayBack Machine&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;“According to ChatGPT, The Wayback Machine is a digital archive of the World Wide Web, maintained by the Internet Archive. It is a valuable tool that allows users to access and browse archived versions of websites as they appeared at different points in time. The Wayback Machine captures and stores snapshots of web pages, creating a historical record of the internet.”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;The WayBack Machine was initially designed with the intention of serving a noble purpose by preserving valuable knowledge and information from web pages that have been removed or deleted. However, as it fulfills this objective, the WayBack Machine also records and retains the URLs and any sensitive information mentioned within those URLs.&lt;/p&gt;
-
-&lt;h3 id=&quot;unraveling-vulnerabilities-wide-open&quot;&gt;Unraveling Vulnerabilities Wide Open&lt;/h3&gt;
-&lt;p&gt;Although the WayBack Machine logs various aspects for its intended purpose, it also inadvertently captures vulnerabilities present in applications and sensitive information that was never intended to be made public. These may include confidential details like discount coupons, various types of tokens, hidden &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; or query parameters, and similar information.&lt;/p&gt;
-
-&lt;p&gt;If utilized correctly, these seemingly minor details can potentially lead bug bounty hunters to discover critical and groundbreaking vulnerabilities.&lt;/p&gt;
-
-&lt;p&gt;To gain a better understanding, let’s examine a few examples I have come across within the past six months:&lt;/p&gt;
-
-&lt;h3 id=&quot;password-leakage&quot;&gt;Password leakage&lt;/h3&gt;
-&lt;p&gt;As we are aware, in approximately one out of every three SaaS applications or service provider applications, APIs are implemented to facilitate programmatic access to their data, In order to grant access to the appropriate resources, these applications typically require an &lt;em&gt;authentication and authorization flow&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. While many applications offer login options with Google or OAuth, some still rely on their own password authentication or API tokens/keys. Typically, these credentials are passed as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; parameters. However, in the case of secret.app, they were transmitted as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; or query parameters. Furthermore, this particular application demanded both a username and password for authentication alongside OAuth.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/oauth/v2/token?client_id=&amp;lt;ID&amp;gt;&amp;amp;client_secret=&amp;lt;secret&amp;gt;&amp;amp;grant_type=password&amp;amp;scope=user&amp;amp;username=community@victim.com&amp;amp;password=&amp;lt;password&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Evidences from API Documentation&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl --location &apos;https://api.secret.app/oauth/v2/token&apos; \
---form &apos;client_id=&quot;&quot;&apos; \
---form &apos;client_secret=&quot;&quot;&apos; \
---form &apos;grant_type=&quot;password&quot;&apos; \
---form &apos;scope=&quot;user&quot;&apos; \
---form &apos;username=&quot;&quot;&apos; \
---form &apos;password=&quot;&quot;&apos;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;During the OAuth or authentication process, the username and password were provided through query parameters, and these details were captured and recorded by the WayBack Machine.&lt;/p&gt;
-
-&lt;h3 id=&quot;authentication-bypass-detection&quot;&gt;Authentication Bypass Detection&lt;/h3&gt;
-&lt;p&gt;In this particular scenario, the vulnerable application is commonly susceptible to &lt;em&gt;CVE-2023–0328&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; or a similar vulnerability. In simpler terms, this vulnerability enables an attacker to gain access to unauthorized resources by exploiting a lack of capability checks and handling of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; header.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://api.secret.app/account/xxxx/members?members[fields][]=firstName&amp;amp;member_data[fields][]=lastName&amp;amp;membet_data[fields][]=organizationName&amp;amp;sid=xxxxxx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;By visiting the links that have been logged on archive.org (WayBack / WebArchive), it is possible to identify and detect this vulnerability.&lt;/p&gt;
-
-&lt;h3 id=&quot;user-personal-information-leakage&quot;&gt;User Personal Information Leakage&lt;/h3&gt;
-&lt;p&gt;This particular issue is commonly observed in applications that utilize &lt;em&gt;Shopify&lt;/em&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; to create an online store for selling products. In such cases, the checkout and orders URL paths are often not adequately secured or configured to require authentication. As a consequence, when an actor visits the links stored in archive.org, they gain unauthorized access to the user’s personal information, including the billing details. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://shop.secret.app/xxxxx/orders/&amp;lt;SSID&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;unauthorized-access-to-user-preferences&quot;&gt;Unauthorized Access to User Preferences&lt;/h3&gt;
-&lt;p&gt;This issue arises when an application fails to enforce authentication through request headers or cookies, thereby granting access to any actor who possesses the preference link containing the user ID or token. In my case, the application did not require cookie or header authentication, enabling the actor to modify user preferences solely by accessing a specially crafted URL, which was logged in archive.org. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://pref.secret.app/unsubscribe?unsubscribe=1&amp;amp;uid=&amp;lt;UUID&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;key-points&quot;&gt;Key Points&lt;/h3&gt;
-&lt;p&gt;As demonstrated by the examples provided above, the targeted application can be susceptible to various vulnerabilities. It is crucial to comprehend the underlying logic behind any functionality that an application allows. The vulnerabilities illustrated are not exhaustive, and with the help of the WayBack Machine, bug bounty hunters can uncover numerous intriguing vulnerabilities such as Cross-Site Scripting (XSS), Insecure Direct Object Reference (IDOR), and Remote Code Execution (RCE).&lt;/p&gt;
-
-&lt;h3 id=&quot;easy-hunt&quot;&gt;Easy Hunt&lt;/h3&gt;
-&lt;p&gt;While a significant number of individuals depend on the command line interface to retrieve information and access logged URLs from the WayBack Machine, here is an alternative method available for obtaining the same data through a web browser interface.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://web.archive.org/cdx/search/cdx?url=*.secret.app/*&amp;amp;output=text&amp;amp;fl=original&amp;amp;collapse=urlkey
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;solution&quot;&gt;Solution&lt;/h3&gt;
-&lt;p&gt;While the recommended approach is to identify and address each vulnerability individually, organizations can opt for a simple fix by utilizing a specific entry in their robots.txt file to prevent or block the WayBack Machine from crawling their applications.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;User-agent: la_archiver
-Disallow: /
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To gain further insight into the solution, I recommend reading an excellent article on the topic available at &lt;em&gt;reputationx.com&lt;/em&gt;&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-
-&lt;p&gt;I hope you have found this post informative and learnt something new from it.&lt;br /&gt;
-Thanks!&lt;/p&gt;
-
-&lt;hr data-content=&quot;footnotes&quot; /&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc6749&quot; target=&quot;_blank&quot;&gt;Authentication and Authorization flow&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.cve.org/CVERecord?id=CVE-2023-0328&quot; target=&quot;_blank&quot;&gt;CVE-2023–0328&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.shopify.com/&quot; target=&quot;_blank&quot;&gt;Shopify&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://blog.reputationx.com/block-wayback-machine&quot; target=&quot;_blank&quot;&gt;reputationx.com&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty," /><category term="web" /><category term="archive" /><summary type="html"></summary></entry></feed>
+&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry></feed>

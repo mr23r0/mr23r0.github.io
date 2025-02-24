@@ -1,4 +1,341 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mr23r0.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mr23r0.github.io/" rel="alternate" type="text/html" /><updated>2025-02-22T13:43:31+05:30</updated><id>https://mr23r0.github.io/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">Getting Started with Cloud Security</title><link href="https://mr23r0.github.io/cloud-security-starter" rel="alternate" type="text/html" title="Getting Started with Cloud Security" /><published>2025-02-21T00:00:00+05:30</published><updated>2025-02-21T00:00:00+05:30</updated><id>https://mr23r0.github.io/cloud-security-starter</id><content type="html" xml:base="https://mr23r0.github.io/cloud-security-starter">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://mr23r0.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mr23r0.github.io/" rel="alternate" type="text/html" /><updated>2025-02-24T11:00:51+05:30</updated><id>https://mr23r0.github.io/feed.xml</id><title type="html">[mr23r0]</title><subtitle>One place to share everything necessery</subtitle><author><name>Saransh Saraf</name></author><entry><title type="html">A Successful Pentest by Ayman Elsawah</title><link href="https://mr23r0.github.io/successful-pentest" rel="alternate" type="text/html" title="A Successful Pentest by Ayman Elsawah" /><published>2025-02-24T00:00:00+05:30</published><updated>2025-02-24T00:00:00+05:30</updated><id>https://mr23r0.github.io/successful-pentest</id><content type="html" xml:base="https://mr23r0.github.io/successful-pentest">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-is-a-pood-pentest&quot;&gt;What Is A Good Pentest?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#before-the-pentest&quot;&gt;Before The Pentest&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#selecting-a-provider&quot;&gt;Selecting A Provider&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#a-note-about-cost&quot;&gt;A Note About Cost&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#project-coordination&quot;&gt;Project Coordination&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#environment&quot;&gt;Environment&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#credentials&quot;&gt;Credentials&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fix-your-low-hanging-fruit&quot;&gt;Fix Your Low Hanging Fruit&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#during-the-pentest&quot;&gt;During The Pentest&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#watching-the-logs&quot;&gt;Watching the logs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Check-Ins-and-communication&quot;&gt;Check-Ins and Communication&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#sample-schedule&quot;&gt;Sample Schedule&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#why-so-many-check-ins?&quot;&gt;Why so many check-ins?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#after-the-pentest&quot;&gt;After The Pentest&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Wrap-Up&quot;&gt;Wrap Up&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#reporting-&amp;amp;-read-out&quot;&gt;Reporting &amp;amp; Read Out&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fixes-before-final-report&quot;&gt;Fixes Before Final Report&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Retesting&quot;&gt;Retesting&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Sharing-your-reports&quot;&gt;Sharing Your Reports&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#Conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As pentest season descends upon us, I’d like to share tips and tricks to get the best value out of your pentest and ensure a successful engagement. I’ve been on both sides of the fence, so I think I have a unique perspective to share on this often nebulous endeavor.&lt;/p&gt;
+
+&lt;p&gt;This guide will help you:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Distinguish a good pentest provider&lt;/li&gt;
+  &lt;li&gt;Ensure you have the best talent on your project&lt;/li&gt;
+  &lt;li&gt;Scope your project to have the most effective pentest&lt;/li&gt;
+  &lt;li&gt;Setup your pentest for success&lt;/li&gt;
+  &lt;li&gt;Understand what to expect from a good pentest company&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With this guide you should be well equipped to have a successful pentest.&lt;/p&gt;
+
+&lt;p&gt;Let’s get into it!&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-a-good-pentest&quot;&gt;&lt;a href=&quot;#what-is-a-pood-pentest&quot;&gt;What Is A Good Pentest?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Selecting a pentest provider can be a daunting process, especially if it’s your first time. How can you tell which company will do the best job?&lt;/p&gt;
+
+&lt;p&gt;Well, let’s start there.&lt;/p&gt;
+
+&lt;p&gt;What is a good job? What is a successful pentest?&lt;/p&gt;
+
+&lt;p&gt;A good pentest does not necessarily mean that a lot of bugs were found, although if it’s your first pentest I would be surprised no vulnerabilities were found.&lt;/p&gt;
+
+&lt;p&gt;A successful pentest means you had the right people on the job, they had adequate time to find the issues, and were provided with the proper resources.&lt;/p&gt;
+
+&lt;p&gt;That’s basically it in a nutshell.&lt;/p&gt;
+
+&lt;h2 id=&quot;before-the-pentest&quot;&gt;&lt;a href=&quot;#before-the-pentest&quot;&gt;Before The Pentest&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;selecting-a-provider&quot;&gt;&lt;a href=&quot;#selecting-a-provider&quot;&gt;Selecting A Provider&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that we’ve established success criteria, let’s go into vendor selection. These are the people to do the job.&lt;/p&gt;
+
+&lt;p&gt;One distinguishing factor in a provider is having a good research arm.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Do they publish a lot of research? How often?&lt;/li&gt;
+  &lt;li&gt;Do their pentesters have any published CVE’s?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At the end of the day, selecting a vendor is basically on whether they have the right people to do the job. They can have all the logos in the world, great sales people, and even an interesting app along with it… but can they do the job?&lt;/p&gt;
+
+&lt;p&gt;Next you will want to match the people with your stack.&lt;/p&gt;
+
+&lt;p&gt;Is there anything nuanced about your stack? Do you have mobile or desktop apps as well?&lt;/p&gt;
+
+&lt;p&gt;In the proposal, a good pentest vendor will provide you with bios of the people assigned to your project. That will allow you to look up their experience, their blog posts, GitHub profile, and etc and see if they are a fit for you.&lt;/p&gt;
+
+&lt;p&gt;Next is ascertaining how long the engagement will be. There are several ways they are configured, but there are only two main factors:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How many people are assigned to the pentest?&lt;/li&gt;
+  &lt;li&gt;How long the actual pentest will be?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Typical engagements are 2 x 2, meaning two people for two weeks.&lt;/p&gt;
+
+&lt;p&gt;This can vary from provider to provider, with scope being a factor in consideration as well.&lt;/p&gt;
+
+&lt;p&gt;So if you have a tiny application, they may decide to make it a 2 x 1.&lt;/p&gt;
+
+&lt;p&gt;If they’re throwing a superstar on the application, it can be a 3 x 1.&lt;/p&gt;
+
+&lt;p&gt;YMMV here.&lt;/p&gt;
+
+&lt;p&gt;One other important consideration is whether the people assigned to your project are ever double booked. It’s important to ask your vendor whether they are ever double booked.&lt;/p&gt;
+
+&lt;p&gt;While they may not be double booked during the engagement, sometimes what happens is they are still writing the report the following weeks, while on another engagement.&lt;/p&gt;
+
+&lt;p&gt;Depending on the size of the firm, they may have a QA process where reports must go through a peer review or QA process. This is a good thing, and we should allow this process to work.&lt;/p&gt;
+
+&lt;p&gt;In some companies, the people that do the pentest are not the ones that write the report. Any findings found will be sent to a reporting team where they will verify findings and writeup the report and remediation. This is an interesting model.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-note-about-cost&quot;&gt;&lt;a href=&quot;#a-note-about-cost&quot;&gt;A Note About Cost&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Keep in mind, the most expensive provider does not always mean the best. Conversely, the cheapest isn’t always the worst.&lt;/p&gt;
+
+&lt;p&gt;Labor cost is just part of the equation, most of which can be attributed to locale. Other parts that play a factor is the amount of overhead internally (project management, account executives, etc.). So a lean shop of 10-20 super senior experts could be cheaper than the 80-100 person shop. So YMMV.&lt;/p&gt;
+
+&lt;h3 id=&quot;project-coordination&quot;&gt;&lt;a href=&quot;#project-coordination&quot;&gt;Project Coordination&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A pentest is a significant project on its own. So many different components are involved and since it’s a time boxed engagement, any delays could be very costly. Momentum stops and having to restart again is a waste of time.&lt;/p&gt;
+
+&lt;p&gt;Some pentest firms will assign a project coordinator to help facilitate the process. They will take care of scheduling kick off calls, getting credentials, and communicating with you throughout the engagement.&lt;/p&gt;
+
+&lt;p&gt;Regardless of whether they provide someone or not, you must have a point person internally on your side that is coordinating the engagement and keeping them accountable. Having this will increase the likelihood of a successful pentest.&lt;/p&gt;
+
+&lt;p&gt;This can be the CISO/Head of Security, Deputy CISO, or security engineer.&lt;/p&gt;
+
+&lt;p&gt;This person will be the glue on your side that is working to get the environment up and running, getting credentials, checking calendars for calls, and coordinating communication between the internal team and the pentest team.&lt;/p&gt;
+
+&lt;p&gt;You thought you could just get a pentest and forget it huh? 😅&lt;/p&gt;
+
+&lt;h3 id=&quot;environment&quot;&gt;&lt;a href=&quot;#environment&quot;&gt;Environment&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;An important factor for any successful pentest is having the right environment for a pentest. You will want a like for like environment with the same code and logic running in production. This may be an existing staging/dev environment or a brand new environment.&lt;/p&gt;
+
+&lt;p&gt;Where possible you will want a dedicated environment, especially if your risk tolerance for availability is low, but it is totally understandable that resource constraints, especially if you’re a startup, may not warrant such a luxury.&lt;/p&gt;
+
+&lt;p&gt;Allowing a pentest on your production environment, while not unheard of, is not recommended. Pentesters will use a combination of automated and manual tools where they are trying to actively exploit your application. This means they are trying to get the application to do things it was NOT intended to do.&lt;/p&gt;
+
+&lt;p&gt;They cause the application to freeze.&lt;/p&gt;
+
+&lt;p&gt;They may access data they were not allowed to.&lt;/p&gt;
+
+&lt;p&gt;They may get RCE (Remote Code Execution) on your container or EC2, and try to elevate from there. (I assume you’re not running your containers as root, please tell me that’s the case!).&lt;/p&gt;
+
+&lt;p&gt;They should have liberty to do as they wish.&lt;/p&gt;
+
+&lt;p&gt;You are paying expensive dollars for this, make it worth it.&lt;/p&gt;
+
+&lt;p&gt;So yeah, don’t run a pentest in production or with production data.&lt;/p&gt;
+
+&lt;h3 id=&quot;credentials&quot;&gt;&lt;a href=&quot;#credentials&quot;&gt;Credentials&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Another part of a good pentest is simulating authenticated users.&lt;/p&gt;
+
+&lt;p&gt;While pentesters will conduct unauthenticated attacks on your website, they will also need to run authenticated attacks.&lt;/p&gt;
+
+&lt;p&gt;The goal here is to have them try to access data  they are not otherwise supposed to access (cross tenant attacks).&lt;/p&gt;
+
+&lt;p&gt;So to succeed, each pentester will require at least one credential for every role available on your application, including admin.&lt;/p&gt;
+
+&lt;p&gt;So if you have 2 pentesters, and 3 roles (user, power user, admin), you will need 2 sets of credentials created, one for each role, 6 in total.&lt;/p&gt;
+
+&lt;p&gt;Some companies may ask for more, but this is the minimum any good pentest firm should request from you.&lt;/p&gt;
+
+&lt;p&gt;If they don’t ask until the pentest has already started, then they are not organized and professional imho.&lt;/p&gt;
+
+&lt;p&gt;Please also make sure the testing environment is stable.&lt;/p&gt;
+
+&lt;p&gt;Nothing like an unstable environment to ruin a pentesters day.&lt;/p&gt;
+
+&lt;p&gt;Not to mention an utter waste of time and money.&lt;/p&gt;
+
+&lt;h3 id=&quot;fix-your-low-hanging-fruit&quot;&gt;&lt;a href=&quot;#fix-your-low-hanging-fruit&quot;&gt;Fix Your Low Hanging Fruit&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Before doing a pentest, make sure you fix all your low hanging fruit.&lt;/p&gt;
+
+&lt;p&gt;You’re bringing in professionals to try to break your app and make it do nasty things.&lt;/p&gt;
+
+&lt;p&gt;You wouldn’t want to waste their valuable time with weak passwords and not secure cookies.&lt;/p&gt;
+
+&lt;p&gt;Not only that, but you don’t want these basic items on your report in the event you need to share it externally (see below).&lt;/p&gt;
+
+&lt;p&gt;Believe it or not, many companies know about these vulnerabilities already, but just haven’t fixed them for whatever reason.&lt;/p&gt;
+
+&lt;p&gt;Fix them.&lt;/p&gt;
+
+&lt;p&gt;Of course, don’t let this be a blocker for a pentest. Maybe you (the security person) are looking for a 3rd party to validate what you already know.&lt;/p&gt;
+
+&lt;p&gt;Happens all the time.&lt;/p&gt;
+
+&lt;h2 id=&quot;during-the-pentest&quot;&gt;&lt;a href=&quot;#during-the-pentest&quot;&gt;During The Pentest&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;So your pentest is scheduled to start on a Monday.&lt;/p&gt;
+
+&lt;p&gt;On the Friday prior, you should have had the kickoff call, credentials exchanged, slack channel setup, and environment ready to go.&lt;/p&gt;
+
+&lt;p&gt;That is the best early indicator of a successful pentest.&lt;/p&gt;
+
+&lt;p&gt;You have the pentesters ready to hit the ground running on Monday.&lt;/p&gt;
+
+&lt;p&gt;Nice work.&lt;/p&gt;
+
+&lt;h3 id=&quot;watching-the-logs&quot;&gt;&lt;a href=&quot;#watching-the-logs&quot;&gt;Watching the logs&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now you as coordinator on the client side sit and wait.&lt;/p&gt;
+
+&lt;p&gt;You can watch the web traffic and requests as they hit the application.&lt;/p&gt;
+
+&lt;p&gt;This will give you an idea of how they work.&lt;/p&gt;
+
+&lt;p&gt;They may first start with the standard automated or semi-automated tools.&lt;/p&gt;
+
+&lt;p&gt;Or maybe they are using custom scripts they’ve developed.&lt;/p&gt;
+
+&lt;p&gt;It should be pretty intense the first couple days.&lt;/p&gt;
+
+&lt;p&gt;You can see if your WAF has caught any of their traffic as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;check-ins-and-communication&quot;&gt;&lt;a href=&quot;#Check-Ins-and-communication&quot;&gt;Check-Ins and Communication&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;As with any relationship, no news is not great news.&lt;/p&gt;
+
+&lt;p&gt;The more communication the better.&lt;/p&gt;
+
+&lt;p&gt;Did they find any bugs?&lt;/p&gt;
+
+&lt;p&gt;Did they run into any issues?&lt;/p&gt;
+
+&lt;p&gt;Is everything ok?&lt;/p&gt;
+
+&lt;p&gt;Keep in mind, if a pentester finds something they have to spend some time validating the finding.&lt;/p&gt;
+
+&lt;p&gt;They wouldn’t want to startle you with a finding, only to find out it was a false alarm.&lt;/p&gt;
+
+&lt;p&gt;Regardless, having a quick check-in more frequently than not can be very helpful, especially in the beginning, however the reality is that pentesting is a demanding business. A daily check-in for example is too much, and many shops will push back.&lt;/p&gt;
+
+&lt;p&gt;To find a balance, I would get a quick check-in at the end of the first day or first thing the next and then another a couple days later. You would be surprised, some pentesters may have something on their mind, but don’t speak up.&lt;/p&gt;
+
+&lt;h3 id=&quot;sample-schedule&quot;&gt;&lt;a href=&quot;#sample-schedule&quot;&gt;Sample Schedule&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;So if the project starts on a Monday, here what it could look like:&lt;/p&gt;
+
+&lt;p&gt;Week 1&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Friday - Kick Off Call and creds exchange&lt;/li&gt;
+  &lt;li&gt;Monday EOD - Quick Sync w/PM&lt;/li&gt;
+  &lt;li&gt;Thursday AM - Quick Sync w/PM&lt;/li&gt;
+  &lt;li&gt;Friday AM - Brief Check-in with Pentesters, findings update&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hopefully this doesn’t annoy them too much!&lt;/p&gt;
+
+&lt;p&gt;Week 2&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Either Tues or Wed  - Check-In w/pentesters&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;why-so-many-check-ins&quot;&gt;&lt;a href=&quot;#why-so-many-check-ins?&quot;&gt;Why so many check-ins?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Sure this may sound like micro-managing a bit, but keep in mind this is a time boxed engagement. So if the pentesters bring something up that you think they should explore a little more or conversely don’t want them to go down a rabbit hole because you know about a bug already (which you should have mentioned), then this will save you time. This also assumes your application has a large footprint and may be a bit complex.&lt;/p&gt;
+
+&lt;p&gt;Hopefully this context will help you have a better understanding of a pentest flow.&lt;/p&gt;
+
+&lt;p&gt;Another helpful reason for the check-ins is to learn of any findings and try to fix them before the pentest is over. See below.&lt;/p&gt;
+
+&lt;h2 id=&quot;after-the-pentest&quot;&gt;&lt;a href=&quot;#after-the-pentest&quot;&gt;After The Pentest&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;wrap-up&quot;&gt;&lt;a href=&quot;#Wrap-Up&quot;&gt;Wrap Up&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;After the pentest period is over, now the fun part (no, I’m being sarcastic) comes. The pentesters now need to write up a formal report to be presented.&lt;/p&gt;
+
+&lt;p&gt;Keep in mind, they need to not only verify all the findings, but need to make suggestions regarding a fix.&lt;/p&gt;
+
+&lt;p&gt;More often than not the fixes will be generic, as many shops don’t have the time to write a custom recommendation.&lt;/p&gt;
+
+&lt;p&gt;However, sometimes you will see custom written recommendations, where they give specific instructions on how to fix a vulnerability. That is sweet.&lt;/p&gt;
+
+&lt;p&gt;Of course, we have AI now to help us with this task, so maybe it’s not so meaningful, but I can still reminisce right?&lt;/p&gt;
+
+&lt;p&gt;Once the report is done, they should reach out and schedule a read-out.&lt;/p&gt;
+
+&lt;h3 id=&quot;reporting--read-out&quot;&gt;&lt;a href=&quot;#reporting-&amp;amp;-read-out&quot;&gt;Reporting &amp;amp; Read Out&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Probably the most important part of the penetration test is the read out.&lt;/p&gt;
+
+&lt;p&gt;This is an opportunity to hear it straight from the technical people who were hammering away on your app for a couple weeks.&lt;/p&gt;
+
+&lt;p&gt;You will want the right people in the room, and they need to hear it live.&lt;/p&gt;
+
+&lt;p&gt;Both Engineering leaders and engineers should attend.&lt;/p&gt;
+
+&lt;p&gt;The various viewpoints are important.&lt;/p&gt;
+
+&lt;p&gt;Especially if something is going to be prioritized, engineering leaders should have the context why.&lt;/p&gt;
+
+&lt;p&gt;Btw, If your pentest firm just hands you a report, then they may not be super professional imho!&lt;/p&gt;
+
+&lt;p&gt;Insist on a readout.&lt;/p&gt;
+
+&lt;h3 id=&quot;fixes-before-final-report&quot;&gt;&lt;a href=&quot;#fixes-before-final-report&quot;&gt;Fixes Before Final Report&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You have a few opportunities to fix any vulnerabilities found which would be beneficial to you in the long run.&lt;/p&gt;
+
+&lt;p&gt;During the readout or prior, the firm may be presenting a draft report.&lt;/p&gt;
+
+&lt;p&gt;If there is a finding found and you are able to fix it before the report is finalized and during the pentest, then the finding will be labeled as fixed in the final report.&lt;/p&gt;
+
+&lt;p&gt;A finding will never be not disclosed once found. You wouldn’t want that and it’s not ethical.&lt;/p&gt;
+
+&lt;h3 id=&quot;retesting&quot;&gt;&lt;a href=&quot;#Retesting&quot;&gt;Retesting&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Some firms will also include a free retest within 60 or 90 days for example.&lt;/p&gt;
+
+&lt;p&gt;This is helpful in the event you were able to fix the issues, they can retest and make sure your fixes solved the findings.&lt;/p&gt;
+
+&lt;p&gt;They may be able to issue an updated report as well, or at least a one pager mentioning the retest and results.&lt;/p&gt;
+
+&lt;h3 id=&quot;sharing-your-reports&quot;&gt;&lt;a href=&quot;#Sharing-your-reports&quot;&gt;Sharing Your Reports&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;You have this shiny new report that has a lot of ugly things about your environment.&lt;/p&gt;
+
+&lt;p&gt;What if customers ask you for a copy, what should you do?&lt;/p&gt;
+
+&lt;p&gt;The standard playbook for most security situations is to share as little as possible.&lt;/p&gt;
+
+&lt;p&gt;This is not legal advice, consult with a lawyer.&lt;/p&gt;
+
+&lt;p&gt;Your pentest firm should give you a Letter of Attestation along with the report.&lt;/p&gt;
+
+&lt;p&gt;This is a high level document that says they came in, they saw, and they finished.&lt;/p&gt;
+
+&lt;p&gt;Usually it will just have a count of the severity of vulnerabilities found.&lt;/p&gt;
+
+&lt;p&gt;Names of vulnerabilities are not usually listed here.&lt;/p&gt;
+
+&lt;p&gt;This will take care of many customer’s needs.&lt;/p&gt;
+
+&lt;p&gt;Keep in mind they will ask you if you’ve fixed them or not.&lt;/p&gt;
+
+&lt;p&gt;The next step of sharing, would be a table of contents for the report.&lt;/p&gt;
+
+&lt;p&gt;This would typically list the names of the vulnerabilities and severity.&lt;/p&gt;
+
+&lt;p&gt;Lastly, would be sharing the entire report.&lt;/p&gt;
+
+&lt;p&gt;Some things to consider when sharing your report:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Always have an NDA&lt;/li&gt;
+  &lt;li&gt;Do not distribute this report freely, especially to non-customers&lt;/li&gt;
+  &lt;li&gt;You are expected to fix the vulnerabilities in a reasonable amount of time. If you haven’t fixed them, it’s not the end of the world, as long as you are to explain why and it’s an egregious issue.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a href=&quot;#Conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ok, so that’s everything I know about running a pentest.&lt;/p&gt;
+
+&lt;p&gt;For pentesters, it’s an intense period. Having a short amount of time to find vulnerabilities can be daunting but also a fun challenge.&lt;/p&gt;
+
+&lt;p&gt;A successful pentest requires investment in time and resources ahead of time.&lt;/p&gt;
+
+&lt;p&gt;It’s well worth it though.&lt;/p&gt;
+
+&lt;p&gt;With this guide you should be well equipped to have a successful pentest.&lt;/p&gt;</content><author><name>Saransh Saraf</name></author><category term="resources" /><category term="penetration" /><category term="testing," /><category term="pentest" /><category term="guide," /><category term="cybersecurity," /><category term="ethical" /><category term="hacking," /><category term="security" /><category term="testing," /><category term="Ayman" /><category term="Elsawah," /><category term="vulnerability" /><category term="assessment," /><category term="network" /><category term="security," /><category term="security" /><category term="audit," /><category term="ethical" /><category term="hacking" /><category term="techniques," /><category term="successful" /><category term="pentest," /><category term="cybersecurity" /><category term="best" /><category term="practices," /><category term="penetration" /><category term="test" /><category term="steps," /><category term="security" /><category term="assessment" /><summary type="html">Index Introduction What Is A Good Pentest? Before The Pentest Selecting A Provider A Note About Cost Project Coordination Environment Credentials Fix Your Low Hanging Fruit During The Pentest Watching the logs Check-Ins and Communication Sample Schedule Why so many check-ins? After The Pentest Wrap Up Reporting &amp;amp; Read Out Fixes Before Final Report Retesting Sharing Your Reports Conclusion</summary></entry><entry><title type="html">Getting Started with Cloud Security</title><link href="https://mr23r0.github.io/cloud-security-starter" rel="alternate" type="text/html" title="Getting Started with Cloud Security" /><published>2025-02-21T00:00:00+05:30</published><updated>2025-02-21T00:00:00+05:30</updated><id>https://mr23r0.github.io/cloud-security-starter</id><content type="html" xml:base="https://mr23r0.github.io/cloud-security-starter">&lt;h3 id=&quot;index&quot;&gt;Index&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#fundamentals&quot;&gt;Fundamentals&lt;/a&gt;&lt;/li&gt;
@@ -622,52 +959,4 @@ This technique, while seeming innocuous at first glance, poses a significant thr
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/1537149&quot; target=&quot;_blank&quot;&gt;Hackerone&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/381553&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://hackerone.com/reports/150179&quot; target=&quot;_blank&quot;&gt;Hackerone - Personal Favourite&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><category term="html," /><category term="injection," /><category term="web," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="security" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Podcast 01</title><link href="https://mr23r0.github.io/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>https://mr23r0.github.io/podcast-01</id><content type="html" xml:base="https://mr23r0.github.io/podcast-01">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry><entry><title type="html">Unlocking the Power of Observation : the front door key 🔑</title><link href="https://mr23r0.github.io/unlocking-the-power-of-observation-part-2" rel="alternate" type="text/html" title="Unlocking the Power of Observation : the front door key 🔑" /><published>2023-09-16T00:00:00+05:30</published><updated>2023-09-16T00:00:00+05:30</updated><id>https://mr23r0.github.io/unlocking-the-power-of-observation-part-2</id><content type="html" xml:base="https://mr23r0.github.io/unlocking-the-power-of-observation-part-2">&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*sLr3oSvwjgfx_6N-Mzgv0g.png&quot; alt=&quot;banner&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We are currently in the era of SaaS applications and startups. SaaS applications have become ubiquitous, serving various purposes, from sending notifications to collecting feedback. There seems to be a SaaS application for virtually every need, and startups are capitalizing on this trend.&lt;/p&gt;
-
-&lt;p&gt;For those familiar with &lt;em&gt;web applications&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, the concept is quite clear: applications require users to create accounts to establish user identities and workspaces. Within these workspaces, users can perform tasks and store their relevant information.&lt;/p&gt;
-
-&lt;p&gt;The development and maintenance of user registrations and session management can be quite challenging in terms of security. Therefore, it’s not surprising that SaaS services offer user management features that can be easily integrated with just a few clicks. Startups often opt for these solutions as their primary choice. This allows them to allocate their resources and funds toward developing their core solutions, rather than diverting them to the complexities of user management.&lt;/p&gt;
-
-&lt;p&gt;I noticed a similar situation during a &lt;em&gt;penetration test&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; conducted on “company.com.” It’s worth noting that “company.com” serves as an alias for the actual application that will be the focus of discussion throughout this article.&lt;/p&gt;
-
-&lt;p&gt;While examining the login page, I recognized that it was associated with a SaaS service providing user management features. To gain deeper insights, I routed every request through Burp Suite, with the assumption that I might discover something valuable about the service.&lt;/p&gt;
-
-&lt;p&gt;Following several registration processes and login-logout interactions, I decided to inspect the requests within Burp Proxy and the Target tab. To my surprise, I noticed that certain domains and subdomains were making calls to the SaaS application. Given that such calls are typically intended to be executed on the server side, this observation raised suspicions.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*fDKgDM19nqs1NYWrNlbyDg.jpeg&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Among the various calls, two in particular from api.saasapp.com caught my attention. Upon closer examination, I discovered that the response from the POST request included an &lt;em&gt;OAuth token&lt;/em&gt;&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, with the request containing both a client ID and a secret.&lt;/p&gt;
-
-&lt;p&gt;For those who may not be familiar, it’s essential to understand that virtually every SaaS application offering technical and non-technical services provides APIs for programmatic usage. As I delved into the SaaS application’s documentation, I learned that the key and secret serve the purpose of connecting the customer application (company.com) with the SaaS application (saasapp.com), facilitating the sharing of user identities and session tokens.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://miro.medium.com/v2/resize:fit:720/format:webp/1*d0iAUVZ-8GFNEO7HZcKlrg.jpeg&quot; alt=&quot;image&quot; class=&quot;iod&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Upon further exploration of the keys, I found that they possess administrative privileges. Using the generated token associated with these keys, I gained the ability to retrieve user data, make modifications to their information, and even add members with administrative control over the SaaS application account for the application (company.com).&lt;/p&gt;
-
-&lt;p&gt;It granted me Administrator access to the &lt;em&gt;User Management System&lt;/em&gt;&lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;, highlighting yet another instance of how expanding the attack surface and meticulously scrutinizing details can uncover creative yet crucial vulnerabilities. I often refer to this approach as “Unlocking the Power of Observation.” This marks the second article in this series.&lt;/p&gt;
-
-&lt;p&gt;Before concluding, I would like you to consider this scenario: What if I were unaware of these SaaS applications or the current trends in the development landscape? I might have dismissed it as a “rabbit hole.” Therefore, I encourage you not to limit your learning. Embrace the opportunity to learn about a wide range of topics because knowledge is an asset that never goes to waste — except perhaps for those intricate mathematical calculations we encountered in school ;)&lt;/p&gt;
-
-&lt;p&gt;This concludes my discussion on this topic. I hope you’ve gained new insights from this.&lt;br /&gt;
-Thank you!&lt;/p&gt;
-
-&lt;hr data-content=&quot;footnotes&quot; /&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://aws.amazon.com/what-is/web-application/#:~:text=A%20web%20application%20is%20software,with%20customers%20conveniently%20and%20securely.&quot; target=&quot;_blank&quot;&gt;Web Applications&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.synopsys.com/glossary/what-is-penetration-testing.html&quot; target=&quot;_blank&quot;&gt;Penetration Testing/Tests&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.rfc-editor.org/rfc/rfc6749&quot; target=&quot;_blank&quot;&gt;OAuth Tokens&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.egnyte.com/guides/governance/user-management#:~:text=User%20management%20is%20a%20system,Providing%20users%20with%20authenticated%20access&quot; target=&quot;_blank&quot;&gt;User Management System&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Saransh Saraf</name></author><category term="posts" /><category term="saas," /><category term="application," /><category term="security," /><category term="vulnerability," /><category term="bug" /><category term="bounty" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Saransh Saraf</name></author><category term="guides" /><category term="html," /><category term="injection," /><category term="web," /><category term="penetration" /><category term="testing," /><category term="bug" /><category term="bounty," /><category term="security" /><summary type="html">Index Introduction HTML Weaponize Detection Bypass RW Examples</summary></entry><entry><title type="html">Podcast 01</title><link href="https://mr23r0.github.io/podcast-01" rel="alternate" type="text/html" title="Podcast 01" /><published>2023-12-25T00:00:00+05:30</published><updated>2023-12-25T00:00:00+05:30</updated><id>https://mr23r0.github.io/podcast-01</id><content type="html" xml:base="https://mr23r0.github.io/podcast-01">&lt;iframe width=&quot;98%&quot; height=&quot;300&quot; class=&quot;ioda&quot; style=&quot;filter:invert(100%)&quot; src=&quot;https://www.youtube.com/embed/jokYRytaHX4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot;&gt;&lt;/iframe&gt;</content><author><name>Saransh Saraf</name></author><category term="featured" /><summary type="html"></summary></entry></feed>

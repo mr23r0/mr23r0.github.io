@@ -43,7 +43,7 @@ entries:
       show_more_text: See more books...
       show_more_url: books-archive
 
-  - title: life and philosophy
+  - title: philosophy
     post_list:
       limit: 3
       category: philosophy

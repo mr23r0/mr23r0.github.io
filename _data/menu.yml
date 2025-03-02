@@ -19,14 +19,6 @@ entries:
       show_more_text: See more resources...
       show_more_url: resources-archive
 
-  - title: featured
-    post_list:
-      limit: 3
-      category: featured
-      show_more: true
-      show_more_text: See more featured posts...
-      show_more_url: featured-archive
-
   - title: guides
     post_list:
       limit: 3
@@ -51,6 +43,15 @@ entries:
       show_more_text: See more writings...
       show_more_url: philosophy-archive
   
+  - title: featured
+    post_list:
+      limit: 3
+      category: featured
+      show_more: true
+      show_more_text: See more featured posts...
+      show_more_url: featured-archive
+
+
   - title: Me?
     entries:
           - title: about

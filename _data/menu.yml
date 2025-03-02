@@ -46,7 +46,7 @@ entries:
   - title: life and philosophy
     post_list:
       limit: 3
-      category: life and philosophy
+      category: "life and philosophy"
       show_more: true
       show_more_text: See more writings...
       show_more_url: philosophy-archive

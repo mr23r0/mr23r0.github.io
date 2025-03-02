@@ -1,6 +1,6 @@
 ---
 layout: post
-category: resources
+category: philosophy
 title: "The Kind, the Ruthless, and the Ones Who Survive"
 description : "Explore the blurred lines between good and evil, the power of perception, and why being misunderstood can be a strength. This thought-provoking series delves into morality, psychology, and the justifications we create for heroes and villains alike."
 tags : "perception of good and evil, morality and power, heroes vs villains, necessary evil, psychology of perception, fear vs respect, misunderstood genius, the cost of kindness, shaping reputation, illusion of virtue, power dynamics, psychological storytelling, morality in fiction, ethical dilemmas, redefining good and bad"
